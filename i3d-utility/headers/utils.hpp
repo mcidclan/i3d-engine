@@ -69,12 +69,23 @@
 			}
 		}
 
+		/// Allows to get a specific type value from string.
+		template<typename T>
+		T readFrom(string const& in)
+		{
+			T out;
+			istringstream tmp(in);
+			tmp >> out;
+			return out;
+		}
+
 		/// Allows to get the size of an array.
 		template <typename T, unsigned int N>
 		inline unsigned int count(const T(&)[N])
 		{
 			return N;
 		}
+
 	}
 
 #endif
