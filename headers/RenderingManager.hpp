@@ -3,6 +3,8 @@
 
 	#include "utils.hpp"
 	#include "ShaderSources.hpp"
+
+	#include "RenderText.hpp"
 	#include "RenderTriangle.hpp"
 	#include "RenderRectangle.hpp"
 
@@ -29,6 +31,26 @@
 			/// Destructor.
 			///
 			~RenderingManager();
+
+			///
+			/// Set the current font by passing his id.
+			///
+			void setCurrentFont(unsigned int const);
+
+			///
+			/// Add a new font from a given source file.
+			///
+			void addNewFont(char const* const);
+
+			///
+			/// Set the text value of the specified RenderText.
+			///
+			void setRenderTextValue(char const* const, char const* const);
+
+			///
+			/// Add a new RenderText. An id must be given.
+			///
+			void addNewRenderText(char const* const);
 
 			///
 			/// Allows to choose the current ShaderProgram.
@@ -79,9 +101,29 @@
 			vector<RenderShape*> shapes;
 
 			///
+			/// 
+			///
+			map<string, RenderText*> texts;
+
+			///
+			/// Current font to be used.
+			///
+			FTGLPixmapFont* currentfont;
+			
+			///
+			/// Font stack.
+			///
+			vector<FTGLPixmapFont*> fonts;
+
+			///
+			/// Draw all RenderText that was added.
+			///
+			void drawText(void);
+
+			///
 			/// Draw all RenderShape that was added.
 			///
-			void drawShape(void);
+			void drawShapes(void);
 
 			///
 			/// Create and return a new buffered RenderShape. 

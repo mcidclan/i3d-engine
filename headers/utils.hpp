@@ -1,28 +1,14 @@
 #ifndef UTILS_HPP
 #define UTILS_HPP
 	
-	#include <stdio.h>
-	#include <iostream>
+	#include <map>
 	#include <vector>
+	#include <iostream>
 
 	using namespace std;
 
 	namespace utils
 	{
-		/*template <typename T>
-		class DynamicVector : vector<T*>
-		{
-			public:
-				DynamicVector();
-				~DynamicVector();
-
-			private:
-				T* operator[](unsigned int id)
-				{
-					return this[id];
-				}
-		};*/
-
 		///
 		/// Allows to delete dynamics instances through a vector.
 		///
@@ -37,6 +23,25 @@
 				if(v[i] != NULL) delete v[i];
 			}
 			v.clear();
+		}
+
+		///
+		/// Allows to delete dynamics instances through a map.
+		///
+		template <typename T1, class T2>
+		void dynamicDelete(map<T1, T2>& m)
+		{
+			typename map<T1, T2>::const_iterator a, b;
+
+			a = m.begin();
+			b = m.end();
+
+			while(a != b)
+			{
+				delete a->second;
+				a++;
+			}
+			m.clear();
 		}
 	}
 

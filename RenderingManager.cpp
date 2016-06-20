@@ -9,6 +9,7 @@ RenderingManager::RenderingManager()
 	unsigned int i;
 
 	this->current = this;
+	this->currentfont = NULL;
 	this->currentshader = NULL;
 
 	i = 0;
@@ -21,18 +22,36 @@ RenderingManager::RenderingManager()
 
 RenderingManager::~RenderingManager()
 {
+	utils::dynamicDelete(this->texts);
+	utils::dynamicDelete(this->fonts);
 	utils::dynamicDelete(this->shapes);
 	utils::dynamicDelete(this->shaders);
 }
 
+//Screenplay-tree must be used.
 void RenderingManager::draw(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	RenderingManager::current->drawShape();
+	RenderingManager::current->drawShapes();
+	RenderingManager::current->drawText();
 }
 
-void RenderingManager::drawShape(void)
+void RenderingManager::drawText(void)
+{
+	map<string, RenderText*>::const_iterator a, b;
+
+	a = this->texts.begin();
+	b = this->texts.end();
+
+	while(a != b)
+	{
+		a->second->draw();
+		a++;
+	}
+}
+
+void RenderingManager::drawShapes(void)
 {
 	unsigned int i;
 	
@@ -42,6 +61,43 @@ void RenderingManager::drawShape(void)
 		this->shapes[i]->draw();
 		i++;
 	}
+}
+
+void RenderingManager::setRenderTextValue(char const* const name,
+char const* const value)
+{
+	this->texts[name]->setText(value);
+}
+
+void RenderingManager::setCurrentFont(unsigned int const id)
+{
+	this->currentfont = fonts[id];
+}
+
+void RenderingManager::addNewFont(char const* const filename)
+{
+	FTGLPixmapFont* font;
+
+	font = new FTGLPixmapFont(filename);
+
+	if(!font->Error())
+	{
+		this->fonts.push_back(font);
+		this->currentfont = this->fonts.back();
+	}
+	else cout << "An error has occurred during font file loading.\n";
+}
+
+void RenderingManager::addNewRenderText(char const* const name)
+{
+	RenderText* rendertext;
+
+	if(this->currentfont != NULL)
+	{
+		rendertext = new RenderText(this->currentfont);
+		this->texts[name] = rendertext;
+	}
+	else cout << "Please set current text font.\n";
 }
 
 void RenderingManager::setCurrentShaderProgram(unsigned int const id)

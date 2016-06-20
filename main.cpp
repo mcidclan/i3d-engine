@@ -28,11 +28,16 @@ int main(int argc, char** argv)
 	Renderer renderer(argc, argv);
 	RenderingManager renderingmanager;
 
+	
 	shadersources.push(GL_VERTEX_SHADER, vertexshader);
 	shadersources.push(GL_FRAGMENT_SHADER, fragmentshader);
 
 	renderingmanager.addNewShaderProgram(shadersources);
 	renderingmanager.addNewBufferedShape(RM_SHAPE_TRIANGLE);
+
+	renderingmanager.addNewFont("./font.ttf");
+	renderingmanager.addNewRenderText("test");
+	renderingmanager.setRenderTextValue("test", "Hello World!");
 
 	renderer.setProcess(RenderingManager::draw);
 	renderer.start();
