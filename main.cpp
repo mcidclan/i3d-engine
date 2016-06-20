@@ -24,7 +24,7 @@ GLchar const* fragmentshader[] =
 
 int main(int argc, char** argv)
 {
-	ShaderSources shadersources;
+	/*ShaderSources shadersources;
 	Renderer renderer(argc, argv);
 	RenderingManager renderingmanager;
 
@@ -36,11 +36,16 @@ int main(int argc, char** argv)
 	renderingmanager.addNewBufferedShape(RM_SHAPE_TRIANGLE);
 
 	renderingmanager.addNewFont("./font.ttf");
-	renderingmanager.addNewRenderText("test");
-	renderingmanager.setRenderTextValue("test", "Hello World!");
+	renderingmanager.addNewRenderText("t1");
+	renderingmanager.addNewRenderText("t2");
+
+	renderingmanager.getRenderText("t1")->setSize(16);
+	renderingmanager.getRenderText("t1")->setText("Hello World!");
+	renderingmanager.getRenderText("t2")->setSize(32);
+	renderingmanager.getRenderText("t2")->setText("2");
 
 	renderer.setProcess(RenderingManager::draw);
-	renderer.start();
+	renderer.start();*/
 
 	return 0;
 }

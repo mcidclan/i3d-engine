@@ -1,14 +1,11 @@
 #include "headers/RenderingManager.hpp"
 
-RenderingManager* RenderingManager::current;
-
 GLuint RenderingManager::buffers[RM_SHAPE_NUMBER];
 
 RenderingManager::RenderingManager()
 {
 	unsigned int i;
 
-	this->current = this;
 	this->currentfont = NULL;
 	this->currentshader = NULL;
 
@@ -28,13 +25,12 @@ RenderingManager::~RenderingManager()
 	utils::dynamicDelete(this->shaders);
 }
 
-//Screenplay-tree must be used.
 void RenderingManager::draw(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	RenderingManager::current->drawShapes();
-	RenderingManager::current->drawText();
+	this->drawShapes();
+	this->drawText();
 }
 
 void RenderingManager::drawText(void)
@@ -63,10 +59,9 @@ void RenderingManager::drawShapes(void)
 	}
 }
 
-void RenderingManager::setRenderTextValue(char const* const name,
-char const* const value)
+RenderText* RenderingManager::getRenderText(char const* const name)
 {
-	this->texts[name]->setText(value);
+	return this->texts[name];
 }
 
 void RenderingManager::setCurrentFont(unsigned int const id)

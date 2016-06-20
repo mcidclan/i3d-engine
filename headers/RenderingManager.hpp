@@ -43,9 +43,9 @@
 			void addNewFont(char const* const);
 
 			///
-			/// Set the text value of the specified RenderText.
+			/// Get the specified RenderText.
 			///
-			void setRenderTextValue(char const* const, char const* const);
+			RenderText* getRenderText(char const* const);
 
 			///
 			/// Add a new RenderText. An id must be given.
@@ -71,15 +71,9 @@
 			///
 			/// Call the draw process.
 			///
-			static void draw(void);
+			void draw(void);
 
 		private:
-			///  
-			///	Allows access to the current instance,
-			/// from static functions.
-			///
-			static RenderingManager* current;
-
 			///
 			/// GL_STATIC_DRAW buffers.
 			///
