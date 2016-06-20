@@ -1,6 +1,8 @@
 #ifndef MATH_HPP
 #define MATH_HPP
 
+	#include <cstring>
+
 	namespace math
 	{
 		template <typename T>
