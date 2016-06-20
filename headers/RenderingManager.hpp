@@ -2,6 +2,7 @@
 #define RENDERINGMANAGER_HPP
 
 	#include "utils.hpp"
+	#include "ShaderSources.hpp"
 	#include "RenderTriangle.hpp"
 	#include "RenderRectangle.hpp"
 
@@ -30,6 +31,17 @@
 			~RenderingManager();
 
 			///
+			/// Allows to choose the current ShaderProgram.
+			///
+			void setCurrentShaderProgram(unsigned int const);
+
+			///
+			/// Add a new ShaderProgram to the RenderingManager,
+			/// and set the current ShaderProgram.
+			///
+			void addNewShaderProgram(ShaderSources&);
+
+			///
 			/// Add a new RenderShape according to the given ShapeType.
 			///
 			void addNewBufferedShape(ShapeType const);
@@ -50,6 +62,16 @@
 			/// GL_STATIC_DRAW buffers.
 			///
 			static GLuint buffers[];
+
+			///
+			/// Current ShaderProgram to be used.
+			///
+			ShaderProgram* currentshader;
+
+			///
+			/// ShaderProgram stack.
+			///
+			vector<ShaderProgram*> shaders;
 
 			///
 			/// RenderShape stack.

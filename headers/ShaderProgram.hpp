@@ -1,17 +1,7 @@
 #ifndef SHADERPROG_HPP
 #define SHADERPROG_HPP
 
-	#include <string>
-	#include <vector>
-	//#include <stdexcept>
-
-	#ifndef FLASCC
-	#include <GL/glew.h>
-	#else
-	#include <GLES2/gl2.h>
-	#endif
-
-	using namespace std;
+	#include "ShaderSources.hpp"
 
 	class ShaderProgram
 	{
@@ -44,8 +34,7 @@
 			///
 			/// Add a source (GL_VERTEX_SHADER or GL_FRAGMENT_SHADER).
 			///
-			template <int L>
-			void addSource(GLuint type, GLchar const* (&source)[L]);
+			void addSource(GLuint type, GLchar const**, unsigned int);
 
 		private:
 			///
@@ -64,19 +53,5 @@
 			///
 			vector<GLuint> shaders;
 	};
-
-	template <int L>
-	void ShaderProgram::addSource(GLuint type, GLchar const* (&source)[L])
-	{
-		GLuint shader;
-		GLint compiled;
-
-		shader = glCreateShader(type);
-		glShaderSource(shader, L, source, NULL);
-		glCompileShader(shader);
-
-		glAttachShader(this->program, shader);
-		this->shaders.push_back(shader);
-	}
 
 #endif

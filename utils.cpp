@@ -1,6 +1,12 @@
 #include "headers/utils.hpp"
 
-namespace
+namespace utils
 {
-	//
+	/*DynamicVector::DynamicVector()
+	{
+	}
+
+	DynamicVector::~DynamicVector()
+	{
+	};*/
 }

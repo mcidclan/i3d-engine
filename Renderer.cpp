@@ -2,32 +2,39 @@
 
 Renderer* Renderer::current;
 
-Renderer::Renderer()
+Renderer::Renderer(int argc, char** argv)
 {
 	Renderer::current = this;
 	this->process = NULL;
-}
 
-void Renderer::start(int argc, char** argv)
-{
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 
 	glutInitWindowSize(SCR_WIDTH, SCR_HEIGHT);
 	glutCreateWindow(" ");
-	glutFullScreen();
-	
-	this->init();
-	
-	glutDisplayFunc(Renderer::display);
-	glutReshapeFunc(Renderer::reshape);
-	glutIdleFunc(Renderer::idle);
-	
-	glutMainLoop();
+	//glutFullScreen();
+
+	if (glewInit() != GLEW_OK)
+	{
+		cout << "Failed to initialize GLEW\n";
+	}
+	else
+	{
+		this->init();
+
+		glutDisplayFunc(Renderer::display);
+		glutReshapeFunc(Renderer::reshape);
+		glutIdleFunc(Renderer::idle);
+	}
 }
 
 Renderer::~Renderer()
 {
+}
+
+void Renderer::start(void)
+{
+	glutMainLoop();
 }
 
 void Renderer::setProcess(void (* process)(void))

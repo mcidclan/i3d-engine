@@ -36,3 +36,16 @@ GLuint ShaderProgram::getId()
 {
 	return this->program;
 }
+
+void ShaderProgram::addSource(GLuint type,
+GLchar const** source, unsigned int linenumber)
+{
+	GLuint shader;
+
+	shader = glCreateShader(type);
+	glShaderSource(shader, linenumber, source, NULL);
+	glCompileShader(shader);
+
+	glAttachShader(this->program, shader);
+	this->shaders.push_back(shader);
+}

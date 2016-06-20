@@ -2,12 +2,27 @@
 #define UTILS_HPP
 	
 	#include <stdio.h>
+	#include <iostream>
 	#include <vector>
 
 	using namespace std;
 
 	namespace utils
 	{
+		/*template <typename T>
+		class DynamicVector : vector<T*>
+		{
+			public:
+				DynamicVector();
+				~DynamicVector();
+
+			private:
+				T* operator[](unsigned int id)
+				{
+					return this[id];
+				}
+		};*/
+
 		///
 		/// Allows to delete dynamics instances through a vector.
 		///

@@ -4,19 +4,12 @@ EXEC = i3d-engine.exe
 
 SRCFILES = $(wildcard *.cpp)
 OBJS = $(notdir $(patsubst %.cpp, %.o, $(SRCFILES)))
-#OBJS = main.o
 OBJS := $(addprefix $(BIN), $(OBJS))
 
-CFLAGS = -W -Wall -ansi -pedantic -O0 -g2 \
-		 -static
-#-mwindows
-#-Wpadded -Wpacked
-LDFLAGS = ./glut32.lib -lglew32.dll  -lopengl32 -lglu32
-#-lglut32
+CFLAGS = -W -Wall -ansi -pedantic -O0 -g2 -static \
+		-DGLEW_STATIC -DGLEW_NO_GLU -DGLEW_BUILD -DFREEGLUT_STATIC 
 
-#
-#-static-libgcc -static-libstdc++ -mwindows -enable-auto-import
-# -lstdc++
+LDFLAGS = -lfreeglut_static -lwinmm -lgdi32 -lglew32 -lglu32 -lopengl32
 
 all: $(BIN)$(EXEC)
 

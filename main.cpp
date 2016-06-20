@@ -3,6 +3,7 @@
 
 GLchar const* vertexshader[] =
 {
+	//"#version 120",
 	"attribute vec3 a_vertice;\n",
 	"\n",
 	"void main(void)\n",
@@ -13,21 +14,28 @@ GLchar const* vertexshader[] =
 
 GLchar const* fragmentshader[] =
 {
+	//"#version 120",
+	"\n",
 	"void main(void)\n",
 	"{\n",
-	"	gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);\n",
+	"	gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);\n",
 	"}\n"
 };
 
 int main(int argc, char** argv)
 {
-	Renderer renderer;
+	ShaderSources shadersources;
+	Renderer renderer(argc, argv);
 	RenderingManager renderingmanager;
 
+	shadersources.push(GL_VERTEX_SHADER, vertexshader);
+	shadersources.push(GL_FRAGMENT_SHADER, fragmentshader);
+
+	renderingmanager.addNewShaderProgram(shadersources);
 	renderingmanager.addNewBufferedShape(RM_SHAPE_TRIANGLE);
 
 	renderer.setProcess(RenderingManager::draw);
-	renderer.start(argc, argv);
+	renderer.start();
 
 	return 0;
 }

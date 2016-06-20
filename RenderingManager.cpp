@@ -9,17 +9,20 @@ RenderingManager::RenderingManager()
 	unsigned int i;
 
 	this->current = this;
+	this->currentshader = NULL;
 
 	i = 0;
-	while(sizeof(RenderingManager::buffers))
+	while(i < sizeof(RenderingManager::buffers))
 	{
 		RenderingManager::buffers[i] = 0;
+		i++;
 	}
 }
 
 RenderingManager::~RenderingManager()
 {
 	utils::dynamicDelete(this->shapes);
+	utils::dynamicDelete(this->shaders);
 }
 
 void RenderingManager::draw(void)
@@ -37,12 +40,52 @@ void RenderingManager::drawShape(void)
 	while(i < this->shapes.size())
 	{
 		this->shapes[i]->draw();
+		i++;
 	}
+}
+
+void RenderingManager::setCurrentShaderProgram(unsigned int const id)
+{
+	this->currentshader = this->shaders[id];
+}
+
+void RenderingManager::addNewShaderProgram(ShaderSources& shadersource)
+{
+	unsigned int i;
+	ShaderProgram* shaderprogram;
+	
+	i = 0;
+	shaderprogram = new ShaderProgram();
+
+	while(i < shadersource.size())
+	{
+		GLuint type;
+		unsigned int linenumber;
+
+		type = shadersource.getType(i);
+		linenumber = shadersource.getLineNumber(i);
+
+		shaderprogram->addSource(type, shadersource.at(i), linenumber);
+		i++;
+	}
+
+	this->shaders.push_back(shaderprogram);
+	this->currentshader = shaderprogram;
+
+	cout << "A new ShaderProgram was added.\n";
 }
 
 void RenderingManager::addNewBufferedShape(ShapeType const type)
 {
-	this->shapes.push_back(getNewBufferedShape(type));
+	if(this->currentshader != NULL)
+	{
+		RenderShape* shape;
+
+		shape = this->getNewBufferedShape(type);
+		shape->setShaderProgram(this->currentshader);
+		this->shapes.push_back(shape);
+	}
+	else cout << "Please set current shader program.\n";
 }
 
 RenderShape* RenderingManager::getNewBufferedShape(ShapeType const type)

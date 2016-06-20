@@ -1,8 +1,11 @@
 #ifndef RENDERER_HPP
 #define RENDERER_HPP
 
+	#include <iostream>
 	#include <GL/glew.h>
 	#include <GL/glut.h>
+
+	using namespace std;
 
 	static GLuint const SCR_WIDTH = 512;
 	static GLuint const SCR_HEIGHT = 512;
@@ -14,7 +17,7 @@
 			///
 			/// Create an Opengl 2.x Renderer using Glut.
 			///
-			Renderer();
+			Renderer(int, char**);
 
 			///
 			/// Destructor.
@@ -24,7 +27,7 @@
 			///
 			///
 			///
-			void start(int, char**);
+			void start(void);
 
 			///
 			/// Allows to set the internal drawing process. 
