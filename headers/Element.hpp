@@ -12,13 +12,21 @@
 			/// Destructor.
 			~Element();
 
+			///
+			uint getKeyMapId(void) const;
+
+			///@{
 			/// Availables ElementActions.
 			void getRunnableState(void* const);
+			///@}
 
 		private:
 			/// Give the runnable state,
 			/// in case it exist.
 			bool runnablestate;
+
+			///
+			uint keymapid;
 	};
 
 #endif

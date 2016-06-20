@@ -11,14 +11,20 @@
 
 		/// Allows to delete dynamics instances through a vector.
 		template <class T>
-		void dynamicDelete(vector<T>& v)
+		void dynamicDelete(vector<T>& v, bool isarray = false)
 		{
 			unsigned int i;
 
 			i = 0;
 			while(i < v.size())
 			{
-				if(v[i] != NULL) delete v[i];
+				if(v[i] != NULL)
+				{
+					if(isarray)
+					{
+						delete [] v[i];
+					} else delete v[i];
+				}
 			}
 			v.clear();
 		}
@@ -59,15 +65,6 @@
 		inline unsigned int count(const T(&)[N])
 		{
 			return N;
-		}
-
-		/// Copy a specific type to float.
-		template <typename T>
-		float alter(T const in)
-		{
-			union unfloat out;
-			out.a = in;
-			return out.b;
 		}
 	}
 

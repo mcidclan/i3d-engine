@@ -14,10 +14,10 @@ namespace home
 		sheet->addNewTexturedMesh("model.i3d", "test.bmp");
 
 		sheet->addNewEvent((E_SET | A_LOG),
-		new float[3]{0.0f, 0.0f, 0.0f});
+		eas::p(3, 0.0f, 0.0f, 0.0f));
 
 		sheet->addNewEvent((E_DO | A_SCALE),
-		new float[3]{utils::alter(P_X | P_Y), 512.0f, 512.0f});
+		eas::p(3, eas::u(P_X | P_Y), 512.0f, 512.0));
 
 		sheet->addNewFont("./font.ttf");
 		sheet->addNewRenderText("t1");

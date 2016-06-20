@@ -2,7 +2,6 @@
 #define UITEST_HXX
 
 	#include "ScriptTree.hpp"
-	#include "ControlKeyBoard.hpp"
 
 	namespace uitest
 	{

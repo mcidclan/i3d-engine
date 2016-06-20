@@ -6,6 +6,13 @@ Event::Event()
 
 Event::~Event()
 {
+	uint i;
+
+	i = 0;
+	while(i < this->paramlist.size())
+	{
+		delete [] reinterpret_cast<float*>(this->paramlist[i]);
+	}
 }
 
 void Event::addAction(ElementAction const action)

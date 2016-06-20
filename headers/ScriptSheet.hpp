@@ -3,6 +3,11 @@
 
 	#include "EventSupervisor.hpp"
 	#include "RenderingManager.hpp"
+	#include "ControlKeyBoard.hpp"
+	#include "ControlMouse.hpp"
+
+	class ControlKeyBoard;
+	class ControlMouse;
 
 	class ScriptSheet;
 
@@ -19,6 +24,12 @@
 
 			/// Destructor.
 			~ScriptSheet();
+
+			///
+			void buildMouse(void);
+
+			///
+			void buildKeyBoard(void);
 
 			/// Leave the current ScriptSheet by calling the clean process.
 			void leave(void);
@@ -47,7 +58,19 @@
 			/// Get the persistence state.
 			bool getLastingState(void);
 
+			///
+			ControlMouse* getMouse(void) const;
+
+			///
+			ControlKeyBoard* getKeyBoard(void) const;
+
 		private:
+			///
+			ControlMouse* mouse;
+
+			///
+			ControlKeyBoard* keyboard;
+
 			/// A flag to know if the init function was called.
 			bool initialized;
 

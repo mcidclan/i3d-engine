@@ -14,14 +14,30 @@ ScriptSheet::ScriptSheet() : RenderingManager(NULL)
 
 ScriptSheet::~ScriptSheet()
 {
+	if(this->mouse != NULL) delete this->mouse;
+	if(this->keyboard != NULL) delete this->keyboard;
+	
 	utils::dynamicDelete(this->sheets);
 }
 
 void ScriptSheet::initAttributes(void)
 {
+	this->mouse = NULL;
+	this->keyboard = NULL;
+
 	this->parent = NULL;
 	this->lasting = false;
 	this->initialized = false;
+}
+
+void ScriptSheet::buildMouse(void)
+{
+	this->mouse = new ControlMouse(this);
+}
+
+void ScriptSheet::buildKeyBoard(void)
+{
+	this->keyboard = new ControlKeyBoard(this);
 }
 
 void ScriptSheet::leave(void)
@@ -113,4 +129,14 @@ vector<ScriptSheet*>* ScriptSheet::getSheets(void)
 bool ScriptSheet::getLastingState(void)
 {
 	return this->lasting;
+}
+
+ControlMouse* ScriptSheet::getMouse(void) const
+{
+	return this->mouse;
+}
+
+ControlKeyBoard* ScriptSheet::getKeyBoard(void) const
+{
+	return this->keyboard;
 }

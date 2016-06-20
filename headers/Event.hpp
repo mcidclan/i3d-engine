@@ -1,6 +1,7 @@
 #ifndef EVENT_HPP
 #define EVENT_HPP
 
+	#include "utils.hpp"
 	#include "Element.hpp"
 	#include "ElementActionList.hpp"
 	#include "ElementActionInformer.hpp"
