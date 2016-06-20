@@ -2,6 +2,7 @@
 #define RENDERSHAPE_HPP
 
 	#include "Element.hpp"
+	#include "ShaderProgram.hpp"
 
 	class RenderShape : public Element
 	{
@@ -19,18 +20,23 @@
 			///
 			///
 			///
-			unsigned int getDataSize(void)
+			void setBufferId(GLuint);
 
 			///
 			///
 			///
-			void setBufferId(GLuint);
+			virtual unsigned int getDataSize(void) = 0;
+
+			///
+			///
+			///
+			virtual GLfloat const* getData(void) = 0;
 
 		private:
 			///
 			///
 			///
-			bufferid;
+			GLuint bufferid;
 
 	};
 

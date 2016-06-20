@@ -3,7 +3,7 @@
 
 	#include <string>
 	#include <vector>
-	#include <stdexcept>
+	//#include <stdexcept>
 
 	#ifndef FLASCC
 	#include <GL/glew.h>

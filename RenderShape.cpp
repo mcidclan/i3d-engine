@@ -9,10 +9,6 @@ RenderShape::~RenderShape()
 {
 }
 
-unsigned int RenderShape::getDataSize(void)
-{
-}
-
 void RenderShape::setBufferId(GLuint bufferid)
 {
 	this->bufferid = bufferid;

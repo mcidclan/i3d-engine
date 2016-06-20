@@ -16,16 +16,21 @@
 			///
 			~RenderTriangle();
 
+			///
+			///
+			///
+			unsigned int getDataSize(void);
+
+			///
+			///
+			///
+			GLfloat const* getData(void);
+
 		private:
 			///
 			/// Internal data.
 			///
-			static const GLfloat data[]
-			{
-				-1.0f, -1.0f, 0.0f,
-				1.0f, -1.0f, 0.0f,
-				0.0f, 1.0f, 0.0f
-			};
+			static GLfloat const data[];
 	};
 
 #endif

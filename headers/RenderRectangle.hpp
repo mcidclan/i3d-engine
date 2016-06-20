@@ -1,7 +1,9 @@
 #ifndef RENDERRECTANGLE_HPP
 #define RENDERRECTANGLE_HPP
 
-	class RenderRectangle : private RenderShape
+	#include "RenderShape.hpp"
+
+	class RenderRectangle : public RenderShape
 	{
 		public:
 			///
@@ -13,6 +15,23 @@
 			/// Destructor.
 			///
 			~RenderRectangle();
+
+			///
+			///
+			///
+			unsigned int getDataSize(void);
+
+			///
+			///
+			///
+			GLfloat const* getData(void);
+
+		private:
+			///
+			/// Internal data.
+			///
+			static GLfloat const data[];
+
 	};
 
 #endif

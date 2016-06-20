@@ -1,8 +1,6 @@
 #include "headers/RenderingManager.hpp"
 
-ShapeType RenderingManager::type;
-
-GLuint RenderingManager::buffers[];
+GLuint RenderingManager::buffers[RM_SHAPE_NUMBER];
 
 RenderingManager::RenderingManager()
 {
@@ -19,31 +17,33 @@ RenderingManager::~RenderingManager()
 {
 }
 
-RenderShape* RenderingManager::getNewBufferedShape(unsigned char const type)
+RenderShape* RenderingManager::getNewBufferedShape(ShapeType const type)
 {
 	RenderShape* shape;
 
-	shape = this->getNewElement();
+	shape = this->getNewShape(type);
 
 	if(shape != NULL)
 	{
-		if(!RenderingManager::buffers[type]);
+		if(!RenderingManager::buffers[type])
 		{
 			glGenBuffers(1, &RenderingManager::buffers[type]);
 			glBindBuffer(GL_ARRAY_BUFFER, RenderingManager::buffers[type]);
-			glBufferData(GL_ARRAY_BUFFER, shape->getDataSize());
+			glBufferData(GL_ARRAY_BUFFER, shape->getDataSize(),
+			shape->getData(), GL_STATIC_DRAW);
 		}
 		shape->setBufferId(RenderingManager::buffers[type]);
 	}
 	return shape;
 }
 
-RenderShape* RenderingManager::getNewShape(unsigned char const type)
+RenderShape* RenderingManager::getNewShape(ShapeType const type)
 {
 	switch(type)
 	{
-		case SHAPE_TRIANGLE: return new RenderTriangle();
-		case SHAPE_RECTANGLE: return new RenderRectangle();
+		case RM_SHAPE_TRIANGLE: return new RenderTriangle();
+		case RM_SHAPE_RECTANGLE: return new RenderRectangle();
+		case RM_SHAPE_NUMBER: return NULL;
 	}
 	return NULL;
 }

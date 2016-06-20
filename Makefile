@@ -6,10 +6,10 @@ SRCFILES = $(wildcard *.cpp)
 OBJS = $(notdir $(patsubst %.cpp, %.o, $(SRCFILES)))
 OBJS := $(addprefix $(BIN), $(OBJS))
 
-CFLAGS = -W -Wall -Wpadded -Wpacked -ansi -pedantic -O0 -g2 \
+CFLAGS = -W -Wall -ansi -pedantic -O0 -g2 \
 		 -static -mwindows
-
-LDFLAGS = -lglew32 -lglut32 -lopengl32 -lglu32
+#-Wpadded -Wpacked
+LDFLAGS = -lglew32.dll -lglut32 -lopengl32 -lglu32
 
 #-static-libgcc -static-libstdc++ -mwindows -enable-auto-import
 # -lstdc++
