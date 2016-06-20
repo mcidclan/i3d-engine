@@ -5,6 +5,7 @@ namespace home
 	void script(ScriptSheet* const sheet)
 	{
 		ShaderSources shader;
+		RenderText* rendertext;
 
 		shader.push(GL_VERTEX_SHADER, Shader::vertex, Shader::vsize());
 		shader.push(GL_FRAGMENT_SHADER, Shader::fragment, Shader::fsize());
@@ -26,9 +27,18 @@ namespace home
 		sheet->addNewRenderText("t1");
 		sheet->addNewRenderText("t2");
 
-		sheet->getRenderText("t1")->setSize(16);
-		sheet->getRenderText("t1")->setText("Hello World!");
-		sheet->getRenderText("t2")->setSize(32);
-		sheet->getRenderText("t2")->setText("2");
+		rendertext = sheet->getRenderText("t1");
+		if(rendertext != NULL)
+		{
+			rendertext->setSize(16);
+			rendertext->setText("Small Text.");
+		}
+
+		rendertext = sheet->getRenderText("t2");
+		if(rendertext != NULL)
+		{
+			rendertext->setSize(32);
+			rendertext->setText("Big Text.");
+		}
 	}
 }

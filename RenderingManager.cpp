@@ -39,7 +39,6 @@ void RenderingManager::clean(void)
 
 void RenderingManager::draw(void)
 {
-	//cout << "in " << this->shapes.size() << "\n";
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	this->drawShapes();
@@ -74,7 +73,13 @@ void RenderingManager::drawShapes(void)
 
 RenderText* RenderingManager::getRenderText(char const* const name)
 {
-	return this->texts[name];
+	map<string, RenderText*>::const_iterator a, b;
+
+	a = this->texts.find(name);
+	b = this->texts.end();
+
+	if(a != b) return a->second;
+	return NULL;
 }
 
 void RenderingManager::setCurrentFont(unsigned int const id)

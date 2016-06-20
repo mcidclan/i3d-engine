@@ -4,10 +4,17 @@ namespace area
 {
 	void script(ScriptSheet* const sheet)
 	{
+		RenderText* rendertext;
+
 		sheet->addNewFont("./font.ttf");
 		sheet->addNewRenderText("t1");
 
-		sheet->getRenderText("t1")->setSize(16);
-		sheet->getRenderText("t1")->setText("Hello from script 02.");
+		rendertext = sheet->getRenderText("t1");
+
+		if(rendertext != NULL)
+		{
+			rendertext->setSize(16);
+			rendertext->setText("Hello world from area!");
+		}
 	}
 }
