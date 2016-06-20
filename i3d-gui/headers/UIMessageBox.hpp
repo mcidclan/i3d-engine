@@ -16,7 +16,7 @@
 			~UIMessageBox();
 
 			/// Drawing process.
-			void drawGui(void);
+			virtual void drawGui(void);
 
 			RenderText* getText(void);
 

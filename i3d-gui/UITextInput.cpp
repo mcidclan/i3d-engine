@@ -3,8 +3,14 @@
 UITextInput::UITextInput(FTGLPixmapFont* const font) :
 UIMessageBox(font, false)
 {
-	this->textx =
+	this->textx = 0.0f;
 	this->texty = 0.0f;
+
+	this->cursor = 0;
+	this->origin = 0;
+	this->maxchar = 0;
+
+//	memset(borders, 0, sizeof(uint) * 4);
 
 	this->loadResources();
 }
@@ -19,10 +25,50 @@ UITextInput::~UITextInput()
 {
 }
 
+void UITextInput::drawGui(void)
+{
+	UIMessageBox::drawGui();
+}
+
+void UITextInput::updateText(void)
+{
+	string text;
+
+	text = this->data.substr(this->origin,
+	((this->data.length() > this->maxchar) ?
+	this->maxchar : this->data.length()));
+
+	utils::utf8Adjuster(text);
+	this->text->setText(text);
+}
+
+void UITextInput::setTextSize(uint const size)
+{
+	this->text->setSize(size);
+}
+
+void UITextInput::addTextValue(string const value)
+{
+	this->data.insert(this->cursor, value);
+	this->cursor += value.length();
+
+	if(this->cursor > (this->origin + this->maxchar))
+	{
+		this->origin += value.length();
+	}
+
+	this->updateText();
+}
+
 void UITextInput::setTextPosition(float const x, float const y)
 {
 	this->textx = x;
 	this->texty = y;
+}
+
+void UITextInput::setTextMaxCharacters(uint const max)
+{
+	this->maxchar = max;
 }
 
 void UITextInput::alignText(void)
@@ -31,7 +77,7 @@ void UITextInput::alignText(void)
 }
 
 void UITextInput::aSet_write(void* const data)
-{	
+{
 	uint idata;
 	string sdata;
 	char* cdata;
@@ -41,25 +87,18 @@ void UITextInput::aSet_write(void* const data)
 
 	sdata = cdata;
 	memset(cdata, 0x0, idata);
-
-	utils::utf8Adjuster(sdata);
-	this->text->addText(sdata);
+	this->addTextValue(sdata);
 }
-
+//0xC3
 void UITextInput::aSet_erase(void* const)
 {
-	uint last;
-
-	string& data = this->text->getData();
-
-	if(data.size() > 0)
+	if(this->data.size() > 0)
 	{
-		last = data.length() - 1;
+		if(this->cursor > 0) this->cursor--;
+		if(this->origin > 0) this->origin--;
 
-		if((uchar)data[last - 1] == 0xC3)
-		{
-			data.erase(last - 1, 2);
-		} else data.erase(last, 1);
+		this->data.erase(this->cursor, 1);
+		this->updateText();
 	}
 }
 

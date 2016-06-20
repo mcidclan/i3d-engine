@@ -12,8 +12,16 @@
 			/// Destructor.
 			~UITextInput();
 
+			virtual void drawGui(void);
+
+			///
+			void setTextSize(uint const);
+
 			///
 			void setTextPosition(float const, float const);
+
+			///
+			void setTextMaxCharacters(uint const);
 
 			///@{
 			/// Actions.
@@ -37,6 +45,27 @@
 
 			///
 			float texty;
+
+			///
+			string data;
+
+			///
+			uint cursor;
+
+			///
+			uint origin;
+			//uint borders[3];
+
+			uint maxchar;
+
+			///
+			void updateBorders(void);
+
+			///
+			void updateText(void);
+
+			///
+			void addTextValue(string const);
 
 	};
 

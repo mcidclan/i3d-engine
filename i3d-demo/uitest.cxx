@@ -7,12 +7,13 @@ namespace uitest
 		uint* param;
 		RenderMesh* mesh;
 		RenderText* text;
+		UITextInput* uiti;
 		ShaderSources shader;
 
 		shader.push(GL_VERTEX_SHADER, Shader::vertex, Shader::vsize());
 		shader.push(GL_FRAGMENT_SHADER, Shader::fragment, Shader::fsize());
 
-		sheet->addNewFont("./font.ttf");
+		sheet->addNewFont("./uifont.ttf");
 
 		sheet->addNewShaderProgram(shader);
 		//sheet->addNewShape(RM_SHAPE_RECTANGLE);
@@ -24,12 +25,11 @@ namespace uitest
 		sheet->addNewEvent((E_SET | A_SCALE),
 		eas(P_X | P_Y)(100.0f)(100.0f)());
 
-		mesh = sheet->getGui("m1");
-		((UITextInput*)mesh)->setTextPosition(4.0f, 4.0f);
-		text = ((UITextInput*)mesh)->getText();
+		uiti = (UITextInput*)sheet->getGui("m1");
 
-		text->setSize(14);
-		text->setText("Hello from box!");
+		uiti->setTextSize(14);
+		uiti->setTextMaxCharacters(14);
+		uiti->setTextPosition(4.0f, 4.0f);
 
 		sheet->buildKeyBoardAsTarget();
 
