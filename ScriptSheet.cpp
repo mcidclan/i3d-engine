@@ -1,8 +1,13 @@
 #include "headers/ScriptSheet.hpp"
 
-ScriptSheet::ScriptSheet(void(* init)(void))
+ScriptSheet::ScriptSheet(Script const init)
 {
 	this->init = init;
+}
+
+ScriptSheet::ScriptSheet() : RenderingManager(NULL)
+{
+	this->init = NULL;
 }
 
 ScriptSheet::~ScriptSheet()
@@ -12,66 +17,53 @@ ScriptSheet::~ScriptSheet()
 
 void ScriptSheet::draw(void)
 {
-	if(!this->initialized)
+	if(this->init != NULL)
 	{
-		this->init();
-		this->initialized = true;
-	}
+		if((!this->initialized))
+		{
+			this->init(this);
+			this->initialized = true;
+		}
 
-	RenderingManager::draw();
+		RenderingManager::draw();
+	}
+}
+
+void ScriptSheet::addNewScriptSheet(Script const init, vuint* const tie)
+{
+	ScriptSheet* sheet;
+
+	sheet = this->getScriptSheet(0, tie);
+	
+	if(sheet != NULL)
+	{
+		sheet->getSheets()->push_back(new ScriptSheet(init));
+	}
+	else cout << "Tie not available.\n";
+}
+
+ScriptSheet* ScriptSheet::getScriptSheet(uint const depth, vuint* const tie)
+{
+	uint nextdepth;
+
+	nextdepth = depth + 1;
+
+	if(nextdepth < tie->size())
+	{
+		uint i;
+
+		i = tie->at(depth);
+
+		if(i < this->sheets.size())
+		{
+			return this->sheets[i]->getScriptSheet(nextdepth, tie);
+		}
+		return NULL;
+	}
+	return this;
 }
 
 vector<ScriptSheet*>* ScriptSheet::getSheets(void)
 {
 	return &(this->sheets);
 }
-
-void ScriptSheet::addNewScriptSheet(void(* init)(void),
-vector<unsigned int>* const tie)
-{
-	ScriptSheet* sheet;
-
-	sheet = this->getScriptSheet(0, tie);
-	sheet->getSheets()->push_back(new ScriptSheet(init));
-}
-
-ScriptSheet* ScriptSheet::getScriptSheet(unsigned int const depth,
-vector<unsigned int>* const tie) const
-{
-	unsigned int i;
-	ScriptSheet* sheet;
-	
-	i = tie->at(depth);
-
-	if(i < this->sheets.size())
-	{
-		if(depth < (tie->size() - 1))
-		{
-			sheet = this->sheets[i]->getScriptSheet((depth + 1), tie);
-		}
-		else return this->sheets[i];
-	}
-	else cout << "An error was occured: Tie not available.";
-
-	return sheet;
-}
-
-
-/*move
-in create
-out delete
-script*/
-
-	/*if(depth < tie->size())
-	{
-		unsigned int i;
-
-		i = tie->at(depth);
-
-		if(i < this->sheets.size())
-		{
-			this->sheets[i]->addNewScriptSheet(tie, init, depth + 1);
-		}
-		else cout << "An error was occured: Tie not available.";
-	}
-	else this->sheets.push_back(new ScriptSheet(init));*/

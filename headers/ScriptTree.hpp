@@ -17,21 +17,26 @@
 			~ScriptTree();
 
 			///
-			/// Set the current ScriptSheet by passing
-			/// a vector which describe the path.
-			///
-			void setCurrentScriptSheet(vector<unsigned int>* const);
-
-			///
-			///
-			///
-			void addNewScriptSheet(void(* const)(void),
-			vector<unsigned int>* const);
-
-			///
 			///
 			///
 			static void draw(void);
+
+			///
+			///
+			///
+			void addNewScriptSheet(Script const);
+
+			///
+			/// Set the current ScriptSheet by passing
+			/// a vector which describe the path.
+			///
+			void setCurrentScriptSheet(uint const);
+
+			///
+			///
+			///	
+			template <uint D>
+			void setCurrentTie(uint (&)[D]);
 
 		private:
 			///  
@@ -50,10 +55,25 @@
 			///
 			ScriptSheet* currentsheet;
 
+			///
+			/// Current tie information.
+			///	
+			uint* tie;
+
+			///
+			/// Current tie information.
+			///	
+			uint tiedepth;
 	};
 
+	///
+	///
+	///
+	template <uint D>
+	void ScriptTree::setCurrentTie(uint (&tie)[D])
+	{
+		this->tie = tie;
+		this->tiedepth = D;
+	}
+
 #endif
-
-
-
-

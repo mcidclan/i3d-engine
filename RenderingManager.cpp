@@ -10,11 +10,16 @@ RenderingManager::RenderingManager()
 	this->currentshader = NULL;
 
 	i = 0;
-	while(i < sizeof(RenderingManager::buffers))
+	while(i < RM_SHAPE_NUMBER)
 	{
 		RenderingManager::buffers[i] = 0;
 		i++;
 	}
+}
+
+RenderingManager::RenderingManager(void*)
+{
+	cout << "Could be called by a root ScriptSheet.\n";
 }
 
 RenderingManager::~RenderingManager()

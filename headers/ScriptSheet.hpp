@@ -3,13 +3,22 @@
 
 	#include "RenderingManager.hpp"
 
+	class ScriptSheet;
+
+	typedef void(* Script)(ScriptSheet* const);
+
 	class ScriptSheet : public RenderingManager
 	{
 		public:
 			///
+			/// Constructor.
 			///
+			ScriptSheet(Script);
+
 			///
-			ScriptSheet(void(*)(void));
+			/// Call empty base constructor.
+			///
+			ScriptSheet();
 
 			///
 			///
@@ -24,37 +33,41 @@
 			///
 			///
 			///
-			vector<ScriptSheet*>* getSheets(void);
-
-			///
-			///
-			///
-			void addNewScriptSheet(void(*)(void),
-			vector<unsigned int>* const);
+			void addNewScriptSheet(Script const, vuint* const tie);
 			
 			///
 			///
 			///
-			ScriptSheet* getScriptSheet(unsigned int const,
-			vector<unsigned int>* const) const;
+			ScriptSheet* getScriptSheet(uint const, vuint* const tie);
+
+			///
+			///
+			///
+			vector<ScriptSheet*>* getSheets(void);
 
 		private:
 			///
-			///
+			/// A flag to know if the init function was called.
 			///
 			bool initialized;
 
 			///
-			///
+			/// Children of the current ScriptSheet. 
 			///
 			vector<ScriptSheet*> sheets;
 
 			///
+			/// Init function.
 			///
-			///
-			void(* init)(void);
+			Script init;
 
 	};
 
 #endif
 
+/*
+	move
+	in create
+	out delete
+	script [OK]
+*/

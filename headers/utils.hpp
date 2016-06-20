@@ -1,11 +1,7 @@
 #ifndef UTILS_HPP
 #define UTILS_HPP
 	
-	#include <map>
-	#include <vector>
-	#include <iostream>
-
-	using namespace std;
+	#include "customtypes.hpp"
 
 	namespace utils
 	{
@@ -42,6 +38,31 @@
 				a++;
 			}
 			m.clear();
+		}
+
+		///
+		///
+		///
+		template <typename T>
+		void vectorFrom(vector<T>& out, T* const in, uint const size)
+		{
+			uint i;
+
+			i = 0;
+			while(i < size)
+			{
+				out.push_back(in[i]);
+				i++;
+			}
+		}
+
+		///
+		/// Allows to get the size of an array.
+		///
+		template <typename T, unsigned int N>
+		inline unsigned int count(const T(&)[N])
+		{
+			return N;
 		}
 	}
 

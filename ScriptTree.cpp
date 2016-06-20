@@ -5,6 +5,8 @@ ScriptTree* ScriptTree::current;
 ScriptTree::ScriptTree()
 {
 	this->current = this;
+	this->root = new ScriptSheet();
+	this->tie = NULL;
 }
 
 ScriptTree::~ScriptTree()
@@ -16,13 +18,33 @@ void ScriptTree::draw(void)
 	ScriptTree::current->currentsheet->draw();
 }
 
-void ScriptTree::setCurrentScriptSheet(vector<unsigned int>* const tie)
+void ScriptTree::addNewScriptSheet(Script const init)
 {
-	this->currentsheet = this->root->getScriptSheet(0, tie);
+	if(this->tie != NULL)
+	{
+		vector<uint> vtie;
+
+		utils::vectorFrom(vtie, this->tie, this->tiedepth);
+		this->root->addNewScriptSheet(init, &vtie);
+	}
+	else cout << "Can't use current tie.\n";
 }
 
-void ScriptTree::addNewScriptSheet(void(* const init)(void),
-vector<unsigned int>* const tie)
+void ScriptTree::setCurrentScriptSheet(uint const id)
 {
-		this->root->addNewScriptSheet(init, tie);
+	if(this->tie != NULL)
+	{
+		vector<uint> vtie;
+		ScriptSheet* sheet;
+
+		utils::vectorFrom(vtie, this->tie, this->tiedepth);
+		sheet = this->root->getScriptSheet(0, &vtie);
+
+		if((sheet != NULL) && (id < sheet->getSheets()->size()))
+		{
+			this->currentsheet = sheet->getSheets()->at(id);
+		}
+		else cout << "Currentsheet does not exist!\n";
+	}
+	else cout << "Can't use current tie.\n";
 }

@@ -28,6 +28,11 @@
 			RenderingManager();
 
 			///
+			///  Empty constructor.
+			///
+			RenderingManager(void*);
+
+			///
 			/// Destructor.
 			///
 			~RenderingManager();
@@ -128,6 +133,7 @@
 			/// Return a new RenderShape indicated by the given ShapeType.
 			///
 			RenderShape* getNewShape(ShapeType const);
+
 	};
 
 #endif
