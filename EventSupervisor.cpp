@@ -19,13 +19,13 @@ void EventSupervisor::addNewEvent(uint const action, void* const param)
 
 	event = new Event();
 
-	event->setSource(this->currentsource);
-	event->setTarget(this->currenttarget);
+	event->setSource(SSDataBridge::lastnewsource);
+	event->setTarget(SSDataBridge::lastnewtarget);
 
 	event->addAction(action);
 	event->addParam(param);
 
-	switch(action & 0x0F)
+	switch(action & E_CHECK)
 	{
 		case E_SET:
 		case E_GET:

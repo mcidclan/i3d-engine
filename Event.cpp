@@ -45,10 +45,12 @@ void Event::process(void)
 		param = this->paramlist[i];
 		action = this->actionlist[i];
 
-		if(action != NULL)
+		if(action != NULL && target != NULL)
 		{
 			(this->target->*action)(param);
 		}
+		else cout << "Action does not exist.";
+
 		i++;
 	}
 }

@@ -56,6 +56,15 @@
 		{
 			return N;
 		}
+
+		/// Copy a specific type to float.
+		template <typename T>
+		float alter(T const in)
+		{
+			union unfloat out;
+			out.a = in;
+			return out.b;
+		}
 	}
 
 #endif

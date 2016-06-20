@@ -1,13 +1,5 @@
 #include "RenderShape.hpp"
 
-/*GLfloat RenderShape::pmatrix[] =
-{
-	(2.0f/(GLfloat)SCR_WIDTH), 0.0f, 0.0f, 0.0f,
-	0.0f, -(2.0f/(GLfloat)SCR_HEIGHT), 0.0f, 0.0f,
-	0.0f, 0.0f, -2.0f, 0.0f,
-	-1.0f, 1.0f, -1.0f, 1.0f
-};*/
-
 GLfloat RenderShape::pmatrix[] =
 {
 	(2.0f/(GLfloat)SCR_WIDTH), 0.0f, 0.0f, 0.0f,
@@ -62,8 +54,6 @@ void RenderShape::setBufferId(GLuint bufferid)
 	this->bufferid = bufferid;
 }
 
-//static float test[] = {0.0f, 1024.0f, 256.0f, 1.0f};
-
 void RenderShape::draw(void)
 {
 	this->shaderprogram->use();
@@ -78,29 +68,28 @@ void RenderShape::draw(void)
 	glDrawArrays(GL_TRIANGLES, 0, this->vertexnumber);
 
 	glDisableVertexAttribArray(0);
-
-	/*((uchar*)test)[0] = 7;
-	this->doScale(test);*/
 }
 
-/*void RenderShape::doTranslate(void* data)
+/*
+void RenderShape::doTranslate(void* data)
 {
 	this->tmatrix[12]
 	this->tmatrix[13]
 	this->tmatrix[14]
-}*/
-
-void RenderShape::setLog(void* const data)
-{
-	cout << "test log\n";
 }
+*/
 
 void RenderShape::doScale(void* const data)
 {
 	uchar* const idata = (uchar*)data;
 	float* const vdata = (float*)data;
 
-	if(idata[0] & 1) this->tmatrix[0] = vdata[1];
-	if(idata[0] & 2) this->tmatrix[5] = vdata[2];
-	if(idata[0] & 4) this->tmatrix[10] = vdata[3];
+	if(idata[0] & P_X) this->tmatrix[0] = vdata[1];
+	if(idata[0] & P_Y) this->tmatrix[5] = vdata[2];
+	if(idata[0] & P_Z) this->tmatrix[10] = vdata[3];
+}
+
+void RenderShape::setLog(void* const data)
+{
+	cout << "setLog not available yet.\n";
 }

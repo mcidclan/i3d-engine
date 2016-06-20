@@ -9,7 +9,8 @@ ElementAction ElementActionInformer::getAction(uint const action)
 
 		case (E_GET | A_RUNNABLE_STATE) : return NULL;
 
-		case (E_DO | A_MOVE) : return NULL;		
+		case (E_DO | A_MOVE) : return NULL;
+		case (E_DO | A_SCALE) : return &ElementActions::doScale;
 	}
 
 	return NULL;

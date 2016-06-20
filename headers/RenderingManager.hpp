@@ -2,6 +2,7 @@
 #define RENDERINGMANAGER_HPP
 
 	#include "utils.hpp"
+	#include "SSDataBridge.hpp"
 	#include "ShaderSources.hpp"
 
 	#include "RenderText.hpp"

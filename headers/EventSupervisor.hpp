@@ -3,6 +3,7 @@
 
 	#include "Thread.hpp"
 	#include "EventStack.hpp"
+	#include "SSDataBridge.hpp"
 
 	class EventSupervisor : private Element
 	{
@@ -22,15 +23,16 @@
 			///
 			void processingEvents(void);
 
+		protected:
+			/// Last added source Element.
+			Element* lastnewsource;
+	
+			/// Current added target Element.
+			Element* lastnewtarget;
+
 		private:
 			/// Pointer to the runnable Thread.
 			Thread* runnable;
-
-			/// Current source Element.
-			Element* currentsource;
-	
-			/// Current target Element.
-			Element* currenttarget;
 
 			///
 			void addTransientEvent(Event* const);

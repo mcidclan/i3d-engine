@@ -17,23 +17,18 @@ namespace home
 			new float[3]{0.0f, 0.0f, 0.0f});
 		}
 
+		{
+			sheet->addNewEvent((E_DO | A_SCALE),
+			new float[3]{utils::alter(P_X | P_Y), 512.0f, 256.0f});
+		}
 
-
-
-
-			/*
-			sheet->addNewEvent((E_GET | A_POSITION), param);
-			sheet->addNewEvent((E_DO | A_POSITION), param);
-			sheet->addNewEvent((E_CALL | A_POSITION), param);*/
-
-
-		/*sheet->addNewFont("./font.ttf");
+		sheet->addNewFont("./font.ttf");
 		sheet->addNewRenderText("t1");
 		sheet->addNewRenderText("t2");
 
 		sheet->getRenderText("t1")->setSize(16);
 		sheet->getRenderText("t1")->setText("Hello World!");
 		sheet->getRenderText("t2")->setSize(32);
-		sheet->getRenderText("t2")->setText("2");*/
+		sheet->getRenderText("t2")->setText("2");
 	}
 }

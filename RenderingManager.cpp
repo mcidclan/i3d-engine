@@ -142,6 +142,7 @@ void RenderingManager::addNewShaderProgram(ShaderSources& shadersource)
 void RenderingManager::addNewShape(ShapeType const type)
 {
 	this->addNewBufferedShape(type);
+	SSDataBridge::lastnewtarget = this->shapes.back();
 }
 
 void RenderingManager::addNewBufferedShape(ShapeType const type)

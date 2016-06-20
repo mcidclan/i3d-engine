@@ -13,4 +13,11 @@
 	typedef unsigned char uchar;
 	typedef vector<unsigned int> vuint;
 
+	template <typename T>
+	union unfloat
+	{
+		T a;
+		float b;
+	};
+
 #endif

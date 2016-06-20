@@ -10,7 +10,7 @@ EventStack::~EventStack()
 
 void EventStack::push(Event* const event)
 {
-	this->push_back(new Event());
+	this->push_back(event);
 }
 
 void EventStack::pop(Event*& event)
