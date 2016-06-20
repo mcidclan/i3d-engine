@@ -26,6 +26,12 @@ void RenderText::setSize(unsigned int const size)
 	this->update();
 }
 
+void RenderText::addText(string const text)
+{
+	this->text += text;
+	this->update();
+}
+
 void RenderText::setText(string const text)
 {
 	this->text = text;

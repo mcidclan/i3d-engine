@@ -4,5 +4,8 @@
 	char const* const RES_UIMESSAGEBOX_MESH = "uimessagebox.i3d";
 	char const* const RES_UIMESSAGEBOX_SKIN = "uimessagebox.png";
 
+	char const* const RES_UITEXTINPUT_MESH = "uimessagebox.i3d";
+	char const* const RES_UITEXTINPUT_SKIN = "uimessagebox.png";
+
 #endif
 

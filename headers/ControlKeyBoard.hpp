@@ -6,7 +6,12 @@
 	#include "ElementActionSet.hpp"
 	#include <GL/glut.h>
 
-	#define up | 0x100
+	enum KeyInfos
+	{
+		K_UP = 0x100,
+		K_ALL_DOWN = 0x200,
+		K_ALL_UP = 0x300
+	};
 	
 	typedef map<uint, EAS> EASMap;
 
@@ -20,11 +25,17 @@
 			/// Destructor.
 			~ControlKeyBoard();
 
+			/// Allows to auto-focus himself.
+			void asTarget(void);
+
 			/// Dispatches the Events to the currents targets.
 			void dispatchEvents(void);
 
 			/// Allows to add a new map.
 			void addKeyMap(EASMap const);
+
+			///
+			void pushToData(uchar const);
 
 			/// Allows to get the current key down.
 			static void keyDown(uchar, int, int);
@@ -35,6 +46,10 @@
 			///@{
 			/// Actions
 			void aSet_target(void* const);
+
+			void aGet_data(void* const);
+
+			void aCall_data(void* const);
 			///@}
 
 		private:
@@ -44,11 +59,16 @@
 			/// The sheet to which the keyboard is linked.
 			ScriptSheet* sheet;
 
+			/// Prime target id.
+			uint primetarget;
+
 			/// Cursor to the current target id;
-			uint currenttargetid;
+			uint currenttarget;
 
 			/// Current used key.
 			uint currentkey;
+
+			string data;
 
 			/// List of availables maps between keys and actions.
 			vector<EASMap> keymaps;

@@ -17,10 +17,10 @@
 			/// Destructor.
 			~ElementActionSet();
 
-			/// Allows to set the action and param values.
+			/// Allows to set the action and param informations.
 			void operator()(uint const, void* const);
 
-			///
+			/// Allows to add a param value.
 			template<typename T>
 			ElementActionSet& operator()(T);
 

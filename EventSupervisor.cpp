@@ -69,12 +69,13 @@ void EventSupervisor::processingPersistentEvents(void)
 	uint i;
 	EventStack* stack;
 
-	stack = this->eventstack[ES_PERSISTENT];
-	i = stack->size();
+	i = 0;
+	stack = this->eventstack[ES_PERSISTENT];	
 
-	while(i--)
+	while(i < stack->size())
 	{
 		stack->at(i)->process();
+		i++;
 		// Check auto-remove here.
 	}
 }

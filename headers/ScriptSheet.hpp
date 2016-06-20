@@ -27,8 +27,12 @@
 			///
 			void buildMouse(void);
 
-			///
+			///@{
+			/// Allows to build the ControlKeyBoard.
 			void buildKeyBoard(void);
+
+			void buildKeyBoardAsTarget(void);
+			///@}
 
 			/// Leave the current ScriptSheet by calling the clean process.
 			void leave(void);

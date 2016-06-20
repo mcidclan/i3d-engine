@@ -42,6 +42,12 @@ void ScriptSheet::buildKeyBoard(void)
 	this->setEventTarget(CTRL_KEYBOARD);
 }
 
+void ScriptSheet::buildKeyBoardAsTarget(void)
+{
+	this->buildKeyBoard();
+	this->keyboard->asTarget();
+}
+
 void ScriptSheet::leave(void)
 {
 	if(this->initialized)

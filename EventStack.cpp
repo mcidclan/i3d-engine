@@ -15,6 +15,6 @@ void EventStack::push(Event* const event)
 
 void EventStack::pop(Event*& event)
 {
-	event = this->back();
-	this->pop_back();
+	event = this->at(0);
+	this->erase(this->begin());
 }

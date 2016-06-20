@@ -21,6 +21,9 @@
 			/// Set the text size.
 			void setSize(unsigned int const);
 
+			/// Concat a text to the current text value.
+			void addText(string const);
+
 			/// Set the text value.
 			void setText(string const);
 

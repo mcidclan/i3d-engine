@@ -12,7 +12,8 @@ ControlKeyBoard::ControlKeyBoard(ScriptSheet* const sheet)
 	glutKeyboardFunc(ControlKeyBoard::keyDown);
 	glutKeyboardUpFunc(ControlKeyBoard::keyUp);
 
-	this->currenttargetid = 0;
+	this->primetarget = 0;
+	this->currenttarget = 0;
 	this->targets.push_back(NULL);
 
 	cout << "New ControlKeyBoard.\n";
@@ -27,13 +28,19 @@ void ControlKeyBoard::addKeyMap(map<uint, EAS> const keymap)
 	this->keymaps.push_back(keymap);
 }
 
+void ControlKeyBoard::asTarget(void)
+{
+	this->targets.insert(this->targets.begin(), this);
+	this->primetarget = 1;
+}
+
 void ControlKeyBoard::dispatchEvents(void)
 {
 	uint i;
 	uint kmid;
-	EAS* aset;
 	EASMap* cmap;
 	Element* target;
+	EASMap::const_iterator a, b;
 
 	i = 0;
 	while(i < this->targets.size())
@@ -43,15 +50,22 @@ void ControlKeyBoard::dispatchEvents(void)
 		if(target != NULL)
 		{
 			kmid = target->getKeyMapId();
-
 			cmap = &this->keymaps[kmid];
 
-			if(cmap->find(this->currentkey) != cmap->end())
+			a = cmap->begin();
+			b = cmap->end();
+
+			while(a != b)
 			{
-				aset = &cmap->at(this->currentkey);
-				this->sheet->setEventSource(this);
-				this->sheet->setEventTarget(target);
-				this->sheet->addNewEvent(aset->getAction(), aset->getParam());
+				if((a->first == (this->currentkey & 0xFF)) ||
+				(a->first == (this->currentkey & 0xF00)))
+				{
+					this->sheet->setEventSource(this);
+					this->sheet->setEventTarget(target);
+					this->sheet->addNewEvent(a->second.getAction(),
+					a->second.getParam());
+				}
+				a++;
 			}
 		}
 		i++;
@@ -60,15 +74,23 @@ void ControlKeyBoard::dispatchEvents(void)
 	this->currentkey = 0;
 }
 
+void ControlKeyBoard::pushToData(uchar const key)
+{
+	this->data.append((const char*)&key, 1);
+}
+
 void ControlKeyBoard::keyDown(uchar key, int x, int y)
 {
+	ControlKeyBoard::current->pushToData(key);
 	ControlKeyBoard::current->currentkey = key;
+	ControlKeyBoard::current->currentkey |= K_ALL_DOWN;	
 }
 
 void ControlKeyBoard::keyUp(uchar key, int x, int y)
 {
-	ControlKeyBoard::current->currentkey = 0x100;
-	ControlKeyBoard::current->currentkey |= key;
+	ControlKeyBoard::current->currentkey = key;
+	ControlKeyBoard::current->currentkey |= K_UP;
+	ControlKeyBoard::current->currentkey |= K_ALL_UP;
 }
 
 void ControlKeyBoard::aSet_target(void* const)
@@ -79,7 +101,26 @@ void ControlKeyBoard::aSet_target(void* const)
 
 	if(shapes->size() > 0)
 	{
-		this->targets[0] = shapes->at(this->currenttargetid);
-		this->currenttargetid = (this->currenttargetid + 1) % shapes->size();
+		this->targets[this->primetarget] = shapes->at(this->currenttarget);
+		this->currenttarget = (this->currenttarget + 1) % shapes->size();
 	}
 }
+
+void ControlKeyBoard::aGet_data(void* const data)
+{
+	uint* idata = (uint*)data;
+
+	if(this->data.length() > 0)
+	{
+		memcpy(&idata[1], this->data.c_str(), idata[0]);
+		((uchar*)data)[(sizeof(uint) - 1) + idata[0]] = '\0';
+		this->data.clear();
+	}
+
+}
+
+void ControlKeyBoard::aCall_data(void* const data)
+{
+	this->aGet_data(data);
+}
+

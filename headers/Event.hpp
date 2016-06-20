@@ -32,6 +32,12 @@
 			void setTarget(Element* const);
 
 			///
+			Element* getSource(void);
+
+			///
+			Element* getTarget(void);
+
+			///
 			void process(void);
 
 		private:

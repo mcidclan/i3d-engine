@@ -10,7 +10,7 @@
 	{
 		public:
 			/// Constructor.
-			UIMessageBox(FTGLPixmapFont* const);
+			UIMessageBox(FTGLPixmapFont* const, bool const = true);
 
 			/// Destructor.
 			~UIMessageBox();
@@ -24,13 +24,18 @@
 			/// Actions.
 			void aSet_position(void* const);
 
-			void aSet_scale(void* const data);
+			void aSet_scale(void* const);
 			///@}
 
-		private:
+		public://protected:
+			/// Load the skin resources.
+			virtual void loadResources(void);
+
+		protected:
 			/// Message text displayed.
 			RenderText* text;
 
+		private:
 			/// Allows to move the text to the center.
 			void moveTextToCenter(void);
 

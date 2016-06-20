@@ -15,6 +15,9 @@
 		/// Allows to create an Opengl mimapped texture from a specific buffer.
 		GLuint getMipMap(uchar* const, uint const, uint const, GLint const);
 
+		///
+		void utf8Adjuster(string& data);
+
 		/// Allows to delete dynamics instances through a vector.
 		template <class T>
 		void dynamicDelete(vector<T>& v, bool isarray = false)
@@ -72,7 +75,6 @@
 		{
 			return N;
 		}
-
 	}
 
 #endif

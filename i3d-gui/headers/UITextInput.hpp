@@ -1,16 +1,27 @@
 #ifndef UITEXTINPUT_HPP
 #define UITEXTINPUT_HPP
 
-	#include "RenderMesh.hpp"
+	#include "UIMessageBox.hpp"
 
-	class UITextInput : public RenderMesh
+	class UITextInput : public UIMessageBox
 	{
 		public:
-			///
-			UITextInput();
+			/// Constructor.
+			UITextInput(FTGLPixmapFont* const);
 
-			///
+			/// Destructor.
 			~UITextInput();
+
+			///@{
+			/// Actions.
+			void aSet_write(void* const);
+
+			void aDo_write(void* const);
+			///@}
+
+		public:
+			/// Load the skin resources.
+			virtual void loadResources(void);
 
 	};
 

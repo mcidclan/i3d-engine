@@ -47,6 +47,16 @@ void Event::setTarget(Element* const target)
 	this->target = target;
 }
 
+Element* Event::getSource(void)
+{
+	return this->source;
+}
+
+Element* Event::getTarget(void)
+{
+	return this->target;
+}
+
 void Event::process(void)
 {
 	uint i;
@@ -63,7 +73,7 @@ void Event::process(void)
 		{
 			(this->target->*action)(param);
 		}
-		else cout << "Action does not exist.";
+		else cout << "Action does not exist.\n";
 
 		i++;
 	}

@@ -95,8 +95,12 @@ void RenderingManager::addNewFont(char const* const filename)
 
 	if(!font->Error())
 	{
-		this->fonts.push_back(font);
-		this->currentfont = this->fonts.back();
+		if(font->CharMap(FT_ENCODING_UNICODE))
+		{
+			this->fonts.push_back(font);
+			this->currentfont = this->fonts.back();
+
+		} else cout << "Wrong encoding set.\n";
 	}
 	else cout << "An error has occurred during font file loading.\n";
 }
@@ -122,11 +126,15 @@ void RenderingManager::addNewGui(GuiTypes const type, char const* const name)
 		case GUI_MESSAGEBOX:
 			if(this->currentfont != NULL)
 			{
-				this->currentgui = static_cast<UIMessageBox*>(new UIMessageBox(this->currentfont));
+				this->currentgui = new UIMessageBox(this->currentfont);
 			}
 			break;
 
 		case GUI_TEXTINPUT:
+			if(this->currentfont != NULL)
+			{
+				this->currentgui = new UITextInput(this->currentfont);
+			}
 			break;
 
 		case GUI_VARIOUS:
@@ -269,7 +277,7 @@ RenderShape* RenderingManager::getNewShape(ShapeType const type)
 		}
 
 		case RM_SHAPE_GUI:
-			return dynamic_cast<RenderShape*>(this->currentgui);
+			return this->currentgui;
 
 		case RM_SHAPE_TRIANGLE:
 			return new RenderTriangle();

@@ -25,13 +25,15 @@
 	/// Availables Action Names.
 	enum ElementActionNames
 	{
-		A_POSITION = 1,
-		A_KEYMAPID,
-		A_TARGET,
-		A_SCALE,
+		A_LOG = 1,
+		A_DATA,
 		A_MOVE,
-		A_LOG,
-		A_RUNNABLE_STATE
+		A_SCALE,
+		A_WRITE,
+		A_TARGET,
+		A_POSITION,
+		A_KEYMAPID,
+		A_RUNNABLE_STATE	
 	};
 
 	///
@@ -67,3 +69,4 @@
 	typedef ElementActionInformer EAI;
 
 #endif
+

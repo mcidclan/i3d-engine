@@ -1,12 +1,21 @@
 #include "UIMessageBox.hpp"
 
-UIMessageBox::UIMessageBox(FTGLPixmapFont* const font)
+UIMessageBox::UIMessageBox(FTGLPixmapFont* const font,
+bool const loadresources)
 {
 	this->group = EG_GUI;
 	this->text = new RenderText(font);
+
+	if(loadresources)
+	{
+		this->loadResources();
+	}
+}
+
+void UIMessageBox::loadResources(void)
+{
 	this->load(RES_UIMESSAGEBOX_MESH);
 	this->setTextureId(utils::loadPng32(RES_UIMESSAGEBOX_SKIN));
-	
 }
 
 UIMessageBox::~UIMessageBox()
@@ -45,5 +54,4 @@ void UIMessageBox::aSet_scale(void* const data)
 	this->text->situate(tmatrix[12], tmatrix[13], 0.0f);
 	this->moveTextToCenter();
 }
-
 

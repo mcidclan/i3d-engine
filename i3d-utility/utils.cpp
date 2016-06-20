@@ -149,5 +149,26 @@ namespace utils
 
 		return id;
 	}
+
+	void utf8Adjuster(string& data)
+	{
+		uint i;
+		uchar c[2];
+
+		i = 0;
+		while(i < data.size())
+		{
+			if(((uchar)data[i]) > 126)
+			{
+				c[0] = 0xC3;
+				c[1] = ((uchar)data[i]) - 64;
+
+				data.erase(i, 1);
+				data.insert(i, (const char*)c, 2);
+				i += 2;
+
+			} else i += 1;
+		}
+	}
 }
 
