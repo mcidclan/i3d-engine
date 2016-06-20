@@ -32,3 +32,4 @@ GLfloat const* RenderRectangle::getData(BufferType type) const
 {
 	return RenderRectangle::coordinates;
 }
+

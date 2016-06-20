@@ -39,8 +39,15 @@
 			/// Allows to translate the text.
 			void translate(float const, float const, float const);
 
-			///
+			/// Return the text value.
 			string& getData(void);
+
+			/// Return the position corresponding to the
+			/// left bottom corner of the text.
+			vec3<float>& getPosition(void);
+
+			/// Return the space advance value.
+			float getSpaceAdvance(void);
 
 			///@{
 			/// Actions.
@@ -58,6 +65,9 @@
 
 			/// Center of the text in y.
 			float centery;
+
+			/// Space advance value.
+			float spaceadvance;
 
 			/// Current RenderText scale.
 			vec3<float> scale;

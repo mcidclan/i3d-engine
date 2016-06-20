@@ -31,12 +31,18 @@ ElementAction EAI::getAction(uint const action)
 
 		// Action Get.
 		case (E_GET | A_RUNNABLE_STATE):
-			return &ElementActions::aGet_runnableState;
+			return &ElementActions::aGet_runnable_state;
 
 		case (E_GET | A_DATA):
 			return &ElementActions::aGet_data;
 
+		case (E_GET | A_CURSOR_POSITION):
+			return &ElementActions::aGet_cursor_position;
+
 		// Action Do.
+		case (E_DO | A_POSITION): // From aSet
+			return &ElementActions::aSet_position;
+
 		case (E_DO | A_MOVE):
 			return &ElementActions::aDo_move;
 
@@ -46,6 +52,10 @@ ElementAction EAI::getAction(uint const action)
 		// Action Call.
 		case (E_CALL | A_DATA):
 			return &ElementActions::aCall_data;
+
+		case (E_CALL | A_CURSOR_POSITION): // From aCall
+			return &ElementActions::aGet_cursor_position;
+
 	}
 
 	return NULL;

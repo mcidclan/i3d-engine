@@ -30,10 +30,13 @@
 			virtual void aSet_erase(void* const);
 
 
-			/// Allows to read the state of the current runnable.
-			virtual void aGet_runnableState(void* const);
+			/// Allows to read the current cursor position.
+			virtual void aGet_cursor_position(void* const);
 
-			/// Allows to call the current keyboard data.
+			/// Allows to read the state of the current runnable.
+			virtual void aGet_runnable_state(void* const);
+
+			/// Allows to read the current keyboard data.
 			virtual void aGet_data(void* const);
 
 

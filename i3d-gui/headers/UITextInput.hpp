@@ -31,6 +31,8 @@
 
 			void aSet_erase(void* const);
 
+			void aGet_cursor_position(void* const);
+
 			void aDo_write(void* const);
 			///@}
 

@@ -34,8 +34,8 @@
 			void* getParam(void) const;
 
 			///	Allows to get a specific unit of parameter.
-			template <typename T>
-			static uint u(T const in);
+			template <typename T2 = uint, typename T1>
+			static T2 u(T1 const in);
 
 		private:
 			/// Action parameter.
@@ -65,10 +65,10 @@
 		return *this;
 	}
 
-	template <typename T>
-	uint ElementActionSet::u(T const in)
+	template <typename T2, typename T1>
+	T2 ElementActionSet::u(T1 const in)
 	{
-		union un<T, uint> out;
+		union un<T1, T2> out;
 		out.a = in;
 		return out.b;
 	}

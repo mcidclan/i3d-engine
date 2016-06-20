@@ -130,3 +130,12 @@ void UITextInput::aSet_move(void* const data)
 	}
 }
 
+void UITextInput::aGet_cursor_position(void* const data)
+{
+	float* position = ((float*)data);
+
+	position[1] = this->text->getSpaceAdvance() *
+	(this->cursor - this->origin) + this->text->getPosition().x;
+	position[2] = this->text->getPosition().y;
+}
+

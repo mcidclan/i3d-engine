@@ -20,7 +20,9 @@ void ElementActions::aSet_erase(void* const){}
 // Action Get.
 void ElementActions::aGet_data(void* const){}
 
-void ElementActions::aGet_runnableState(void* const){}
+void ElementActions::aGet_runnable_state(void* const){}
+
+void ElementActions::aGet_cursor_position(void* const){}
 
 // Action Do.
 void ElementActions::aDo_move(void* const){}

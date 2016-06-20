@@ -8,6 +8,8 @@ RenderText::RenderText(FTGLPixmapFont* const font)
 	this->centerx = 0.0f;
 	this->centery = 0.0f;
 
+	this->spaceadvance = 0.0f;
+
 	this->scale = vec3<float>();
 	this->position = vec3<float>();
 
@@ -24,6 +26,7 @@ void RenderText::setSize(unsigned int const size)
 {
 	this->size = size;
 	this->update();
+	this->spaceadvance = this->font->Advance(" ");
 }
 
 void RenderText::addText(string const text)
@@ -71,6 +74,16 @@ void RenderText::translate(float const x, float const y, float const z)
 string& RenderText::getData(void)
 {
 	return this->text;
+}
+
+vec3<float>& RenderText::getPosition(void)
+{
+	return this->position;
+}
+
+float RenderText::getSpaceAdvance(void)
+{
+	return this->spaceadvance;
 }
 
 void RenderText::aSet_position(void* const data)

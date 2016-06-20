@@ -5,6 +5,7 @@ namespace uitest
 	void script(ScriptSheet* const sheet)
 	{
 		uint* param;
+		float* logcp;
 		RenderMesh* mesh;
 		RenderText* text;
 		UITextInput* uiti;
@@ -18,12 +19,15 @@ namespace uitest
 		sheet->addNewShaderProgram(shader);
 		//sheet->addNewShape(RM_SHAPE_RECTANGLE);
 		//sheet->addNewGui(GUI_MESSAGEBOX, "m1");
+
+		logcp = new float[3];
+		logcp[0] = eas::u<float>(P_X | P_Y);
+
 		sheet->addNewGui(GUI_TEXTINPUT, "m1");
 
-		sheet->addNewEvent((E_SET | A_POSITION),
-		eas(P_X | P_Y)(256.0f)(256.0f)());
-		sheet->addNewEvent((E_SET | A_SCALE),
-		eas(P_X | P_Y)(100.0f)(100.0f)());
+		sheet->addNewEvent((E_CALL | A_CURSOR_POSITION), logcp);
+		sheet->addNewEvent((E_SET | A_POSITION), eas(P_X | P_Y)(256.0f)(256.0f)());
+		sheet->addNewEvent((E_SET | A_SCALE), eas(P_X | P_Y)(100.0f)(100.0f)());
 
 		uiti = (UITextInput*)sheet->getGui("m1");
 
@@ -72,6 +76,12 @@ namespace uitest
 		sheet->addNewEvent((E_SET | A_TARGET), NULL);
 		//eas(0)(0)(10));// 0 to 10
 		//eas(2)(0)(1));// 0 and 1
+
+
+		sheet->addNewShape(RM_SHAPE_RECTANGLE);
+		sheet->addNewEvent((E_SET | A_SCALE), eas(P_X | P_Y)(2.0f)(14.0f)());
+		sheet->addNewEvent((E_DO | A_POSITION), logcp);
+
 	}
 }
 
