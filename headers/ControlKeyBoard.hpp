@@ -6,7 +6,9 @@
 	#include "ElementActionSet.hpp"
 	#include <GL/glut.h>
 
-	typedef map<uchar, EAS> EASMap;
+	#define up | 0x100
+	
+	typedef map<uint, EAS> EASMap;
 
 	/// Allows to use the keyboard events in the current ScriptSheet.
 	class ControlKeyBoard : public Element
@@ -46,7 +48,7 @@
 			uint currenttargetid;
 
 			/// Current used key.
-			uchar currentkey;
+			uint currentkey;
 
 			/// List of availables maps between keys and actions.
 			vector<EASMap> keymaps;

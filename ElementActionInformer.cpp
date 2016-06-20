@@ -16,6 +16,9 @@ ElementAction ElementActionInformer::getAction(uint const action)
 		case (E_SET | A_SCALE):
 			return &ElementActions::aSet_scale;
 
+		case (E_SET | A_KEYMAPID):
+			return &ElementActions::aSet_KeyMapId;
+
 		case (E_GET | A_RUNNABLE_STATE):
 			return &ElementActions::aGet_runnableState;
 

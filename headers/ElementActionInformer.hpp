@@ -26,6 +26,7 @@
 	enum ElementActionNames
 	{
 		A_POSITION = 1,
+		A_KEYMAPID,
 		A_TARGET,
 		A_SCALE,
 		A_MOVE,

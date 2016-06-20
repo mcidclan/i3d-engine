@@ -17,10 +17,10 @@ uint Element::getKeyMapId(void) const
 
 void Element::aGet_runnableState(void* const data)
 {
-	this->runnablestate = *((bool*)data);
+	this->runnablestate = ((bool*)data)[0];
 }
 
 void Element::aSet_KeyMapId(void* const data)
 {
-	cout << "Not implemented yet!\n";
+	this->keymapid = ((uint*)data)[0];
 }

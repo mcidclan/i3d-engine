@@ -18,6 +18,8 @@ namespace uitest
 			EASMap keymap;
 			keymap['a']((E_SET | A_SCALE),
 			eas(P_X | P_Y)(512.0f)(512.0f)());
+			keymap['b']((E_SET | A_KEYMAPID), eas(1)());
+
 			sheet->getKeyBoard()->addKeyMap(keymap);
 		}
 
@@ -25,6 +27,7 @@ namespace uitest
 			EASMap keymap;
 			keymap['a']((E_SET | A_SCALE),
 			eas(P_X | P_Y)(128.0f)(128.0f)());
+
 			sheet->getKeyBoard()->addKeyMap(keymap);
 		}
 

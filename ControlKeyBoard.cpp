@@ -20,7 +20,7 @@ ControlKeyBoard::~ControlKeyBoard()
 {
 }
 
-void ControlKeyBoard::addKeyMap(map<uchar, EAS> const keymap)
+void ControlKeyBoard::addKeyMap(map<uint, EAS> const keymap)
 {
 	this->keymaps.push_back(keymap);
 }
@@ -41,6 +41,7 @@ void ControlKeyBoard::dispatchEvents(void)
 		if(target != NULL)
 		{
 			kmid = target->getKeyMapId();
+
 			cmap = &this->keymaps[kmid];
 
 			if(cmap->find(this->currentkey) != cmap->end())
@@ -53,7 +54,7 @@ void ControlKeyBoard::dispatchEvents(void)
 		i++;
 	}
 
-	this->currentkey = '\0';
+	this->currentkey = 0;
 }
 
 void ControlKeyBoard::keyDown(uchar key, int x, int y)
@@ -63,7 +64,8 @@ void ControlKeyBoard::keyDown(uchar key, int x, int y)
 
 void ControlKeyBoard::keyUp(uchar key, int x, int y)
 {
-	ControlKeyBoard::current->currentkey = key + '\1';
+	ControlKeyBoard::current->currentkey = 0x100;
+	ControlKeyBoard::current->currentkey |= key;
 }
 
 void ControlKeyBoard::aSet_target(void* const)
