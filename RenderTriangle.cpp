@@ -2,8 +2,10 @@
 
 RenderTriangle::RenderTriangle()
 {
+	
 }
 
 RenderTriangle::~RenderTriangle()
 {
+	
 }

@@ -7,14 +7,25 @@
 	{
 		public:
 			///
-			/// Constructor
+			/// Constructor.
 			///
 			RenderTriangle();
 
 			///
-			/// Destructor
+			/// Destructor.
 			///
 			~RenderTriangle();
+
+		private:
+			///
+			/// Internal data.
+			///
+			static const GLfloat data[]
+			{
+				-1.0f, -1.0f, 0.0f,
+				1.0f, -1.0f, 0.0f,
+				0.0f, 1.0f, 0.0f
+			};
 	};
 
 #endif

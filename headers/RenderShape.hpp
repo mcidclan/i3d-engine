@@ -15,6 +15,23 @@
 			/// Destructor
 			///
 			~RenderShape();
+
+			///
+			///
+			///
+			unsigned int getDataSize(void)
+
+			///
+			///
+			///
+			void setBufferId(GLuint);
+
+		private:
+			///
+			///
+			///
+			bufferid;
+
 	};
 
 #endif
