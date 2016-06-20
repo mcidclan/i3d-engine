@@ -3,6 +3,9 @@
 UITextInput::UITextInput(FTGLPixmapFont* const font) :
 UIMessageBox(font, false)
 {
+	this->textx =
+	this->texty = 0.0f;
+
 	this->loadResources();
 }
 
@@ -16,11 +19,31 @@ UITextInput::~UITextInput()
 {
 }
 
-void UITextInput::aSet_write(void* const data)
+void UITextInput::setTextPosition(float const x, float const y)
 {
-	string s = (char const*)(data + sizeof(uint));
-	utils::utf8Adjuster(s);
-	this->text->addText(s);
+	this->textx = x;
+	this->texty = y;
+}
+
+void UITextInput::alignText(void)
+{
+	this->text->translate(this->textx, this->texty, 0.0f);
+}
+
+void UITextInput::aSet_write(void* const data)
+{	
+	uint idata;
+	string sdata;
+	char* cdata;
+
+	idata = ((uint*)data)[0];
+	cdata = &(((char*)data)[sizeof(uint)]);
+
+	sdata = cdata;
+	memset(cdata, 0x0, idata);
+
+	utils::utf8Adjuster(sdata);
+	this->text->addText(sdata);
 }
 
 void UITextInput::aDo_write(void* const data)

@@ -27,17 +27,15 @@
 			void aSet_scale(void* const);
 			///@}
 
-		public://protected:
-			/// Load the skin resources.
-			virtual void loadResources(void);
-
 		protected:
 			/// Message text displayed.
 			RenderText* text;
 
-		private:
+			/// Load the skin resources.
+			virtual void loadResources(void);
+
 			/// Allows to move the text to the center.
-			void moveTextToCenter(void);
+			virtual void alignText(void);
 
 	};
 

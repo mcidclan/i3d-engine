@@ -12,6 +12,9 @@
 			/// Destructor.
 			~UITextInput();
 
+			///
+			void setTextPosition(float const, float const);
+
 			///@{
 			/// Actions.
 			void aSet_write(void* const);
@@ -19,9 +22,19 @@
 			void aDo_write(void* const);
 			///@}
 
-		public:
+		protected:
 			/// Load the skin resources.
 			virtual void loadResources(void);
+
+			///
+			virtual void alignText(void);
+
+		private:
+			///
+			float textx;
+
+			///
+			float texty;
 
 	};
 

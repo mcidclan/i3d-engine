@@ -34,7 +34,7 @@ RenderText* UIMessageBox::getText(void)
 	return this->text;
 }
 
-void UIMessageBox::moveTextToCenter(void)
+void UIMessageBox::alignText(void)
 {
 	this->text->translate((tmatrix[0] / 2.0f),
 	(tmatrix[5] / 2.0f), 0.0f);
@@ -45,13 +45,13 @@ void UIMessageBox::aSet_position(void* const data)
 {
 	RenderMesh::aSet_position(data);
 	this->text->aSet_position(data);
-	this->moveTextToCenter();
+	this->alignText();
 }
 
 void UIMessageBox::aSet_scale(void* const data)
 {
 	RenderMesh::aSet_scale(data);
 	this->text->situate(tmatrix[12], tmatrix[13], 0.0f);
-	this->moveTextToCenter();
+	this->alignText();
 }
 

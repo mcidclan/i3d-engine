@@ -20,12 +20,13 @@ namespace uitest
 		sheet->addNewGui(GUI_TEXTINPUT, "m1");
 
 		sheet->addNewEvent((E_SET | A_POSITION),
-		eas(P_X | P_Y)(100.0f)(100.0f)());
+		eas(P_X | P_Y)(256.0f)(256.0f)());
 		sheet->addNewEvent((E_SET | A_SCALE),
 		eas(P_X | P_Y)(100.0f)(100.0f)());
 
 		mesh = sheet->getGui("m1");
-		text = ((UIMessageBox*)mesh)->getText();
+		((UITextInput*)mesh)->setTextPosition(4.0f, 4.0f);
+		text = ((UITextInput*)mesh)->getText();
 
 		text->setSize(14);
 		text->setText("Hello from box!");
@@ -50,7 +51,7 @@ namespace uitest
 			EASMap keymap;
 			keymap['a']((E_SET | A_SCALE),
 			eas(P_X | P_Y)(128.0f)(128.0f)());
-			keymap[K_ALL_DOWN]((E_SET | A_WRITE), param);
+			keymap[KE_ALL_DOWN]((E_SET | A_WRITE), param);
 
 			sheet->getKeyBoard()->addKeyMap(keymap);
 		}
@@ -58,7 +59,7 @@ namespace uitest
 		//keymap 2
 		{
 			EASMap keymap;
-			keymap[K_ALL_DOWN]((E_GET | A_DATA), param);
+			keymap[KE_ALL_DOWN]((E_GET | A_DATA), param);
 
 			sheet->getKeyBoard()->addKeyMap(keymap);
 		}

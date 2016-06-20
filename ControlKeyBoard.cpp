@@ -76,21 +76,25 @@ void ControlKeyBoard::dispatchEvents(void)
 
 void ControlKeyBoard::pushToData(uchar const key)
 {
-	this->data.append((const char*)&key, 1);
+	if(((key >= 32) && (key <= 126)) || (key >= 161))
+	{
+		this->data.append((const char*)&key, 1);
+	}
 }
 
 void ControlKeyBoard::keyDown(uchar key, int x, int y)
 {
 	ControlKeyBoard::current->pushToData(key);
 	ControlKeyBoard::current->currentkey = key;
-	ControlKeyBoard::current->currentkey |= K_ALL_DOWN;	
+	ControlKeyBoard::current->currentkey |= KE_ALL_DOWN;	
 }
 
 void ControlKeyBoard::keyUp(uchar key, int x, int y)
 {
+	cout << ": " << (uint)key << "\n";
 	ControlKeyBoard::current->currentkey = key;
-	ControlKeyBoard::current->currentkey |= K_UP;
-	ControlKeyBoard::current->currentkey |= K_ALL_UP;
+	ControlKeyBoard::current->currentkey |= KE_UP;
+	ControlKeyBoard::current->currentkey |= KE_ALL_UP;
 }
 
 void ControlKeyBoard::aSet_target(void* const)
@@ -116,7 +120,6 @@ void ControlKeyBoard::aGet_data(void* const data)
 		((uchar*)data)[(sizeof(uint) - 1) + idata[0]] = '\0';
 		this->data.clear();
 	}
-
 }
 
 void ControlKeyBoard::aCall_data(void* const data)

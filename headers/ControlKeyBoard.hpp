@@ -8,9 +8,18 @@
 
 	enum KeyInfos
 	{
-		K_UP = 0x100,
-		K_ALL_DOWN = 0x200,
-		K_ALL_UP = 0x300
+		K_DEL = 0x8,
+		K_TAB = 0x9,
+		K_ENTER = 0x13,
+
+		/*SK_LEFT = 0x0,
+		SK_LRIGHT = 0x0,
+		SK_UP = 0x0,
+		SK_DOWN = 0x0,*/
+
+		KE_UP = 0x100,
+		KE_ALL_DOWN = 0x200,
+		KE_ALL_UP = 0x300
 	};
 	
 	typedef map<uint, EAS> EASMap;
