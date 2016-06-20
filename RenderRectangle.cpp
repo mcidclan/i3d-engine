@@ -13,6 +13,7 @@ GLfloat const RenderRectangle::data[] =
 
 RenderRectangle::RenderRectangle()
 {
+	this->vertexnumber = 6;
 }
 
 RenderRectangle::~RenderRectangle()

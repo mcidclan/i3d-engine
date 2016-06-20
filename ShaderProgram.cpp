@@ -38,7 +38,7 @@ GLuint ShaderProgram::getId()
 }
 
 void ShaderProgram::addSource(GLuint type,
-GLchar const** source, unsigned int linenumber)
+GLchar const** source, uint linenumber)
 {
 	GLuint shader;
 

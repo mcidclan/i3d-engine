@@ -10,7 +10,8 @@ namespace home
 		shader.push(GL_FRAGMENT_SHADER, Shader::fragment, Shader::fsize());
 
 		sheet->addNewShaderProgram(shader);
-		sheet->addNewBufferedShape(RM_SHAPE_TRIANGLE);
+		//sheet->addNewBufferedShape(RM_SHAPE_TRIANGLE);
+		sheet->addNewBufferedShape(RM_SHAPE_RECTANGLE);
 
 		sheet->addNewFont("./font.ttf");
 		sheet->addNewRenderText("t1");

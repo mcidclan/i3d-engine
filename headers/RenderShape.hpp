@@ -4,6 +4,7 @@
 	#include "math.hpp"
 	#include "Element.hpp"
 	#include "ShaderProgram.hpp"
+	#include "constants.hpp"
 
 	class RenderShape : public Element
 	{
@@ -29,12 +30,24 @@
 			///
 			virtual GLfloat const* getData(void) = 0;
 
+			///@{
+			/// Actions.
+			void doScale(void* const);
+			///@}
+
+		protected:
+			/// Number of vertices to be rendered.
+			uint vertexnumber;
+
 		private:
 			/// Opengl projection matrix.
-			//static GLfloat pmatrix[];
+			static GLfloat pmatrix[];
 
-			/// Opengl view matrix.
-			GLfloat* vmatrix;
+			/// Opengl transform matrix.
+			GLfloat* tmatrix;
+
+			/// Opengl rotate matrix.
+			GLfloat* rmatrix;
 
 			/// ProgramShader associated to the current RenderShape.
 			ShaderProgram* shaderprogram;
@@ -42,11 +55,14 @@
 			/// ProgramShader attributes pointers.
 			GLuint avertice;
 
-			///
-			//GLint upmatrix;
+			/// Projection matrix id.
+			GLint upmatrix;
 
-			///
-			//GLint uvmatrix;
+			/// Transform matrix id.
+			GLint utmatrix;
+
+			/// Rotate matrix id.
+			GLint urmatrix;
 
 			///
 			GLuint bufferid;
@@ -54,8 +70,8 @@
 			/// Init all shader variable locations.
 			void initShaderVariableLocations(void);
 
-			/// Init the variables having a default value.
-			void initShaderVariables(void);
+			/// Update the uniform shader variables.
+			void updateUniformShaderVariables(void);
 
 	};
 

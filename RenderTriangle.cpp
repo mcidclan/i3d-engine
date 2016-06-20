@@ -9,6 +9,7 @@ GLfloat const RenderTriangle::data[] =
 
 RenderTriangle::RenderTriangle()
 {
+	this->vertexnumber = 3;
 }
 
 RenderTriangle::~RenderTriangle()

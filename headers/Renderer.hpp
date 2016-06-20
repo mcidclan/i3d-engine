@@ -4,11 +4,9 @@
 	#include <iostream>
 	#include <GL/glew.h>
 	#include <GL/glut.h>
+	#include "constants.hpp"
 
 	using namespace std;
-
-	static GLuint const SCR_WIDTH = 512;
-	static GLuint const SCR_HEIGHT = 512;
 
 	class Renderer
 	{
