@@ -68,7 +68,8 @@ void Renderer::reshape(int width, int height)
 	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(SCR_WIDTH, 0, 0, SCR_HEIGHT, -1, 1);
+	//glOrtho(SCR_WIDTH, 0, 0, SCR_HEIGHT, -1, 1);
+	glOrtho(0, SCR_WIDTH, 0, SCR_HEIGHT, -1, 1);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }

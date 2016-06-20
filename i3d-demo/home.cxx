@@ -11,7 +11,7 @@ namespace home
 		shader.push(GL_FRAGMENT_SHADER, Shader::fragment, Shader::fsize());
 
 		sheet->addNewShaderProgram(shader);
-		sheet->addNewTexturedMesh("model.i3d", "test.bmp");		
+		sheet->addNewTexturedMesh("model.i3d", "suzanne.png");	
 		//sheet->addNewMesh("./model.i3d");
 
 		sheet->addNewEvent((E_SET | A_LOG),

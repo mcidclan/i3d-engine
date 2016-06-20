@@ -68,11 +68,16 @@ void RenderingManager::drawText(void)
 void RenderingManager::drawShapes(void)
 {
 	unsigned int i;
+	RenderShape* shape;
 	
 	i = 0;
 	while(i < this->shapes.size())
 	{
-		this->shapes[i]->draw();
+		shape = this->shapes[i];		
+		if(shape->getGroup() == EG_GUI)
+		{
+			shape->drawGui();
+		} else shape->draw();
 		i++;
 	}
 }
@@ -84,7 +89,7 @@ void RenderingManager::setCurrentFont(unsigned int const id)
 
 void RenderingManager::addNewFont(char const* const filename)
 {
-	FTGLPixmapFont* font;
+	FTGLPixmapFont*/*FTTextureFont**/ font;
 
 	font = new FTGLPixmapFont(filename);
 
@@ -117,7 +122,7 @@ void RenderingManager::addNewGui(GuiTypes const type, char const* const name)
 		case GUI_MESSAGEBOX:
 			if(this->currentfont != NULL)
 			{
-				this->currentgui = new UIMessageBox(this->currentfont);
+				this->currentgui = static_cast<UIMessageBox*>(new UIMessageBox(this->currentfont));
 			}
 			break;
 
@@ -264,7 +269,7 @@ RenderShape* RenderingManager::getNewShape(ShapeType const type)
 		}
 
 		case RM_SHAPE_GUI:
-			return this->currentgui;
+			return dynamic_cast<RenderShape*>(this->currentgui);
 
 		case RM_SHAPE_TRIANGLE:
 			return new RenderTriangle();

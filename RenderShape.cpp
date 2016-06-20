@@ -114,6 +114,8 @@ void RenderShape::draw(void)
 	glUseProgram(0);
 }
 
+void RenderShape::drawGui(void){}
+
 /*
 void RenderShape::aDo_translate(void* data)
 {
@@ -123,25 +125,14 @@ void RenderShape::aDo_translate(void* data)
 }
 */
 
-void RenderShape::affectTranformMatrix(void* const data,
-uchar const a, uchar const b, uchar const c)
-{
-	uchar* const idata = (uchar*)data;
-	float* const vdata = (float*)data;
-
-	if(idata[0] & P_X) this->tmatrix[a] = vdata[1];
-	if(idata[0] & P_Y) this->tmatrix[b] = vdata[2];
-	if(idata[0] & P_Z) this->tmatrix[c] = vdata[3];
-}
-
 void RenderShape::aSet_position(void* const data)
 {
-	affectTranformMatrix(data, 12, 13, 14);
+	EAI::setTransformation(data, this->tmatrix, 12, 13, 14);
 }
 
 void RenderShape::aSet_scale(void* const data)
 {
-	affectTranformMatrix(data, 0, 5, 10);
+	EAI::setTransformation(data, this->tmatrix, 0, 5, 10);
 }
 
 void RenderShape::aSet_log(void* const data)

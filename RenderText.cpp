@@ -2,17 +2,18 @@
 
 RenderText::RenderText(FTGLPixmapFont* const font)
 {
-	this->x = 0.0f;
-	this->y = 0.0f;
-	this->z = 0.0f;
-
 	this->size = 16;
 	this->text = "";
 
 	this->centerx = 0.0f;
 	this->centery = 0.0f;
 
+	this->scale = vec3<float>();
+	this->position = vec3<float>();
+
 	this->font = font;
+
+	this->update();
 }
 
 RenderText::~RenderText()
@@ -22,37 +23,52 @@ RenderText::~RenderText()
 void RenderText::setSize(unsigned int const size)
 {
 	this->size = size;
-	this->updateCenter();
+	this->update();
 }
 
 void RenderText::setText(string const text)
 {
 	this->text = text;
-	this->updateCenter();
+	this->update();
 }
 
-void RenderText::updateCenter(void)
+void RenderText::update(void)
 {
-	this->centerx = this->size / 2.0f;
-	this->centery = (this->size * this->text.length()) / 2.0f;
+	this->font->FaceSize(size);
+	this->centery = this->font->Ascender() * 0.5f;
+	this->centerx = this->font->Advance(this->text.c_str()) * 0.5f;
 }
 
 void RenderText::draw(void)
 {
 	glPushMatrix();
-	glTranslatef(this->x, this->y, this->z);
-	this->font->FaceSize(size);
+	glRasterPos3f(this->position.x, this->position.y, 0.0f);
 	this->font->Render(this->text.c_str());
 	glPopMatrix();
 }
 
+void RenderText::toCenter(void)
+{
+	this->position.add(-this->centerx, -this->centery, 0.0f);
+}
+
+void RenderText::situate(float const x, float const y, float const z)
+{
+	this->position.set(x, y, z);
+}
+
+void RenderText::translate(float const x, float const y, float const z)
+{
+	this->position.add(x, y, z);
+}
+
 void RenderText::aSet_position(void* const data)
 {
-	uchar* const idata = (uchar*)data;
-	float* const vdata = (float*)data;
+	EAI::setTransformation(data, this->position);
+}
 
-	if(idata[0] & P_X) this->x = vdata[1];
-	if(idata[0] & P_Y) this->y = vdata[2];
-	if(idata[0] & P_Z) this->z = vdata[3];
+void RenderText::aSet_scale(void* const data)
+{
+	//EAI::setTransformation(data, this->scale);
 }
 

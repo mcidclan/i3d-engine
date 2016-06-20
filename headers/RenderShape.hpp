@@ -35,6 +35,9 @@
 			void draw(void);
 
 			///
+			virtual void drawGui(void);
+
+			///
 			virtual unsigned int getDataSize(BufferType) const = 0;
 
 			///
@@ -56,7 +59,7 @@
 			/// Pointer to the indices data.
 			uint* vertexindices;
 
-			/// Opengl translate matrix.
+			/// Opengl scale and translate matrix.
 			GLfloat* tmatrix;
 
 			/// Opengl rotate matrix.
@@ -109,10 +112,6 @@
 
 			/// Update the uniform shader variables.
 			void updateUniformShaderVariables(void);
-
-			///	
-			void affectTranformMatrix(void* const,
-			uchar const, uchar const, uchar const);
 
 	};
 

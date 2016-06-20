@@ -1,28 +1,49 @@
 #include "UIMessageBox.hpp"
 
-UIMessageBox::UIMessageBox(FTGLPixmapFont* const font) : RenderText(font)
+UIMessageBox::UIMessageBox(FTGLPixmapFont* const font)
 {
-	this->message = NULL;
+	this->group = EG_GUI;
+	this->text = new RenderText(font);
 	this->load(RES_UIMESSAGEBOX_MESH);
 	this->setTextureId(utils::loadPng32(RES_UIMESSAGEBOX_SKIN));
-
+	
 }
 
 UIMessageBox::~UIMessageBox()
 {
+	delete this->text;
 }
 
-void UIMessageBox::draw(void)
+void UIMessageBox::drawGui(void)
 {
 	RenderMesh::draw();
-	RenderText::draw();
+	this->text->draw();
+}
+
+RenderText* UIMessageBox::getText(void)
+{
+	return this->text;
+}
+
+void UIMessageBox::moveTextToCenter(void)
+{
+	this->text->translate((tmatrix[0] / 2.0f),
+	(tmatrix[5] / 2.0f), 0.0f);
+	this->text->toCenter();
 }
 
 void UIMessageBox::aSet_position(void* const data)
 {
 	RenderMesh::aSet_position(data);
-	RenderText::aSet_position(data);
-	this->x += (tmatrix[0] / 2.0f) - centerx;
-	this->y += (tmatrix[5] / 2.0f) - centery;
+	this->text->aSet_position(data);
+	this->moveTextToCenter();
 }
+
+void UIMessageBox::aSet_scale(void* const data)
+{
+	RenderMesh::aSet_scale(data);
+	this->text->situate(tmatrix[12], tmatrix[13], 0.0f);
+	this->moveTextToCenter();
+}
+
 

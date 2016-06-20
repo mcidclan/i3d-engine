@@ -31,3 +31,4 @@ void Element::aSet_KeyMapId(void* const data)
 {
 	this->keymapid = ((uint*)data)[0];
 }
+

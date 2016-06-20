@@ -1,8 +1,7 @@
 #ifndef UTILS_HPP
 #define UTILS_HPP
 	
-	//#include "customtypes.hpp"
-	#include <png.h>
+	#include "customtypes.hpp"
 	#include "ShaderProgram.hpp"
 
 	namespace utils
@@ -73,6 +72,7 @@
 		{
 			return N;
 		}
+
 	}
 
 #endif

@@ -1,3 +1,4 @@
+#include <png.h>
 #include "utils.hpp"
 
 namespace utils

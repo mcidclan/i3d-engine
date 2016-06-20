@@ -1,11 +1,11 @@
 #include "ElementActionInformer.hpp"
 
-ElementAction ElementActionInformer::getAction(uint const action)
+ElementAction EAI::getAction(uint const action)
 {
 	switch(action)
 	{
 		case (E_SET | A_POSITION):
-			return NULL;
+			return &ElementActions::aSet_position;
 		
 		case (E_SET | A_LOG):
 			return &ElementActions::aSet_log;
@@ -28,3 +28,26 @@ ElementAction ElementActionInformer::getAction(uint const action)
 
 	return NULL;
 }
+
+
+void EAI::setTransformation(void* const src, vec3<float>& dest)
+{
+	uchar* const isrc = (uchar*)src;
+	float* const vsrc = (float*)src;
+
+	if(isrc[0] & P_X) dest.x = vsrc[1];
+	if(isrc[0] & P_Y) dest.y = vsrc[2];
+	if(isrc[0] & P_Z) dest.z = vsrc[3];
+}
+
+void EAI::setTransformation(void* const src, float* const dest,
+uchar const a, uchar const b, uchar const c)
+{
+	uchar* const isrc = (uchar*)src;
+	float* const vsrc = (float*)src;
+
+	if(isrc[0] & P_X) dest[a] = vsrc[1];
+	if(isrc[0] & P_Y) dest[b] = vsrc[2];
+	if(isrc[0] & P_Z) dest[c] = vsrc[3];
+}
+

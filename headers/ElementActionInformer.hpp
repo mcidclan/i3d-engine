@@ -38,7 +38,8 @@
 	enum ElementGroup
 	{
 		EG_UNDEFINED = 0,
-		EG_CONTROL
+		EG_CONTROL,
+		EG_GUI
 	};
 
 	///
@@ -53,6 +54,16 @@
 		public:
 			///
 			static ElementAction getAction(uint const);
+
+			///
+			static void setTransformation(void* const, vec3<float>&);
+
+			///
+			static void setTransformation(void* const, float* const,
+			uchar const, uchar const, uchar const);
+
 	};
+
+	typedef ElementActionInformer EAI;
 
 #endif

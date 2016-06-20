@@ -4,6 +4,8 @@ namespace uitest
 {
 	void script(ScriptSheet* const sheet)
 	{
+		RenderMesh* mesh;
+		RenderText* text;
 		ShaderSources shader;
 
 		shader.push(GL_VERTEX_SHADER, Shader::vertex, Shader::vsize());
@@ -12,9 +14,20 @@ namespace uitest
 		sheet->addNewFont("./font.ttf");
 
 		sheet->addNewShaderProgram(shader);
-		sheet->addNewTexturedMesh("model.i3d", "suzanne.png");
 		//sheet->addNewShape(RM_SHAPE_RECTANGLE);
-		//sheet->addNewGui(GUI_MESSAGEBOX, "m1");
+		sheet->addNewGui(GUI_MESSAGEBOX, "m1");
+
+		sheet->addNewEvent((E_SET | A_POSITION),
+		eas(P_X | P_Y)(100.0f)(100.0f)());
+
+		sheet->addNewEvent((E_SET | A_SCALE),
+		eas(P_X | P_Y)(100.0f)(100.0f)());
+
+		mesh = sheet->getGui("m1");
+		text = ((UIMessageBox*)mesh)->getText();
+
+		text->setSize(12);
+		text->setText("Hello  From  Box!");
 
 		sheet->buildKeyBoard();
 

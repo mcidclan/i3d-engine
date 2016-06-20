@@ -24,4 +24,47 @@
 		T2 b;
 	};
 
+	template <typename T>
+	class vec3
+	{
+		public:
+			///
+			T x, y, z;
+
+			///
+			vec3()
+			{
+				this->init(0.0f, 0.0f, 0.0f);
+			}
+
+			///
+			vec3(T const x, T const y, T const z)
+			{
+				this->init(x, y, z);
+			}
+
+			///
+			void set(T const x, T const y, T const z)
+			{
+				this->init(x, y, z);
+			}
+
+			///
+			void add(T const x, T const y, T const z)
+			{
+				this->x += x;
+				this->y += y;
+				this->z += z;
+			}
+			
+		private:
+			///
+			void init(T const x, T const y, T const z)
+			{
+				this->x = x;
+				this->y = y;
+				this->z = z;
+			}
+	};
+
 #endif

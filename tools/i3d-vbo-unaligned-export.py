@@ -100,8 +100,6 @@ while i < len(vis):
     data.v = vs[vid]
     data.uv = uvs_unique_values[uvid]
     
-    print(":" + str(data.v.x) + "," + str(data.v.y) + "," + str(data.v.z) + " " + str(data.uv.x) + "," + str(data.uv.y))
-    
     key = (uvid, vid)
     
     if key in datas:

@@ -1,6 +1,7 @@
 #ifndef ELEMENT_HPP
 #define ELEMENT_HPP
 
+	#include "utils.hpp"
 	#include "ElementActionInformer.hpp"
 
 	class Element : public ElementActions
