@@ -17,11 +17,11 @@
 	typedef unsigned char uchar;
 	typedef vector<unsigned int> vuint;
 
-	template <typename T>
-	union unfloat
+	template <typename T1, typename T2>
+	union un
 	{
-		T a;
-		float b;
+		T1 a;
+		T2 b;
 	};
 
 #endif

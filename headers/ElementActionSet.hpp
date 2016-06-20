@@ -6,8 +6,13 @@
 	class ElementActionSet
 	{
 		public:
-			/// Default contructor.
+			///@{
+			///contructors.
 			ElementActionSet();
+
+			template <typename T>
+			ElementActionSet(T);
+			///@}
 
 			/// Destructor.
 			~ElementActionSet();
@@ -15,19 +20,22 @@
 			/// Allows to set the action and param values.
 			void operator()(uint const, void* const);
 
+			///
+			template<typename T>
+			ElementActionSet& operator()(T);
+
+			/// Allows to get the parameter data.
+			void* operator()(void);
+
 			/// Return the action reference.
 			uint getAction(void) const;
 
 			/// Return the action parameter.
 			void* getParam(void) const;
 
-			///	Allows to get the parameter data.
-			template <typename T = float>
-			static void* p(uint const psize, ...);
-
 			///	Allows to get a specific unit of parameter.
 			template <typename T>
-			static float u(T const in);
+			static uint u(T const in);
 
 		private:
 			/// Action parameter.
@@ -35,6 +43,9 @@
 
 			/// Action reference.
 			uint action;
+
+			///
+			vector<uint> vparam;
 	};
 
 	typedef ElementActionSet eas;
@@ -42,30 +53,22 @@
 	typedef ElementActionSet EAS;
 
 	template <typename T>
-	void* ElementActionSet::p(uint const psize, ...)
+	ElementActionSet::ElementActionSet(T v)
 	{
-		uint i;
-		T* param;
-		va_list plist;
+		(*this)(v);
+	}
 
-		i = 0;
-		param = new T[psize];
-
-		va_start(plist, psize);
-
-		while(i < psize)
-		{
-			param[i] = va_arg(plist, T);
-			i++;
-		}
-
-		return (void*)param;
+	template<typename T>
+	ElementActionSet& ElementActionSet::operator()(T v)
+	{
+		this->vparam.push_back(u(v));
+		return *this;
 	}
 
 	template <typename T>
-	float ElementActionSet::u(T const in)
+	uint ElementActionSet::u(T const in)
 	{
-		union unfloat out;
+		union un<T, uint> out;
 		out.a = in;
 		return out.b;
 	}

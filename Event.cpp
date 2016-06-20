@@ -11,7 +11,8 @@ Event::~Event()
 	i = 0;
 	while(i < this->paramlist.size())
 	{
-		delete [] reinterpret_cast<float*>(this->paramlist[i]);
+		delete [] reinterpret_cast<uint*>(this->paramlist[i]);
+		i++;
 	}
 }
 

@@ -16,6 +16,17 @@ void ElementActionSet::operator()(uint const action, void* const param)
 	this->param = param;
 }
 
+void* ElementActionSet::operator()(void)
+{
+	uint* p;
+
+	p = new uint[this->vparam.size()];
+	copy(this->vparam.begin(), this->vparam.end(), p);
+
+	this->param = p;
+	return p;
+}
+
 uint ElementActionSet::getAction(void) const
 {
 	return this->action;

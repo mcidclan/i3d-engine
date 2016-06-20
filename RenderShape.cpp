@@ -44,13 +44,14 @@ void RenderShape::initShaderVariableLocations(void)
 
 	this->upmatrix = glGetUniformLocation(shpid, "u_pmatrix");
 	this->utmatrix = glGetUniformLocation(shpid, "u_tmatrix");
+	this->urmatrix = glGetUniformLocation(shpid, "u_rmatrix");
 }
 
 void RenderShape::updateUniformShaderVariables(void)
 {
 	glUniformMatrix4fv(this->upmatrix, 1, GL_FALSE, RenderShape::pmatrix);
 	glUniformMatrix4fv(this->utmatrix, 1, GL_FALSE, this->tmatrix);
-	glUniformMatrix4fv(this->urmatrix, 1, GL_FALSE, this->rmatrix);
+	//glUniformMatrix4fv(this->urmatrix, 1, GL_FALSE, this->rmatrix);
 	glUniform1ui(this->usampled, this->sampled);
 }
 
@@ -109,6 +110,8 @@ void RenderShape::draw(void)
 	{
 		glDisableVertexAttribArray(UV_BUFFER);
 	}
+
+	glUseProgram(0);
 }
 
 /*
