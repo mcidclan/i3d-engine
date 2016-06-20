@@ -123,17 +123,29 @@ void RenderShape::aDo_translate(void* data)
 }
 */
 
-void RenderShape::aSet_scale(void* const data)
+void RenderShape::affectTranformMatrix(void* const data,
+uchar const a, uchar const b, uchar const c)
 {
 	uchar* const idata = (uchar*)data;
 	float* const vdata = (float*)data;
 
-	if(idata[0] & P_X) this->tmatrix[0] = vdata[1];
-	if(idata[0] & P_Y) this->tmatrix[5] = vdata[2];
-	if(idata[0] & P_Z) this->tmatrix[10] = vdata[3];
+	if(idata[0] & P_X) this->tmatrix[a] = vdata[1];
+	if(idata[0] & P_Y) this->tmatrix[b] = vdata[2];
+	if(idata[0] & P_Z) this->tmatrix[c] = vdata[3];
+}
+
+void RenderShape::aSet_position(void* const data)
+{
+	affectTranformMatrix(data, 12, 13, 14);
+}
+
+void RenderShape::aSet_scale(void* const data)
+{
+	affectTranformMatrix(data, 0, 5, 10);
 }
 
 void RenderShape::aSet_log(void* const data)
 {
 	cout << "setLog not available yet.\n";
 }
+

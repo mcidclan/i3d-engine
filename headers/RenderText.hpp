@@ -3,6 +3,7 @@
 	
 	#include <map>
 	#include <string>
+	#include <GL/glew.h>
 	#include <FTGL/ftgl.h>
 	#include "Element.hpp"
 	
@@ -26,15 +27,30 @@
 			/// Draw the text.
 			void draw(void);
 
-		private:
-			/// FTGLPixmapFont linked to the current RenderText.
-			FTGLPixmapFont* font;
+			///@{
+			/// Actions.
+			void aSet_position(void* const);
+			///@}
 
+		protected:
 			/// Text value.
 			string text;
 
 			/// Text size.
 			unsigned int size;
+
+			///@{
+			/// Current RenderText position.
+			float x;
+
+			float y;
+
+			float z;
+			///@}
+
+		private:
+			/// FTGLPixmapFont linked to the current RenderText.
+			FTGLPixmapFont* font;
 
 	};
 

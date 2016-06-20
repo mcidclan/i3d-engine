@@ -14,6 +14,9 @@
 			/// Allows to scale the current Element.
 			virtual void aSet_scale(void* const);
 
+			/// Allows to set the position of the current Element.
+			virtual void aSet_position(void* const);
+
 			///
 			virtual void aSet_KeyMapId(void* const);
 

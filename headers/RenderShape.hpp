@@ -42,9 +42,11 @@
 
 			///@{
 			/// Actions.
-			void aSet_log(void* const);
+			void aSet_position(void* const data);
 
 			void aSet_scale(void* const);
+
+			void aSet_log(void* const);
 			///@}
 
 		protected:
@@ -107,6 +109,10 @@
 
 			/// Update the uniform shader variables.
 			void updateUniformShaderVariables(void);
+
+			///	
+			void affectTranformMatrix(void* const,
+			uchar const, uchar const, uchar const);
 
 	};
 
