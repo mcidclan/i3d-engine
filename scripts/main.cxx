@@ -1,6 +1,8 @@
 #include "Renderer.hpp"
 #include "scripts.hxx"
 
+#include "MeshLoader.hpp"
+
 static ScriptTree scripttree;
 
 void initTies(void)
@@ -24,11 +26,19 @@ void initTies(void)
 
 int main(int argc, char** argv)
 {
-	initTies();
+	/*initTies();
 
 	Renderer renderer(argc, argv);
 	renderer.setProcess(ScriptTree::draw);
-	renderer.start();
+	renderer.start();*/
+
+	MeshLoader loader;
+	float* uvcoords;
+
+	loader.load("./model.i3d");
+	loader.getUVCoords();
+
+	cout << uvcoords[0];
 
 	return 0;
 }

@@ -10,7 +10,7 @@ APPOBJS = $(notdir $(patsubst %.cxx, %.o, $(APPSRC)))
 
 OBJS := $(addprefix $(BIN), $(APPOBJS)) $(addprefix $(BIN), $(LIBOBJS))
 
-CFLAGS = -W -Wall -ansi -pedantic -O0 -g2 -static -std=gnu++0x \
+CFLAGS = -W -Wall -ansi -pedantic -O0 -g2 -static -std=gnu++0x -m32 \
 		-DGLEW_STATIC -DGLEW_NO_GLU -DGLEW_BUILD -DFREEGLUT_STATIC \
 		-I/mingw/include/freetype2 -I./headers -I./scripts \
 		-I./scripts/headers
