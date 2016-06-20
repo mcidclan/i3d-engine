@@ -21,6 +21,7 @@ void ScriptSheet::initAttributes(void)
 {
 	this->parent = NULL;
 	this->lasting = false;
+	this->initialized = false;
 }
 
 void ScriptSheet::leave(void)

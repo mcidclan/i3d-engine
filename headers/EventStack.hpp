@@ -9,24 +9,16 @@
 	class EventStack : vector<Event*>
 	{
 		public:
-			///
 			/// Constructor.
-			///
 			EventStack();
 
-			///
 			/// Destructor.
-			///
 			~EventStack();
 
-			///
 			/// Add a new Event at the top of the Stack.
-			///
 			void push(Event* const);
 
-			///
 			/// Remove an Event from the top of the Stack.
-			///
 			void pop(Event*&);
 
 		private:

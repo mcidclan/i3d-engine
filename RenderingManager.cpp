@@ -33,10 +33,13 @@ void RenderingManager::clean(void)
 	utils::dynamicDelete(this->fonts);
 	utils::dynamicDelete(this->shapes);
 	utils::dynamicDelete(this->shaders);
+
+	cout << "RenderingManager clean process.\n";
 }
 
 void RenderingManager::draw(void)
 {
+	//cout << "in " << this->shapes.size() << "\n";
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	this->drawShapes();

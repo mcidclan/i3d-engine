@@ -11,45 +11,29 @@
 	class RenderText : public Element
 	{
 		public:
-			///
 			/// Constructor.
-			///
 			RenderText(FTGLPixmapFont* const);
 
-			///
 			/// Destructor.
-			///
 			~RenderText();
 
-			///
 			/// Set the text size.
-			///
 			void setSize(unsigned int const);
 
-			///
 			/// Set the text value.
-			///
 			void setText(string const);
 
-			///
 			/// Draw the text.
-			///
 			void draw(void);
 
 		private:
-			///
 			/// FTGLPixmapFont linked to the current RenderText.
-			///
 			FTGLPixmapFont* font;
 
-			///
 			/// Text value.
-			///
 			string text;
 
-			///
 			/// Text size.
-			///
 			unsigned int size;
 
 	};

@@ -5,9 +5,7 @@
 
 	namespace utils
 	{
-		///
 		/// Allows to delete dynamics instances through a vector.
-		///
 		template <class T>
 		void dynamicDelete(vector<T>& v)
 		{
@@ -21,9 +19,7 @@
 			v.clear();
 		}
 
-		///
 		/// Allows to delete dynamics instances through a map.
-		///
 		template <typename T1, class T2>
 		void dynamicDelete(map<T1, T2>& m)
 		{
@@ -41,8 +37,6 @@
 		}
 
 		///
-		///
-		///
 		template <typename T>
 		void vectorFrom(vector<T>& out, T* const in, uint const size)
 		{
@@ -56,9 +50,7 @@
 			}
 		}
 
-		///
 		/// Allows to get the size of an array.
-		///
 		template <typename T, unsigned int N>
 		inline unsigned int count(const T(&)[N])
 		{

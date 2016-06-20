@@ -8,12 +8,20 @@ ShaderSources::~ShaderSources()
 {
 }
 
-GLuint ShaderSources::getType(unsigned int id)
+GLuint ShaderSources::getType(uint id)
 {
 	return this->types[id];
 }
 
-unsigned int ShaderSources::getLineNumber(unsigned int id)
+uint ShaderSources::getLineNumber(uint id)
 {
 	return this->linenumbers[id];
+}
+
+void ShaderSources::push(GLuint type,
+GLchar const** source, uint const size)
+{
+	this->push_back(source);
+	this->types.push_back(type);
+	this->linenumbers.push_back(size);
 }

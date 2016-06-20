@@ -5,8 +5,9 @@ ScriptTree* ScriptTree::current;
 ScriptTree::ScriptTree()
 {
 	this->current = this;
-	this->root = new ScriptSheet();
 	this->tie = NULL;
+	this->root = new ScriptSheet();
+	this->relativesheetid = 0;
 }
 
 ScriptTree::~ScriptTree()
@@ -109,14 +110,14 @@ void ScriptTree::moveToRight(void)
 	
 	parent = this->currentsheet->getParent();
 
-	if(this->relativesheetid < parent->size())
+	if(this->relativesheetid < parent->getSheets()->size())
 	{
 		this->relativesheetid++;
 		this->horizontalMove(parent);
 	}
 }
 
-void ScriptTree::horizontalMove(ScriptSheet* const parent) const
+void ScriptTree::horizontalMove(ScriptSheet* const parent)
 {
 	ScriptSheet* next;
 	vector<ScriptSheet*>* sheets;

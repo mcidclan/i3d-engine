@@ -4,6 +4,7 @@
 	#include <vector>
 	#include <iostream>
 	#include <GL/glew.h>
+	#include "customtypes.hpp"
 
 	using namespace std;
 
@@ -11,34 +12,22 @@
 	{
 		public:
 			///
-			///
-			///
 			ShaderSources();
 
-			///
-			///
 			///
 			~ShaderSources();
 
 			///
-			///
-			///
-			GLuint getType(unsigned int);
+			GLuint getType(uint);
 			
 			///
-			///
-			///
-			unsigned int getLineNumber(unsigned int);
+			uint getLineNumber(uint);
 
 			///
-			///
-			///
-			//GLchar const** operator[](unsigned int);
+			void push(GLuint type, GLchar const**, uint const);
 
 			///
-			///
-			///
-			template <int L>
+			template <uint L>
 			void push(GLuint type, GLchar const* (&source)[L])
 			{
 				this->push_back(source);
@@ -48,14 +37,10 @@
 
 		private:
 			///
-			///
-			///
 			vector<GLuint> types;
 
 			///
-			///
-			///
-			vector<unsigned int> linenumbers;
+			vector<uint> linenumbers;
 
 	};
 

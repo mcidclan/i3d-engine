@@ -6,14 +6,10 @@
 	class RenderDisk : public RenderShape
 	{
 		public:
-			///
 			/// Constructor
-			///
 			RenderDisk();
 
-			///
 			/// Destructor
-			///
 			~RenderDisk();
 	};
 

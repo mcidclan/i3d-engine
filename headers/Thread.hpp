@@ -4,14 +4,10 @@
 	class Thread
 	{
 		public:
-			///
 			/// Constructor.
-			///
 			Thread(void* (*)(void*));
 
-			///
 			/// Destructor.
-			///
 			~Thread();
 	};
 

@@ -9,14 +9,10 @@
 	class ElementActionList : public vector<ElementAction>
 	{
 		public:
-			///
 			/// Constructor.
-			///
 			ElementActionList();
 
-			///
 			/// Destructor.
-			///
 			~ElementActionList();
 
 		private:

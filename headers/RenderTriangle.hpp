@@ -6,30 +6,20 @@
 	class RenderTriangle : public RenderShape
 	{
 		public:
-			///
 			/// Constructor.
-			///
 			RenderTriangle();
 
-			///
 			/// Destructor.
-			///
 			~RenderTriangle();
 
-			///
-			///
 			///
 			unsigned int getDataSize(void);
 
 			///
-			///
-			///
 			GLfloat const* getData(void);
 
 		private:
-			///
 			/// Internal data.
-			///
 			static GLfloat const data[];
 	};
 

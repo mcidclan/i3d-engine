@@ -46,6 +46,9 @@
 			/// Current tie information.
 			uint tiedepth;
 
+			///
+			uint relativesheetid;
+
 			/// Allows to switch properly to an other ScriptSheet.
 			void switchSheet(ScriptSheet* const);
 
@@ -61,7 +64,7 @@
 			///@}
 
 			/// Allows to move horizontally, through the children.
-			void horizontalMove(ScriptSheet* const) const;
+			void horizontalMove(ScriptSheet* const);
 
 	};
 
