@@ -1,6 +1,7 @@
 #ifndef RENDERINGMANAGER_HPP
 #define RENDERINGMANAGER_HPP
 
+	#include "utils.hpp"
 	#include "RenderTriangle.hpp"
 	#include "RenderRectangle.hpp"
 
@@ -29,21 +30,35 @@
 			~RenderingManager();
 
 			///
-			/// Create a new and return a new buffered Shape. 
+			/// Draw all RenderShape that was added.
 			///
-			RenderShape* getNewBufferedShape(ShapeType const);
+			void draw(void);
+
+			///
+			/// Add a new RenderShape according to the given ShapeType.
+			///
+			void addNewBufferedShape(ShapeType const);
 
 		private:
 			///
-			///
+			/// GL_STATIC_DRAW buffers.
 			///
 			static GLuint buffers[];
 
 			///
+			/// RenderShape stack.
 			///
+			vector<RenderShape*> shapes;
+
+			///
+			/// Create and return a new buffered RenderShape. 
+			///
+			RenderShape* getNewBufferedShape(ShapeType const);
+
+			///
+			/// Return a new RenderShape indicated by the given ShapeType.
 			///
 			RenderShape* getNewShape(ShapeType const);
-
 	};
 
 #endif

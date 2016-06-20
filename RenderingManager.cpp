@@ -15,6 +15,23 @@ RenderingManager::RenderingManager()
 
 RenderingManager::~RenderingManager()
 {
+	utils::dynamicDelete(this->shapes);
+}
+
+void RenderingManager::draw(void)
+{
+	unsigned int i;
+	
+	i = 0;
+	while(i < this->shapes.size())
+	{
+		this->shapes[i]->draw();
+	}
+}
+
+void RenderingManager::addNewBufferedShape(ShapeType const type)
+{
+	this->shapes.push_back(getNewBufferedShape(type));
 }
 
 RenderShape* RenderingManager::getNewBufferedShape(ShapeType const type)

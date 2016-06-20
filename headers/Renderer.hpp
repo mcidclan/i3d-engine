@@ -14,12 +14,17 @@
 			///
 			/// Create an Opengl 2.x Renderer using Glut.
 			///
-			Renderer(int, char**);
+			Renderer();
 
 			///
 			/// Destructor.
 			///
 			~Renderer();
+
+			///
+			///
+			///
+			void start(int, char**);
 
 			///
 			/// Allows to set the internal drawing process. 

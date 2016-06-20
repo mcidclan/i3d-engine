@@ -13,3 +13,8 @@ void RenderShape::setBufferId(GLuint bufferid)
 {
 	this->bufferid = bufferid;
 }
+
+void RenderShape::draw(void)
+{
+	//bufferid
+}

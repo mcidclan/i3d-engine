@@ -1,5 +1,5 @@
 #include "headers/Renderer.hpp"
-#include "headers/ShaderProgram.hpp"
+#include "headers/RenderingManager.hpp"
 
 GLchar const* vertexshader[] =
 {
@@ -21,13 +21,20 @@ GLchar const* fragmentshader[] =
 
 void drawingProcess(void)
 {
-	//
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	//triangle->draw();
 }
 
 int main(int argc, char** argv)
 {
-	Renderer renderer(argc, argv);
+	Renderer renderer;
+	RenderingManager renderingmanager;
+
+	renderingmanager.addNewBufferedShape(RM_SHAPE_TRIANGLE);
 	renderer.setProcess(drawingProcess);
+
+	renderer.start(argc, argv);
 
 	return 0;
 }

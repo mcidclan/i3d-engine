@@ -2,11 +2,14 @@
 
 Renderer* Renderer::renderer = NULL;
 
-Renderer::Renderer(int argc, char** argv)
+Renderer::Renderer()
 {
 	Renderer::renderer = this;
 	this->process = NULL;
+}
 
+void Renderer::start(int argc, char** argv)
+{
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
 

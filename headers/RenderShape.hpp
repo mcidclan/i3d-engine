@@ -23,6 +23,11 @@
 			void setBufferId(GLuint);
 
 			///
+			/// Draw the current RenderShape.
+			///
+			void draw(void);
+
+			///
 			///
 			///
 			virtual unsigned int getDataSize(void) = 0;
