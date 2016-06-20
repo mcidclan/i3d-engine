@@ -17,13 +17,22 @@ ShaderProgram::~ShaderProgram()
 	}
 }
 
-void ShaderProgram::use(void)
+void ShaderProgram::link(void)
 {
-	if(this->linked)
+	if(!this->linked)
 	{
 		glLinkProgram(this->program);
 		this->linked = true;
 	}
+}
 
+void ShaderProgram::use(void)
+{
+	this->link();
 	glUseProgram(this->program);
+}
+
+GLuint ShaderProgram::getId()
+{
+	return this->program;
 }

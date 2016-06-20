@@ -27,9 +27,19 @@
 			~ShaderProgram();
 
 			///
+			///
+			///
+			void link(void);
+
+			///
 			/// Must be called to be use.
 			///
 			void use(void);
+
+			///
+			///
+			///
+			GLuint getId(void);
 
 			///
 			/// Add a source (GL_VERTEX_SHADER or GL_FRAGMENT_SHADER).

@@ -20,6 +20,11 @@
 			///
 			///
 			///
+			void setShaderProgram(ShaderProgram* const);
+
+			///
+			///
+			///
 			void setBufferId(GLuint);
 
 			///
@@ -39,9 +44,25 @@
 
 		private:
 			///
+			/// ProgramShader associated to the current RenderShape.
+			///
+			ShaderProgram* shaderprogram;
+
+			///
+			/// ProgramShader attributes pointers.
+			///
+			GLuint avertice;
+			//
+
+			///
 			///
 			///
 			GLuint bufferid;
+
+			///
+			///
+			///
+			void initAttributes(void);
 
 	};
 
