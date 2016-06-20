@@ -1,8 +1,11 @@
 #include "./headers/EventSupervisor.hpp"
 
+EventSupervisor* EventSupervisor::supervisor;
+
 EventSupervisor::EventSupervisor()
 {
-	//this.runnable = new Thread(EventSupervisor::run);
+	EventSupervisor::supervisor = this;
+	this->runnable = new Thread(EventSupervisor::run);
 }
 
 EventSupervisor::~EventSupervisor()
@@ -11,5 +14,18 @@ EventSupervisor::~EventSupervisor()
 
 void* EventSupervisor::run(void* data)
 {
+	bool runnablestate;
+
+	while(true)
+	{
+		supervisor->getRunnableState(&runnablestate);
+
+		if(!runnablestate)
+		{
+			break;
+		}
+		//supervisor->eventstack;
+	}
+
     return 0;
 }

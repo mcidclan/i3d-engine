@@ -10,12 +10,12 @@
 	{
 		public:
 			///
-			/// Constructor
+			/// Constructor.
 			///
 			ElementActionList();
 
 			///
-			/// Destructor
+			/// Destructor.
 			///
 			~ElementActionList();
 

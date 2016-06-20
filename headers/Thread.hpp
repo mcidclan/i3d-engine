@@ -3,16 +3,16 @@
 
 	class Thread
 	{
+		public:
+			///
+			/// Constructor.
+			///
+			Thread(void* (*)(void*));
 
-        ///
-        /// Constructor
-        ///
-        Thread();
-
-        ///
-        /// Destructor
-        ///
-        ~Thread();
+			///
+			/// Destructor.
+			///
+			~Thread();
 	};
 
 #endif

@@ -2,9 +2,8 @@ CC = g++
 BIN = ./bin/
 EXEC = i3d-engine.exe
 
-SRC = ./
-
-OBJS = $(notdir $(patsubst %.cpp, %.o, $(SRC)))
+SRCFILES = $(wildcard *.cpp)
+OBJS = $(notdir $(patsubst %.cpp, %.o, $(SRCFILES)))
 OBJS := $(addprefix $(BIN), $(OBJS))
 
 CFLAGS = -W -Wall -Wpadded -Wpacked -pedantic -O0 -g2 \

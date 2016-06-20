@@ -1,8 +1,8 @@
 #include "./headers/Thread.hpp"
 
-Thread::Thread()
+Thread::Thread(void* (* runnable)(void*))
 {
-	
+	//this->runnable
 }
 
 Thread::~Thread()

@@ -7,11 +7,18 @@
 			///
 			/// Allow to trace debug message.
 			///
-			virtual void log(void* const);
+			virtual void setLog(void* const);
 
-		private:
+			///
+			/// Allow to read the state of the
+			/// runnable associated to the current Element.
+			///
+			virtual void getRunnableState(void* const);
 	};
 
+	///
+	/// Define the ElementAction type.
+	///
 	typedef void (ElementActions::*ElementAction)(void* const);
 
 #endif

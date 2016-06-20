@@ -1,21 +1,29 @@
 #ifndef ELEMENT_HPP
 #define ELEMENT_HPP
 
-	class Element
+	#include "ElementActions.hpp"
+
+	class Element : public ElementActions
 	{
 		public:
 			///
-			/// Constructor
+			/// Constructor.
 			///
 			Element();
 
 			///
-			/// Destructor
+			/// Destructor.
 			///
 			~Element();
 
-		private:
+			void getRunnableState(void* const);
 
+		private:
+			///
+			/// Give the runnable state,
+			/// in case it exist.
+			///
+			bool runnablestate;
 	};
 
 #endif
