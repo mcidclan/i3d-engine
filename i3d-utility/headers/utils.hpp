@@ -2,12 +2,19 @@
 #define UTILS_HPP
 	
 	//#include "customtypes.hpp"
+	#include <png.h>
 	#include "ShaderProgram.hpp"
 
 	namespace utils
 	{
 		/// Allows to load a bmp24 to opengl.
 		GLuint loadBmp24(const char*);
+
+		/// Allows to load a png32 to opengl.
+		GLuint loadPng32(const char*);
+
+		/// Allows to create an Opengl mimapped texture from a specific buffer.
+		GLuint getMipMap(uchar* const, uint const, uint const, GLint const);
 
 		/// Allows to delete dynamics instances through a vector.
 		template <class T>

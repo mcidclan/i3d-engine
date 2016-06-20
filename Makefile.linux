@@ -36,7 +36,7 @@ CFLAGS = -W -Wall -ansi -pedantic -O0 -g2 -std=gnu++0x -m32 \
 		-I$(DEMO_PATH)/headers \
 		-L/usr/lib/i386-linux-gnu
 
-LDFLAGS = -lftgl -lfreetype -lglut -lGL -lGLEW
+LDFLAGS = -lftgl -lfreetype -lglut -lGL -lGLEW -lpng -lz
 
 
 all: $(BIN)$(EXEC)
@@ -60,3 +60,4 @@ $(BIN)%.o: $(DEMO_PATH)/%.cxx
 clean:
 	rm -rf $(OBJS)
 	rm -rf $(BIN)$(EXEC)
+

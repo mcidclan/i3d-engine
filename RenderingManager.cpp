@@ -180,6 +180,7 @@ CustomString const tfname)
 	}
 	else if(ext == "png")
 	{
+		this->currentshape->setTextureId(utils::loadPng32(tfname.c_str()));
 	}
 }
 
@@ -261,3 +262,4 @@ vector<RenderShape*>* RenderingManager::getShapes(void)
 {
 	return &this->shapes;
 }
+

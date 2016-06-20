@@ -17,7 +17,7 @@ namespace home
 		sheet->addNewEvent((E_SET | A_LOG),
 		eas(0.0f)(0.0f)(0.0f)());
 
-		sheet->addNewEvent((E_DO | A_SCALE),
+		sheet->addNewEvent((E_SET | A_SCALE),
 		eas(P_X | P_Y)(256.0f)(256.0f)());
 
 		sheet->addNewFont("./font.ttf");
