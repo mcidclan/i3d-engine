@@ -14,14 +14,14 @@ LIB_SRC = $(wildcard *.cpp)
 LIB_SRC_UI = $(wildcard $(LIB_PATH_UI)/*.cpp)
 LIB_SRC_UTIL = $(wildcard $(LIB_PATH_UTIL)/*.cpp)
 #LIB_SRC_CLIENT = $(wildcard $(LIB_PATH_CLIENT)/*.cpp)
-DEMO_SRC = $(wildcard $(DEMO_PATH)/*.cxx)
+DEMO_SRC = $(wildcard $(DEMO_PATH)/*.cpp)
 
 
 LIB_OBJS = $(notdir $(patsubst %.cpp, %.o, $(LIB_SRC)))
 LIB_OBJS_UI = $(notdir $(patsubst %.cpp, %.o, $(LIB_SRC_UI)))
 LIB_OBJS_UTIL = $(notdir $(patsubst %.cpp, %.o, $(LIB_SRC_UTIL)))
 #LIB_OBJS_CLIENT = $(notdir $(patsubst %.cpp, %.o, $(LIB_SRC_CLIENT)))
-DEMO_OBJS = $(notdir $(patsubst %.cxx, %.o, $(DEMO_SRC)))
+DEMO_OBJS = $(notdir $(patsubst %.cpp, %.o, $(DEMO_SRC)))
 
 
 OBJS := $(addprefix $(BIN), $(LIB_OBJS)) \
@@ -63,7 +63,7 @@ $(BIN)%.o: $(LIB_PATH_UTIL)/%.cpp
 #$(BIN)%.o: $(LIB_PATH_CLIENT)/%.cpp
 #	$(CC) -o $@ -c $< $(CFLAGS)
 
-$(BIN)%.o: $(DEMO_PATH)/%.cxx
+$(BIN)%.o: $(DEMO_PATH)/%.cpp
 	$(CC) -o $@ -c $< $(CFLAGS)
 
 
