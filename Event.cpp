@@ -2,11 +2,14 @@
 
 Event::Event()
 {
+	this->source = NULL;
+	this->target = NULL;
 }
 
 Event::~Event()
 {
-	if(this->source->getGroup() != EG_CONTROL)
+	if((this->source == NULL) ||
+	(this->source->getGroup() != EG_CONTROL))
 	{
 		uint i;
 
