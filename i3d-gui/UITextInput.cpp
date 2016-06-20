@@ -10,8 +10,6 @@ UIMessageBox(font, false)
 	this->origin = 0;
 	this->maxchar = 0;
 
-//	memset(borders, 0, sizeof(uint) * 4);
-
 	this->loadResources();
 }
 
@@ -34,9 +32,7 @@ void UITextInput::updateText(void)
 {
 	string text;
 
-	text = this->data.substr(this->origin,
-	((this->data.length() > this->maxchar) ?
-	this->maxchar : this->data.length()));
+	text = this->data.substr(this->origin, this->getTail());
 
 	utils::utf8Adjuster(text);
 	this->text->setText(text);
@@ -89,6 +85,13 @@ void UITextInput::aSet_write(void* const data)
 	memset(cdata, 0x0, idata);
 	this->addTextValue(sdata);
 }
+
+uint UITextInput::getTail(void)
+{
+	return ((this->data.length() > this->maxchar) ?
+	this->maxchar : this->data.length());
+}
+
 //0xC3
 void UITextInput::aSet_erase(void* const)
 {
@@ -106,4 +109,23 @@ void UITextInput::aDo_write(void* const data)
 {
 	this->aSet_write(data);
 }
+
+/*void UITextInput::aSet_move(void* const data)
+{
+	uint step;
+
+	step = ((uint*)data)[0];
+
+	if((this->cursor > 0) &&
+	(this->cursor < this->data.length()))
+	{
+		this->cursor += a;
+	}
+
+	if((this->cursor < this->origin) ||
+	(this->cursor > this->origin + this->maxchar))
+	{
+		this->origin += step;
+	}
+}*/
 

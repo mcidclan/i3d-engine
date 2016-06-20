@@ -6,20 +6,26 @@
 	#include "ElementActionSet.hpp"
 	#include <GL/glut.h>
 
+	enum SpecialKeyInfos
+	{
+		SK_LEFT = GLUT_KEY_LEFT,
+		SK_UP = GLUT_KEY_UP,
+		SK_RIGHT = GLUT_KEY_RIGHT,
+		SK_DOWN = GLUT_KEY_DOWN
+	};
+
 	enum KeyInfos
 	{
 		K_DEL = 0x8,
 		K_TAB = 0x9,
 		K_ENTER = 0x13,
 
-		/*SK_LEFT = 0x0,
-		SK_LRIGHT = 0x0,
-		SK_UP = 0x0,
-		SK_DOWN = 0x0,*/
-
 		KE_UP = 0x100,
 		KE_DOWN = 0x200,
-		KE_ALL = 0x400
+		KE_ALL = 0x400,
+
+		SKE_UP = 0x800,
+		SKE_DOWN = 0x1000
 	};
 	
 	typedef map<uint, EAS> EASMap;
@@ -51,6 +57,12 @@
 
 			/// Allows to get the current key up.
 			static void keyUp(uchar, int, int);
+
+			///
+			static void specialKeyDown(int, int, int);
+
+			///
+			static void specialKeyUp(int, int, int);
 
 			///@{
 			/// Actions

@@ -54,8 +54,8 @@
 
 			///
 			uint origin;
-			//uint borders[3];
 
+			///
 			uint maxchar;
 
 			///
@@ -66,6 +66,9 @@
 
 			///
 			void addTextValue(string const);
+
+			///
+			uint getTail(void);
 
 	};
 

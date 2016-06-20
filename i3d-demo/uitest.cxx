@@ -38,8 +38,8 @@ namespace uitest
 			EASMap keymap;
 			keymap['a' | KE_DOWN]((E_SET | A_SCALE),
 			eas(P_X | P_Y)(256.0f)(256.0f)());
-			keymap['b' | KE_DOWN]((E_SET | A_KEYMAPID), eas(1)());
-
+			//keymap['b' | KE_DOWN]((E_SET | A_KEYMAPID), eas(1)());
+			keymap[SK_UP | SKE_DOWN]((E_SET | A_KEYMAPID), eas(1)());
 			sheet->getKeyBoard()->addKeyMap(keymap);
 		}
 

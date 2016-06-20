@@ -11,6 +11,8 @@ ControlKeyBoard::ControlKeyBoard(ScriptSheet* const sheet)
 
 	glutKeyboardFunc(ControlKeyBoard::keyDown);
 	glutKeyboardUpFunc(ControlKeyBoard::keyUp);
+	glutSpecialFunc(ControlKeyBoard::specialKeyDown);
+	glutSpecialUpFunc(ControlKeyBoard::specialKeyUp);
 
 	this->primetarget = 0;
 	this->currenttarget = 0;
@@ -59,7 +61,8 @@ void ControlKeyBoard::dispatchEvents(void)
 			while(a != b)
 			{
 				if((a->first == (this->currentkey & 0x3FF)) ||
-				(a->first == (this->currentkey & 0x700)))
+				(a->first == (this->currentkey & 0x700)) ||
+				(a->first == (this->currentkey & 0x18FF)))
 				{
 					this->sheet->setEventSource(this);
 					this->sheet->setEventTarget(target);
@@ -82,6 +85,20 @@ void ControlKeyBoard::pushToData(uchar const key)
 		this->data.append((const char*)&key, 1);
 	}
 }
+
+void ControlKeyBoard::specialKeyDown(int key, int x, int y)
+{
+	ControlKeyBoard::current->currentkey = (uint)key;
+	ControlKeyBoard::current->currentkey |= SKE_DOWN;
+	cout << current->currentkey << "\n";
+}
+
+void ControlKeyBoard::specialKeyUp(int key, int x, int y)
+{
+	ControlKeyBoard::current->currentkey = (uint)key;
+	ControlKeyBoard::current->currentkey |= SKE_UP;	
+}
+
 
 void ControlKeyBoard::keyDown(uchar key, int x, int y)
 {
