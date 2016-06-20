@@ -1,31 +1,34 @@
 #include "RenderRectangle.hpp"
 
-GLfloat const RenderRectangle::data[] =
+GLuint const RenderRectangle::indices[] =
+{
+	0, 1, 2, 2, 3, 0
+};
+
+GLfloat const RenderRectangle::coordinates[] =
 {
 	0.0f, 0.0f, 0.0f,
 	1.0f, 0.0f, 0.0f,
 	1.0f, 1.0f, 0.0f,
-
-	1.0f, 1.0f, 0.0f,
-	0.0f, 1.0f, 0.0f,
-	0.0f, 0.0f, 0.0f
+	0.0f, 1.0f, 0.0f
 };
 
 RenderRectangle::RenderRectangle()
 {
 	this->vertexnumber = 6;
+	this->vertexindices = (uint*)RenderRectangle::indices;
 }
 
 RenderRectangle::~RenderRectangle()
 {
 }
 
-unsigned int RenderRectangle::getDataSize(void)
+unsigned int RenderRectangle::getDataSize(void) const
 {
-	return sizeof(RenderRectangle::data);
+	return sizeof(RenderRectangle::coordinates);
 }
 
-GLfloat const* RenderRectangle::getData(void)
+GLfloat const* RenderRectangle::getData(void) const
 {
-	return RenderRectangle::data;
+	return RenderRectangle::coordinates;
 }

@@ -65,7 +65,9 @@ void RenderShape::draw(void)
 	glVertexAttribPointer(this->avertice, 3,
 	GL_FLOAT, GL_FALSE, 0, NULL);
 
-	glDrawArrays(GL_TRIANGLES, 0, this->vertexnumber);
+	//glDrawArrays(GL_TRIANGLES, 0, this->vertexnumber);
+	glDrawElements(GL_TRIANGLES, this->vertexnumber,
+	GL_UNSIGNED_INT, this->vertexindices);
 
 	glDisableVertexAttribArray(0);
 }

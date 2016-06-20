@@ -8,6 +8,7 @@ RenderingManager::RenderingManager()
 
 	this->currentfont = NULL;
 	this->currentshader = NULL;
+	this->currentfilename = NULL;
 
 	i = 0;
 	while(i < RM_SHAPE_NUMBER)
@@ -146,8 +147,18 @@ void RenderingManager::addNewShaderProgram(ShaderSources& shadersource)
 
 void RenderingManager::addNewShape(ShapeType const type)
 {
-	this->addNewBufferedShape(type);
-	SSDataBridge::lastnewtarget = this->shapes.back();
+	if(type != RM_SHAPE_NUMBER)
+	{
+		this->addNewBufferedShape(type);
+		SSDataBridge::lastnewtarget = this->shapes.back();
+	}
+	else cout << "This shape does not exist.\n";
+}
+
+void RenderingManager::addNewMesh(char const* const filename)
+{
+	this->currentfilename = filename;
+	this->addNewShape(RM_SHAPE_MESH);
 }
 
 void RenderingManager::addNewBufferedShape(ShapeType const type)
@@ -171,14 +182,21 @@ RenderShape* RenderingManager::getNewBufferedShape(ShapeType const type)
 
 	if(shape != NULL)
 	{
+		GLuint bufferid;
+
 		if(!RenderingManager::buffers[type])
 		{
-			glGenBuffers(1, &RenderingManager::buffers[type]);
-			glBindBuffer(GL_ARRAY_BUFFER, RenderingManager::buffers[type]);
+			glGenBuffers(1, &bufferid);
+			glBindBuffer(GL_ARRAY_BUFFER, bufferid);
 			glBufferData(GL_ARRAY_BUFFER, shape->getDataSize(),
 			shape->getData(), GL_STATIC_DRAW);
+
+			if(type != RM_SHAPE_MESH)
+			{
+				RenderingManager::buffers[type] = bufferid;
+			}
 		}
-		shape->setBufferId(RenderingManager::buffers[type]);
+		shape->setBufferId(bufferid);
 	}
 	return shape;
 }
@@ -187,9 +205,22 @@ RenderShape* RenderingManager::getNewShape(ShapeType const type)
 {
 	switch(type)
 	{
-		case RM_SHAPE_TRIANGLE: return new RenderTriangle();
-		case RM_SHAPE_RECTANGLE: return new RenderRectangle();
-		case RM_SHAPE_NUMBER: return NULL;
+		case RM_SHAPE_MESH:
+		{
+			RenderMesh* mesh = new RenderMesh();
+			mesh->load(this->currentfilename);
+			return mesh;
+		}
+
+		case RM_SHAPE_TRIANGLE:
+			return new RenderTriangle();
+
+		case RM_SHAPE_RECTANGLE:
+			return new RenderRectangle();
+
+		case RM_SHAPE_NUMBER:
+			return NULL;
+
 	}
 	return NULL;
 }

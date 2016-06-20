@@ -2,50 +2,61 @@
 
 MeshLoader::MeshLoader()
 {
+	this->nvertices = 0;
+	this->ncoordinates = 0;
+
 	this->indices = NULL;
 	this->normals = NULL;
 	this->uvcoords = NULL;
+	this->coordinates = NULL;
 }
 
 MeshLoader::~MeshLoader()
 {
-	//Release.
+	this->release();
+}
+
+void MeshLoader::release(void)
+{
+	delete [] indices;
+	delete [] normals;
+	delete [] uvcoords;
+	delete [] coordinates;
 }
 
 void MeshLoader::load(char const* const filename)
 {
 	FILE* file;
-	uint vertexnumber;
 
 	file = fopen(filename, "rb");
 
 	if(file != NULL)
 	{		
-		uint nnbyte;
-		uint vnbyte;
-		uint unbyte;
 		uint filesize;
+		uint ncomponents;
 
 		fseek(file, 0, SEEK_END);
 		filesize = ftell(file);
 		rewind(file);
 
-		fread(&vertexnumber, 4, 1, file);
+		fread(&this->nvertices, 4, 1, file);
 
-		this->indices = new uint[vertexnumber];
-		fread(this->indices, 4, vertexnumber, file);
+		this->indices = new uint[this->nvertices];
+		fread(this->indices, 4, this->nvertices, file);
 
-		nnbyte = (vertexnumber * 3);
-		this->normals = new float[nnbyte];
-		fread(this->normals, 4, nnbyte, file);
+		ncomponents = (this->nvertices * 3);
+		this->normals = new float[ncomponents];
+		fread(this->normals, 4, ncomponents, file);
 
-		unbyte = (vertexnumber * 2);
-		this->uvcoords = new float[unbyte];
-		fread(this->uvcoords, 4, unbyte, file);
+		ncomponents = (this->nvertices * 2);
+		this->uvcoords = new float[ncomponents];
+		fread(this->uvcoords, 4, ncomponents, file);
 
-		vnbyte = filesize - ftell(file);
-		this->vertices = new float[vnbyte];
-		fread(this->vertices, 1, vnbyte, file);
+		ncomponents = (filesize - ftell(file)) / 4;
+		this->ncoordinates = ncomponents / 3;
+
+		this->coordinates = new float[ncomponents];
+		fread(this->coordinates, 4, ncomponents, file);
 
 		fclose(file);
 	}
@@ -67,7 +78,17 @@ float* MeshLoader::getUVCoords(void) const
 	return this->uvcoords;
 }
 
-float* MeshLoader::getVertices(void) const
+float* MeshLoader::getCoordinates(void) const
 {
-	return this->vertices;
+	return this->coordinates;
+}
+
+uint MeshLoader::getNumberOfVertices(void) const
+{
+	return this->nvertices;
+}
+
+uint MeshLoader::getNumberOfCoordinates(void) const
+{
+	return this->ncoordinates;
 }

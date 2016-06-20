@@ -25,10 +25,10 @@
 			void draw(void);
 
 			///
-			virtual unsigned int getDataSize(void) = 0;
+			virtual unsigned int getDataSize(void) const = 0;
 
 			///
-			virtual GLfloat const* getData(void) = 0;
+			virtual GLfloat const* getData(void) const = 0;
 
 			///@{
 			/// Actions.
@@ -40,6 +40,9 @@
 		protected:
 			/// Number of vertices to be rendered.
 			uint vertexnumber;
+
+			/// Pointer to the indices data.
+			uint* vertexindices;
 
 		private:
 			/// Opengl projection matrix.

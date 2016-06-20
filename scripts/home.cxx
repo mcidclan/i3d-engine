@@ -11,7 +11,8 @@ namespace home
 		shader.push(GL_FRAGMENT_SHADER, Shader::fragment, Shader::fsize());
 
 		sheet->addNewShaderProgram(shader);
-		sheet->addNewShape(RM_SHAPE_RECTANGLE);
+		//sheet->addNewShape(RM_SHAPE_RECTANGLE);
+		sheet->addNewMesh("./model.i3d");
 
 		{
 			sheet->addNewEvent((E_SET | A_LOG),

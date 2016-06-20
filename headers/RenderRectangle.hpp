@@ -13,14 +13,17 @@
 			~RenderRectangle();
 
 			///
-			unsigned int getDataSize(void);
+			unsigned int getDataSize(void) const;
 
 			///
-			GLfloat const* getData(void);
+			GLfloat const* getData(void) const;
 
 		private:
-			/// Internal data.
-			static GLfloat const data[];
+			/// Internal indices data.
+			static GLuint const indices[];
+
+			/// Internal coordinates data.
+			static GLfloat const coordinates[];
 
 	};
 
