@@ -1,4 +1,4 @@
-#include "headers/EventStack.hpp"
+#include "EventStack.hpp"
 
 EventStack::EventStack()
 {

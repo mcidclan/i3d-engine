@@ -1,4 +1,4 @@
-#include "headers/RenderRectangle.hpp"
+#include "RenderRectangle.hpp"
 
 GLfloat const RenderRectangle::data[] =
 {

@@ -1,4 +1,4 @@
-#include "./headers/EventSupervisor.hpp"
+#include "EventSupervisor.hpp"
 
 EventSupervisor* EventSupervisor::current;
 

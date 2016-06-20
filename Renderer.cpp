@@ -1,4 +1,4 @@
-#include "headers/Renderer.hpp"
+#include "Renderer.hpp"
 
 Renderer* Renderer::current;
 

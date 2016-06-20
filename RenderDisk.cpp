@@ -1,4 +1,4 @@
-#include "headers/RenderDisk.hpp"
+#include "RenderDisk.hpp"
 
 RenderDisk::RenderDisk()
 {

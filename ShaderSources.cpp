@@ -1,4 +1,4 @@
-#include "headers/ShaderSources.hpp"
+#include "ShaderSources.hpp"
 
 ShaderSources::ShaderSources()
 {

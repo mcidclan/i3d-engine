@@ -1,4 +1,4 @@
-#include "./headers/Thread.hpp"
+#include "Thread.hpp"
 
 Thread::Thread(void* (* runnable)(void*))
 {

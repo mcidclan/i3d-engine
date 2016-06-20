@@ -1,4 +1,4 @@
-#include "headers/RenderTriangle.hpp"
+#include "RenderTriangle.hpp"
 
 GLfloat const RenderTriangle::data[] =
 {

@@ -10,64 +10,49 @@
 	class ScriptSheet : public RenderingManager
 	{
 		public:
-			///
 			/// Constructor.
-			///
 			ScriptSheet(Script);
 
-			///
-			/// Call empty base constructor.
-			///
+			/// Call empty RenderingManager constructor.
 			ScriptSheet();
 
-			///
-			///
 			///
 			~ScriptSheet();
 
 			///
-			///
+			void leave(void);
+
 			///
 			void draw(void);
 
 			///
-			///
-			///
 			void addNewScriptSheet(Script const, vuint* const tie);
 			
 			///
-			///
+			void setLastingState(bool);
+
 			///
 			ScriptSheet* getScriptSheet(uint const, vuint* const tie);
 
 			///
-			///
-			///
 			vector<ScriptSheet*>* getSheets(void);
 
+			///
+			bool getLastingState(void);
+
 		private:
-			///
 			/// A flag to know if the init function was called.
-			///
 			bool initialized;
 
 			///
+			bool lasting;
+
 			/// Children of the current ScriptSheet. 
-			///
 			vector<ScriptSheet*> sheets;
 
-			///
 			/// Init function.
-			///
 			Script init;
 
 	};
 
 #endif
-
-/*
-	move
-	in create
-	out delete
-	script [OK]
-*/

@@ -16,6 +16,9 @@
 			///
 			~Element();
 
+			///
+			/// Availables ElementActions.
+			///
 			void getRunnableState(void* const);
 
 		private:

@@ -5,12 +5,17 @@
 	{
 		public:
 			///
-			/// Allow to trace debug message.
+			/// Allows to move the Element or through it.
+			///
+			virtual void doMove(void* const);
+
+			///
+			/// Allows to trace debug message.
 			///
 			virtual void setLog(void* const);
 
 			///
-			/// Allow to read the state of the
+			/// Allows to read the state of the
 			/// runnable associated to the current Element.
 			///
 			virtual void getRunnableState(void* const);

@@ -1,4 +1,4 @@
-#include "headers/RenderShape.hpp"
+#include "RenderShape.hpp"
 
 RenderShape::RenderShape()
 {

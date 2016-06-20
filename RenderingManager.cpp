@@ -1,4 +1,4 @@
-#include "headers/RenderingManager.hpp"
+#include "RenderingManager.hpp"
 
 GLuint RenderingManager::buffers[RM_SHAPE_NUMBER];
 
@@ -23,6 +23,11 @@ RenderingManager::RenderingManager(void*)
 }
 
 RenderingManager::~RenderingManager()
+{
+	this->clean();
+}
+
+void RenderingManager::clean(void)
 {
 	utils::dynamicDelete(this->texts);
 	utils::dynamicDelete(this->fonts);

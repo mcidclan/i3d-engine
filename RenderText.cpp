@@ -1,4 +1,4 @@
-#include "headers/RenderText.hpp"
+#include "RenderText.hpp"
 
 RenderText::RenderText(FTGLPixmapFont* const font)
 {

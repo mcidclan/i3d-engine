@@ -38,6 +38,11 @@
 			~RenderingManager();
 
 			///
+			/// Allows to clean the RenderingManager.
+			///
+			void clean(void);
+
+			///
 			/// Set the current font by passing his id.
 			///
 			void setCurrentFont(unsigned int const);

@@ -1,4 +1,4 @@
-#include "./headers/Event.hpp"
+#include "Event.hpp"
 
 Event::Event()
 {
