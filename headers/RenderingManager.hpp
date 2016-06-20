@@ -30,16 +30,22 @@
 			~RenderingManager();
 
 			///
-			/// Draw all RenderShape that was added.
-			///
-			void draw(void);
-
-			///
 			/// Add a new RenderShape according to the given ShapeType.
 			///
 			void addNewBufferedShape(ShapeType const);
 
+			///
+			/// Call the draw process.
+			///
+			static void draw(void);
+
 		private:
+			///  
+			///	Allows access to the current instance,
+			/// from static functions.
+			///
+			static RenderingManager* current;
+
 			///
 			/// GL_STATIC_DRAW buffers.
 			///
@@ -49,6 +55,11 @@
 			/// RenderShape stack.
 			///
 			vector<RenderShape*> shapes;
+
+			///
+			/// Draw all RenderShape that was added.
+			///
+			void drawShape(void);
 
 			///
 			/// Create and return a new buffered RenderShape. 

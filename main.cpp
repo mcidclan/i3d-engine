@@ -19,20 +19,13 @@ GLchar const* fragmentshader[] =
 	"}\n"
 };
 
-void drawingProcess(void)
-{
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	//triangle->draw();
-}
-
 int main(int argc, char** argv)
 {
 	Renderer renderer;
 	RenderingManager renderingmanager;
 
 	renderingmanager.addNewBufferedShape(RM_SHAPE_TRIANGLE);
-	renderer.setProcess(drawingProcess);
+	renderer.setProcess(RenderingManager::draw);
 
 	renderer.start(argc, argv);
 

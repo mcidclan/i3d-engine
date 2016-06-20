@@ -1,10 +1,10 @@
 #include "headers/Renderer.hpp"
 
-Renderer* Renderer::renderer = NULL;
+Renderer* Renderer::current;
 
 Renderer::Renderer()
 {
-	Renderer::renderer = this;
+	Renderer::current = this;
 	this->process = NULL;
 }
 
@@ -65,7 +65,7 @@ void Renderer::reshape(int width, int height)
 
 void Renderer::display(void)
 {
-	renderer->draw();
+	current->draw();
 }
 
 void Renderer::idle()

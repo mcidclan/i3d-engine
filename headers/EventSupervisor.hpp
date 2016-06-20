@@ -38,7 +38,7 @@
 			/// Pointer on the current supervisor,
 			/// to be used from the core process.
 			///
-			static EventSupervisor* supervisor;
+			static EventSupervisor* current;
 	};
 
 #endif

@@ -1,10 +1,14 @@
 #include "headers/RenderingManager.hpp"
 
+RenderingManager* RenderingManager::current;
+
 GLuint RenderingManager::buffers[RM_SHAPE_NUMBER];
 
 RenderingManager::RenderingManager()
 {
 	unsigned int i;
+
+	this->current = this;
 
 	i = 0;
 	while(sizeof(RenderingManager::buffers))
@@ -19,6 +23,13 @@ RenderingManager::~RenderingManager()
 }
 
 void RenderingManager::draw(void)
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	RenderingManager::current->drawShape();
+}
+
+void RenderingManager::drawShape(void)
 {
 	unsigned int i;
 	

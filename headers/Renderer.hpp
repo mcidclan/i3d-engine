@@ -36,7 +36,7 @@
 			///
 			/// The current Renderer.
 			///
-			static Renderer *renderer;
+			static Renderer *current;
 
 			///
 			/// Internal drawing process.
