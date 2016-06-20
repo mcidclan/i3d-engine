@@ -10,8 +10,9 @@ GLfloat RenderShape::pmatrix[] =
 
 RenderShape::RenderShape()
 {
-	this->textured = true;
-	this->textureid = loadBMP_custom("uvtemplate.bmp");
+	this->textureid = -1;
+	this->sampled = false;
+	this->textured = false;
 
 	this->bufferid[V_BUFFER] = 0;
 	this->bufferid[UV_BUFFER] = 0;
@@ -39,6 +40,7 @@ void RenderShape::initShaderVariableLocations(void)
 	this->auvcoord = glGetAttribLocation(shpid, "a_uvcoord");
 
 	this->utsampler = glGetUniformLocation(shpid, "u_tsampler");
+	this->usampled = glGetUniformLocation(shpid, "u_sampled");
 
 	this->upmatrix = glGetUniformLocation(shpid, "u_pmatrix");
 	this->utmatrix = glGetUniformLocation(shpid, "u_tmatrix");
@@ -49,6 +51,7 @@ void RenderShape::updateUniformShaderVariables(void)
 	glUniformMatrix4fv(this->upmatrix, 1, GL_FALSE, RenderShape::pmatrix);
 	glUniformMatrix4fv(this->utmatrix, 1, GL_FALSE, this->tmatrix);
 	glUniformMatrix4fv(this->urmatrix, 1, GL_FALSE, this->rmatrix);
+	glUniform1ui(this->usampled, this->sampled);
 }
 
 void RenderShape::setShaderProgram(ShaderProgram* const shaderprogram)
@@ -64,12 +67,21 @@ GLuint const bufferid)
 	this->bufferid[buffertype] = bufferid;
 }
 
+void RenderShape::setTextureId(GLint const textureid)
+{
+	this->textureid = textureid;
+
+	if(textureid != -1)
+	{
+		this->sampled = true;
+		this->textured = true;
+	}
+}
+
 void RenderShape::draw(void)
 {
 	this->shaderprogram->use();
 	this->updateUniformShaderVariables();
-
-	cout << V_BUFFER << this->bufferid[V_BUFFER] << "\n";
 
 	glEnableVertexAttribArray(V_BUFFER);
 	glBindBuffer(GL_ARRAY_BUFFER, this->bufferid[V_BUFFER]);

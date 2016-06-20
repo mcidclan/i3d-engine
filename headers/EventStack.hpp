@@ -12,6 +12,7 @@
 		ES_PERSISTENT
 	};
 
+	/// warning non-polymorphic
 	class EventStack : public vector<Event*>
 	{
 		public:

@@ -9,6 +9,7 @@ RenderingManager::RenderingManager()
 	unsigned int i;
 
 	this->currentfont = NULL;
+	this->currentshape = NULL;
 	this->currentshader = NULL;
 	this->currentfilename = NULL;
 
@@ -164,15 +165,31 @@ void RenderingManager::addNewMesh(char const* const filename)
 	this->addNewShape(RM_SHAPE_MESH);
 }
 
+void RenderingManager::addNewTexturedMesh(char const* const mfname,
+CustomString const tfname)
+{
+	string ext;
+
+	this->addNewMesh(mfname);
+
+	ext = tfname.find_part_after_last_of(".");
+
+	if(ext == "bmp")
+	{
+		this->currentshape->setTextureId(utils::loadBmp24(tfname.c_str()));
+	}
+	else if(ext == "png")
+	{
+	}
+}
+
 void RenderingManager::addNewBufferedShape(ShapeType const type)
 {
 	if(this->currentshader != NULL)
 	{
-		RenderShape* shape;
-
-		shape = this->getNewBufferedShape(type);
-		shape->setShaderProgram(this->currentshader);
-		this->shapes.push_back(shape);
+		this->currentshape = this->getNewBufferedShape(type);
+		this->currentshape->setShaderProgram(this->currentshader);
+		this->shapes.push_back(this->currentshape);
 	}
 	else cout << "Please set current shader program.\n";
 }

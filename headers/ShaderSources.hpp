@@ -8,6 +8,7 @@
 
 	using namespace std;
 
+	/// warning non-polymorphic
 	class ShaderSources : public vector<GLchar const**>
 	{
 		public:

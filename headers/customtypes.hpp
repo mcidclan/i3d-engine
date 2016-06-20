@@ -8,6 +8,8 @@
 	#include <cstring>
 	#include <iostream>
 
+	#include <malloc.h>
+
 	using namespace std;
 
 	typedef unsigned int uint;

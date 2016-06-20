@@ -1,10 +1,14 @@
 #ifndef UTILS_HPP
 #define UTILS_HPP
 	
-	#include "customtypes.hpp"
+	//#include "customtypes.hpp"
+	#include "ShaderProgram.hpp"
 
 	namespace utils
 	{
+		/// Allows to load a bmp24 to opengl.
+		GLuint loadBmp24(const char*);
+
 		/// Allows to delete dynamics instances through a vector.
 		template <class T>
 		void dynamicDelete(vector<T>& v)

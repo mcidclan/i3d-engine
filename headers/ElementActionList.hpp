@@ -6,6 +6,7 @@
 
     using namespace std;
 
+	/// warning non-polymorphic
 	class ElementActionList : public vector<ElementAction>
 	{
 		public:

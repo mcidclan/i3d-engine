@@ -6,8 +6,6 @@
 	#include "ShaderProgram.hpp"
 	#include "constants.hpp"
 
-	#include "texture.hpp"
-
 	enum BufferType
 	{
 		V_BUFFER = 0,
@@ -29,6 +27,9 @@
 
 			///
 			void setBufferId(BufferType const, GLuint const);
+
+			///
+			void setTextureId(GLint const);
 
 			/// Draw the current RenderShape.
 			void draw(void);
@@ -58,10 +59,14 @@
 			static GLfloat pmatrix[];
 
 			/// Current shape texture id.
-			GLuint textureid;
+			GLint textureid;
 
+			///@{
 			/// Allows to know if the shape is textured.
+			bool sampled;
+
 			bool textured;
+			///@}
 
 			/// Opengl transform matrix.
 			GLfloat* tmatrix;
@@ -78,6 +83,9 @@
 
 			GLuint auvcoord;
 			///@}
+
+			/// Texture 'sampling state' id.
+			GLuint usampled;
 
 			/// Texture sample id.
 			GLuint utsampler;
