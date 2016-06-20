@@ -10,7 +10,12 @@ GLfloat RenderShape::pmatrix[] =
 
 RenderShape::RenderShape()
 {
-	this->bufferid = 0;
+	this->textured = true;
+	this->textureid = loadBMP_custom("uvtemplate.bmp");
+
+	this->bufferid[V_BUFFER] = 0;
+	this->bufferid[UV_BUFFER] = 0;
+
 	this->tmatrix = new GLfloat[16];
 	this->rmatrix = new GLfloat[16];
 
@@ -30,7 +35,11 @@ void RenderShape::initShaderVariableLocations(void)
 
 	shpid = this->shaderprogram->getId();
 
-	this->avertice = glGetAttribLocation(shpid, "a_vertice");
+	this->avertex = glGetAttribLocation(shpid, "a_vertex");
+	this->auvcoord = glGetAttribLocation(shpid, "a_uvcoord");
+
+	this->utsampler = glGetUniformLocation(shpid, "u_tsampler");
+
 	this->upmatrix = glGetUniformLocation(shpid, "u_pmatrix");
 	this->utmatrix = glGetUniformLocation(shpid, "u_tmatrix");
 }
@@ -49,9 +58,10 @@ void RenderShape::setShaderProgram(ShaderProgram* const shaderprogram)
 	this->initShaderVariableLocations();
 }
 
-void RenderShape::setBufferId(GLuint bufferid)
+void RenderShape::setBufferId(BufferType const buffertype,
+GLuint const bufferid)
 {
-	this->bufferid = bufferid;
+	this->bufferid[buffertype] = bufferid;
 }
 
 void RenderShape::draw(void)
@@ -59,17 +69,34 @@ void RenderShape::draw(void)
 	this->shaderprogram->use();
 	this->updateUniformShaderVariables();
 
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, this->bufferid);
+	cout << V_BUFFER << this->bufferid[V_BUFFER] << "\n";
 
-	glVertexAttribPointer(this->avertice, 3,
+	glEnableVertexAttribArray(V_BUFFER);
+	glBindBuffer(GL_ARRAY_BUFFER, this->bufferid[V_BUFFER]);
+	glVertexAttribPointer(this->avertex, 3,
 	GL_FLOAT, GL_FALSE, 0, NULL);
 
-	//glDrawArrays(GL_TRIANGLES, 0, this->vertexnumber);
+	if(this->textured)
+	{
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, this->textureid);
+		glUniform1i(this->utsampler, 0);
+
+		glEnableVertexAttribArray(UV_BUFFER);
+		glBindBuffer(GL_ARRAY_BUFFER, this->bufferid[UV_BUFFER]);
+		glVertexAttribPointer(this->auvcoord, 2,
+		GL_FLOAT, GL_FALSE, 0, NULL);
+	}
+	
 	glDrawElements(GL_TRIANGLES, this->vertexnumber,
 	GL_UNSIGNED_INT, this->vertexindices);
 
-	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(V_BUFFER);
+
+	if(this->textured)
+	{
+		glDisableVertexAttribArray(UV_BUFFER);
+	}
 }
 
 /*

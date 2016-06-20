@@ -1,6 +1,8 @@
 #include "RenderingManager.hpp"
 
-GLuint RenderingManager::buffers[RM_SHAPE_NUMBER];
+GLuint RenderingManager::vbuffers[RM_SHAPE_NUMBER];
+
+GLuint RenderingManager::uvbuffers[RM_SHAPE_NUMBER];
 
 RenderingManager::RenderingManager()
 {
@@ -13,7 +15,8 @@ RenderingManager::RenderingManager()
 	i = 0;
 	while(i < RM_SHAPE_NUMBER)
 	{
-		RenderingManager::buffers[i] = 0;
+		RenderingManager::vbuffers[i] = 0;
+		RenderingManager::uvbuffers[i] = 0;
 		i++;
 	}
 }
@@ -182,21 +185,33 @@ RenderShape* RenderingManager::getNewBufferedShape(ShapeType const type)
 
 	if(shape != NULL)
 	{
-		GLuint bufferid;
+		GLuint vbufferid;
+		GLuint uvbufferid;
 
-		if(!RenderingManager::buffers[type])
+		vbufferid = RenderingManager::vbuffers[type];
+		uvbufferid = RenderingManager::uvbuffers[type];
+
+		if(!RenderingManager::vbuffers[type])
 		{
-			glGenBuffers(1, &bufferid);
-			glBindBuffer(GL_ARRAY_BUFFER, bufferid);
-			glBufferData(GL_ARRAY_BUFFER, shape->getDataSize(),
-			shape->getData(), GL_STATIC_DRAW);
+			glGenBuffers(1, &vbufferid);
+			glBindBuffer(GL_ARRAY_BUFFER, vbufferid);
+			glBufferData(GL_ARRAY_BUFFER, shape->getDataSize(V_BUFFER),
+			shape->getData(V_BUFFER), GL_STATIC_DRAW);
+
+			glGenBuffers(1, &uvbufferid);
+			glBindBuffer(GL_ARRAY_BUFFER, uvbufferid);
+			glBufferData(GL_ARRAY_BUFFER, shape->getDataSize(UV_BUFFER),
+			shape->getData(UV_BUFFER), GL_STATIC_DRAW);
 
 			if(type != RM_SHAPE_MESH)
 			{
-				RenderingManager::buffers[type] = bufferid;
+				RenderingManager::vbuffers[type] = vbufferid;
+				RenderingManager::uvbuffers[type] = uvbufferid;
 			}
 		}
-		shape->setBufferId(bufferid);
+
+		shape->setBufferId(V_BUFFER, vbufferid);
+		shape->setBufferId(UV_BUFFER, uvbufferid);
 	}
 	return shape;
 }

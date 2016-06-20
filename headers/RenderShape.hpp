@@ -6,6 +6,15 @@
 	#include "ShaderProgram.hpp"
 	#include "constants.hpp"
 
+	#include "texture.hpp"
+
+	enum BufferType
+	{
+		V_BUFFER = 0,
+		UV_BUFFER,
+		BUFFER_NUMBER
+	};
+
 	class RenderShape : public Element
 	{
 		public:
@@ -19,16 +28,16 @@
 			void setShaderProgram(ShaderProgram* const);
 
 			///
-			void setBufferId(GLuint);
+			void setBufferId(BufferType const, GLuint const);
 
 			/// Draw the current RenderShape.
 			void draw(void);
 
 			///
-			virtual unsigned int getDataSize(void) const = 0;
+			virtual unsigned int getDataSize(BufferType) const = 0;
 
 			///
-			virtual GLfloat const* getData(void) const = 0;
+			virtual GLfloat const* getData(BufferType) const = 0;
 
 			///@{
 			/// Actions.
@@ -48,6 +57,12 @@
 			/// Opengl projection matrix.
 			static GLfloat pmatrix[];
 
+			/// Current shape texture id.
+			GLuint textureid;
+
+			/// Allows to know if the shape is textured.
+			bool textured;
+
 			/// Opengl transform matrix.
 			GLfloat* tmatrix;
 
@@ -57,8 +72,15 @@
 			/// ProgramShader associated to the current RenderShape.
 			ShaderProgram* shaderprogram;
 
+			///@{
 			/// ProgramShader attributes pointers.
-			GLuint avertice;
+			GLuint avertex;
+
+			GLuint auvcoord;
+			///@}
+
+			/// Texture sample id.
+			GLuint utsampler;
 
 			/// Projection matrix id.
 			GLint upmatrix;
@@ -70,7 +92,7 @@
 			GLint urmatrix;
 
 			///
-			GLuint bufferid;
+			GLuint bufferid[BUFFER_NUMBER];
 
 			/// Init all shader variable locations.
 			void initShaderVariableLocations(void);

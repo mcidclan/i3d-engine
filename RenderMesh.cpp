@@ -15,12 +15,20 @@ void RenderMesh::load(char const* const filename)
 	this->vertexindices = this->indices;
 }
 
-unsigned int RenderMesh::getDataSize(void) const
+unsigned int RenderMesh::getDataSize(BufferType type) const
 {
+	if(type == UV_BUFFER)
+	{
+		return this->ncoordinates * sizeof(float) * 2;
+	}
 	return (this->ncoordinates * sizeof(float) * 3);
 }
 
-GLfloat const* RenderMesh::getData(void) const
+GLfloat const* RenderMesh::getData(BufferType type) const
 {
+	if(type == UV_BUFFER)
+	{
+		return this->uvcoords;
+	}
 	return this->coordinates;
 }

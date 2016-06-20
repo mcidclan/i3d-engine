@@ -32,31 +32,30 @@ void MeshLoader::load(char const* const filename)
 
 	if(file != NULL)
 	{		
-		uint filesize;
+		//uint filesize;
 		uint ncomponents;
 
-		fseek(file, 0, SEEK_END);
+		/*fseek(file, 0, SEEK_END);
 		filesize = ftell(file);
-		rewind(file);
+		rewind(file);*/
 
 		fread(&this->nvertices, 4, 1, file);
+		fread(&this->ncoordinates, 4, 1, file);
 
 		this->indices = new uint[this->nvertices];
 		fread(this->indices, 4, this->nvertices, file);
 
-		ncomponents = (this->nvertices * 3);
-		this->normals = new float[ncomponents];
-		fread(this->normals, 4, ncomponents, file);
+		ncomponents = (this->ncoordinates * 3);
+		this->coordinates = new float[ncomponents];
+		fread(this->coordinates, 4, ncomponents, file);
 
-		ncomponents = (this->nvertices * 2);
+		ncomponents = (this->ncoordinates * 2);
 		this->uvcoords = new float[ncomponents];
 		fread(this->uvcoords, 4, ncomponents, file);
 
-		ncomponents = (filesize - ftell(file)) / 4;
-		this->ncoordinates = ncomponents / 3;
-
-		this->coordinates = new float[ncomponents];
-		fread(this->coordinates, 4, ncomponents, file);
+		/*ncomponents = (this->ncoordinates * 3);
+		this->normals = new float[ncomponents];
+		fread(this->normals, 4, ncomponents, file);*/
 
 		fclose(file);
 	}

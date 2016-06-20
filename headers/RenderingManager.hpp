@@ -64,8 +64,12 @@
 			void draw(void);
 
 		private:
+			///@{
 			/// GL_STATIC_DRAW buffers.
-			static GLuint buffers[];
+			static GLuint vbuffers[];
+
+			static GLuint uvbuffers[];
+			///@}
 
 			/// Current ShaderProgram to be used.
 			ShaderProgram* currentshader;

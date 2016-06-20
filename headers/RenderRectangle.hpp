@@ -13,10 +13,10 @@
 			~RenderRectangle();
 
 			///
-			unsigned int getDataSize(void) const;
+			unsigned int getDataSize(BufferType) const;
 
 			///
-			GLfloat const* getData(void) const;
+			GLfloat const* getData(BufferType) const;
 
 		private:
 			/// Internal indices data.

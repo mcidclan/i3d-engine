@@ -17,10 +17,10 @@
 			void load(char const* const);
 
 			///
-			unsigned int getDataSize(void) const;
+			unsigned int getDataSize(BufferType) const;
 
 			///
-			GLfloat const* getData(void) const;
+			GLfloat const* getData(BufferType) const;
 
 	};
 

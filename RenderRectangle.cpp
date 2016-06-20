@@ -23,12 +23,12 @@ RenderRectangle::~RenderRectangle()
 {
 }
 
-unsigned int RenderRectangle::getDataSize(void) const
+unsigned int RenderRectangle::getDataSize(BufferType type) const
 {
 	return sizeof(RenderRectangle::coordinates);
 }
 
-GLfloat const* RenderRectangle::getData(void) const
+GLfloat const* RenderRectangle::getData(BufferType type) const
 {
 	return RenderRectangle::coordinates;
 }

@@ -22,12 +22,12 @@ RenderTriangle::~RenderTriangle()
 {
 }
 
-unsigned int RenderTriangle::getDataSize(void) const
+unsigned int RenderTriangle::getDataSize(BufferType type) const
 {
 	return sizeof(RenderTriangle::coordinates);
 }
 
-GLfloat const* RenderTriangle::getData(void) const
+GLfloat const* RenderTriangle::getData(BufferType type) const
 {
 	return RenderTriangle::coordinates;
 }
