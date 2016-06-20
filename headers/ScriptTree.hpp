@@ -60,6 +60,9 @@
 			void moveToRight(void);
 			///@}
 
+			/// Allows to move horizontally, through the children.
+			void horizontalMove(ScriptSheet* const) const;
+
 	};
 
 	/// Set the current tie on which we have to work.

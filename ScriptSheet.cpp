@@ -3,18 +3,24 @@
 ScriptSheet::ScriptSheet(Script const init)
 {
 	this->init = init;
-	this->lasting = false;
+	this->initAttributes();
 }
 
 ScriptSheet::ScriptSheet() : RenderingManager(NULL)
 {
 	this->init = NULL;
-	this->lasting = false;
+	this->initAttributes();
 }
 
 ScriptSheet::~ScriptSheet()
 {
 	utils::dynamicDelete(this->sheets);
+}
+
+void ScriptSheet::initAttributes(void)
+{
+	this->parent = NULL;
+	this->lasting = false;
 }
 
 void ScriptSheet::leave(void)
@@ -51,14 +57,29 @@ void ScriptSheet::addNewScriptSheet(Script const init, vuint* const tie)
 	
 	if(sheet != NULL)
 	{
-		sheet->getSheets()->push_back(new ScriptSheet(init));
+		ScriptSheet* child;
+
+		child = new ScriptSheet(init);
+		child->setParent(sheet);
+
+		sheet->getSheets()->push_back(child);
 	}
 	else cout << "Tie not available.\n";
+}
+
+void ScriptSheet::setParent(ScriptSheet* const parent)
+{
+	this->parent = parent;
 }
 
 void ScriptSheet::setLastingState(bool lasting)
 {
 	this->lasting = lasting;
+}
+
+ScriptSheet* ScriptSheet::getParent(void) const
+{
+	return this->parent;
 }
 
 ScriptSheet* ScriptSheet::getScriptSheet(uint const depth, vuint* const tie)

@@ -77,14 +77,17 @@ void ScriptTree::doMove(void* data)
 
 void ScriptTree::moveToUp(void)
 {
-	//this->switchSheet(this->currentsheet->getParent());
+	this->relativesheetid = 0;
+	this->switchSheet(this->currentsheet->getParent());
 }
 
 void ScriptTree::moveToDown(void)
 {
 	vector<ScriptSheet*>* sheets;
 
+	this->relativesheetid = 0;
 	sheets = this->currentsheet->getSheets();
+
 	if(sheets->size() > 0)
 	{
 		this->switchSheet(sheets->at(0));
@@ -93,9 +96,33 @@ void ScriptTree::moveToDown(void)
 
 void ScriptTree::moveToLeft(void)
 {
-	//if(this->currentsheet
+	if(this->relativesheetid > 0)
+	{
+		this->relativesheetid--;
+		this->horizontalMove(this->currentsheet->getParent());
+	}
 }
 
 void ScriptTree::moveToRight(void)
 {
+	ScriptSheet* parent;
+	
+	parent = this->currentsheet->getParent();
+
+	if(this->relativesheetid < parent->size())
+	{
+		this->relativesheetid++;
+		this->horizontalMove(parent);
+	}
+}
+
+void ScriptTree::horizontalMove(ScriptSheet* const parent) const
+{
+	ScriptSheet* next;
+	vector<ScriptSheet*>* sheets;
+
+	sheets = parent->getSheets();
+	next = sheets->at(this->relativesheetid);
+
+	this->switchSheet(next);
 }
