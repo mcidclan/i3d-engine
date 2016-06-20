@@ -1,10 +1,21 @@
-#include "./headers/Element.hpp"
+#ifndef ELEMENT_HPP
+#define ELEMENT_HPP
 
+	class Element
+	{
+		public:
+			///
+			/// Constructor
+			///
+			Element();
 
-Element::Element()
-{
-}
+			///
+			/// Destructor
+			///
+			~Element();
 
-Element::~Element()
-{
-}
+		private:
+
+	};
+
+#endif
