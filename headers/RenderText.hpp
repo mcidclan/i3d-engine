@@ -36,8 +36,11 @@
 			/// Text value.
 			string text;
 
-			/// Text size.
-			unsigned int size;
+			/// Center of the text in x.
+			float centerx;
+
+			/// Center of the text in y.
+			float centery;
 
 			///@{
 			/// Current RenderText position.
@@ -51,6 +54,12 @@
 		private:
 			/// FTGLPixmapFont linked to the current RenderText.
 			FTGLPixmapFont* font;
+
+			/// Text size.
+			unsigned int size;
+
+			/// Allows to update the width and height properties.
+			void updateCenter(void);
 
 	};
 

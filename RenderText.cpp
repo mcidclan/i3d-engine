@@ -9,6 +9,9 @@ RenderText::RenderText(FTGLPixmapFont* const font)
 	this->size = 16;
 	this->text = "";
 
+	this->centerx = 0.0f;
+	this->centery = 0.0f;
+
 	this->font = font;
 }
 
@@ -19,11 +22,19 @@ RenderText::~RenderText()
 void RenderText::setSize(unsigned int const size)
 {
 	this->size = size;
+	this->updateCenter();
 }
 
 void RenderText::setText(string const text)
 {
 	this->text = text;
+	this->updateCenter();
+}
+
+void RenderText::updateCenter(void)
+{
+	this->centerx = this->size / 2.0f;
+	this->centery = (this->size * this->text.length()) / 2.0f;
 }
 
 void RenderText::draw(void)

@@ -48,9 +48,11 @@
 		CTRL_MOUSE
 	};
 
-	namespace ElementActionInformer
+	class ElementActionInformer
 	{
-		ElementAction getAction(uint const);
-	}
+		public:
+			///
+			static ElementAction getAction(uint const);
+	};
 
 #endif

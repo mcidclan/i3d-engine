@@ -8,6 +8,7 @@ RenderingManager::RenderingManager()
 {
 	unsigned int i;
 
+	this->currentgui = NULL;
 	this->currentfont = NULL;
 	this->currentshape = NULL;
 	this->currentshader = NULL;
@@ -76,17 +77,6 @@ void RenderingManager::drawShapes(void)
 	}
 }
 
-RenderText* RenderingManager::getRenderText(char const* const name)
-{
-	map<string, RenderText*>::const_iterator a, b;
-
-	a = this->texts.find(name);
-	b = this->texts.end();
-
-	if(a != b) return a->second;
-	return NULL;
-}
-
 void RenderingManager::setCurrentFont(unsigned int const id)
 {
 	this->currentfont = fonts[id];
@@ -116,6 +106,34 @@ void RenderingManager::addNewRenderText(char const* const name)
 		this->texts[name] = rendertext;
 	}
 	else cout << "Please set current text font.\n";
+}
+
+void RenderingManager::addNewGui(GuiTypes const type, char const* const name)
+{
+	this->currentgui = NULL;
+
+	switch(type)
+	{
+		case GUI_MESSAGEBOX:
+			if(this->currentfont != NULL)
+			{
+				this->currentgui = new UIMessageBox(this->currentfont);
+			}
+			break;
+
+		case GUI_TEXTINPUT:
+			break;
+
+		case GUI_VARIOUS:
+			break;
+	}
+
+	if(this->currentgui != NULL)
+	{
+		this->addNewShape(RM_SHAPE_GUI);
+		this->guiterfaces[name] = this->currentgui;
+	}
+	else cout << "An error was occurred, new gui can't be created.\n";
 }
 
 void RenderingManager::setCurrentShaderProgram(unsigned int const id)
@@ -245,6 +263,9 @@ RenderShape* RenderingManager::getNewShape(ShapeType const type)
 			return mesh;
 		}
 
+		case RM_SHAPE_GUI:
+			return this->currentgui;
+
 		case RM_SHAPE_TRIANGLE:
 			return new RenderTriangle();
 
@@ -261,5 +282,15 @@ RenderShape* RenderingManager::getNewShape(ShapeType const type)
 vector<RenderShape*>* RenderingManager::getShapes(void)
 {
 	return &this->shapes;
+}
+
+RenderMesh* RenderingManager::getGui(char const* const name)
+{
+	return this->getFromMap(this->guiterfaces, name);
+}
+
+RenderText* RenderingManager::getRenderText(char const* const name)
+{
+	return this->getFromMap(this->texts, name);
 }
 

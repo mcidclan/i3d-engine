@@ -9,15 +9,20 @@ namespace uitest
 		shader.push(GL_VERTEX_SHADER, Shader::vertex, Shader::vsize());
 		shader.push(GL_FRAGMENT_SHADER, Shader::fragment, Shader::fsize());
 
+		sheet->addNewFont("./font.ttf");
+
 		sheet->addNewShaderProgram(shader);
-		sheet->addNewShape(RM_SHAPE_RECTANGLE);
+		sheet->addNewTexturedMesh("model.i3d", "test.bmp");	
+
+		//sheet->addNewShape(RM_SHAPE_RECTANGLE);
+		//sheet->addNewGui(GUI_MESSAGEBOX, "m1");
 
 		sheet->buildKeyBoard();
 
 		{
 			EASMap keymap;
 			keymap['a']((E_SET | A_SCALE),
-			eas(P_X | P_Y)(512.0f)(512.0f)());
+			eas(P_X | P_Y)(256.0f)(256.0f)());
 			keymap['b']((E_SET | A_KEYMAPID), eas(1)());
 
 			sheet->getKeyBoard()->addKeyMap(keymap);

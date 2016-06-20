@@ -56,6 +56,12 @@
 			/// Pointer to the indices data.
 			uint* vertexindices;
 
+			/// Opengl translate matrix.
+			GLfloat* tmatrix;
+
+			/// Opengl rotate matrix.
+			GLfloat* rmatrix;
+
 		private:
 			/// Opengl projection matrix.
 			static GLfloat pmatrix[];
@@ -69,12 +75,6 @@
 
 			bool textured;
 			///@}
-
-			/// Opengl transform matrix.
-			GLfloat* tmatrix;
-
-			/// Opengl rotate matrix.
-			GLfloat* rmatrix;
 
 			/// ProgramShader associated to the current RenderShape.
 			ShaderProgram* shaderprogram;

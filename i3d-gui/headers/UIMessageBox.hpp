@@ -4,6 +4,7 @@
 	#include "utils.hpp"
 	#include "RenderText.hpp"
 	#include "RenderMesh.hpp"
+	#include "uiconstants.hpp"
 
 	class UIMessageBox : public RenderMesh, public RenderText
 	{

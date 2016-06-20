@@ -22,7 +22,7 @@ void UIMessageBox::aSet_position(void* const data)
 {
 	RenderMesh::aSet_position(data);
 	RenderText::aSet_position(data);
-	//this->x += 
-	//this->y += 
+	this->x += (tmatrix[0] / 2.0f) - centerx;
+	this->y += (tmatrix[5] / 2.0f) - centery;
 }
 

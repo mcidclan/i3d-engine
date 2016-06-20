@@ -59,7 +59,7 @@ void MeshLoader::load(char const* const filename)
 
 		fclose(file);
 	}
-	else cout << "File not found.";
+	else cout << "Mesh file not found.\n";
 }
 
 uint* MeshLoader::getIndices(void) const

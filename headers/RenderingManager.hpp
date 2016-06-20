@@ -5,6 +5,7 @@
 	#include "SSDataBridge.hpp"
 	#include "ShaderSources.hpp"
 
+	#include "UIInformer.hpp"
 	#include "RenderText.hpp"
 	#include "RenderMesh.hpp"
 	#include "RenderTriangle.hpp"
@@ -17,6 +18,7 @@
 	enum ShapeType
 	{
 		RM_SHAPE_MESH = 0,
+		RM_SHAPE_GUI,
 		RM_SHAPE_TRIANGLE,
 		RM_SHAPE_RECTANGLE,
 		RM_SHAPE_NUMBER
@@ -43,11 +45,11 @@
 			/// Add a new font from a given source file.
 			void addNewFont(char const* const);
 
-			/// Get the specified RenderText.
-			RenderText* getRenderText(char const* const);
-
 			/// Add a new RenderText. An id must be given.
 			void addNewRenderText(char const* const);
+
+			/// add a new named RenderMesh gui.
+			void addNewGui(GuiTypes const, char const* const);
 
 			/// Allows to choose the current ShaderProgram.
 			void setCurrentShaderProgram(unsigned int const);
@@ -71,6 +73,16 @@
 			///
 			vector<RenderShape*>* getShapes(void);
 
+			///
+			RenderMesh* getGui(char const* const);
+
+			/// Get the specified RenderText.
+			RenderText* getRenderText(char const* const);
+
+			///
+			template <typename T>
+			T getFromMap(map<string, T>&, char const* const);
+
 		private:
 			///@{
 			/// GL_STATIC_DRAW buffers.
@@ -80,10 +92,16 @@
 			///@}
 
 			///
+			RenderMesh* currentgui;
+
+			///
 			RenderShape* currentshape;
 
 			/// Current ShaderProgram to be used.
 			ShaderProgram* currentshader;
+
+			/// Current font to be used.
+			FTGLPixmapFont* currentfont;
 
 			/// ShaderProgram stack.
 			vector<ShaderProgram*> shaders;
@@ -94,8 +112,8 @@
 			///
 			map<string, RenderText*> texts;
 
-			/// Current font to be used.
-			FTGLPixmapFont* currentfont;
+			///
+			map<string, RenderMesh*> guiterfaces;
 			
 			/// Font stack.
 			vector<FTGLPixmapFont*> fonts;
@@ -119,5 +137,20 @@
 			RenderShape* getNewShape(ShapeType const);
 
 	};
+
+	template <typename T>
+	T RenderingManager::getFromMap(map<string, T>& sources,
+	char const* const name)
+	{
+		typename map<string, T>::const_iterator a, b;
+
+		a = sources.find(name);
+		b = sources.end();
+
+		if(a != b) return a->second;
+
+		cout << "Key not found\n";
+		return NULL;
+	}
 
 #endif

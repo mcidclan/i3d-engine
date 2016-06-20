@@ -29,7 +29,7 @@ void initTies(void)
 		scripttree.addNewScriptSheet(uitest::script);
 	}
 
-	uint tie[] = {0};
+	uint tie[] = {0, 1};
 	scripttree.setCurrentTie(tie);
 	scripttree.setCurrentScriptSheet();
 }

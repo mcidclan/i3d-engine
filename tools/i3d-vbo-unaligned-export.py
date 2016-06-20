@@ -111,7 +111,7 @@ while i < len(vis):
     i += 1
 
 
-main_path = "c:/tmp/"
+main_path = "/media/data/tmp/"
 outputfile = os.path.join(main_path, 'model.i3d')
 file = open(outputfile, 'wb')
 
@@ -121,19 +121,26 @@ wrtf("<i", nv)
 wrtf("<i", nv_unique)
 print(str(nv) + " " + str(nv_unique))
 
+print("nid = " + str(len(ids_final)))
+
 for id in ids_final:
     wrtf("<i", id)
     print(id)
+
+print("nvs = " + str(len(vs_final)))
     
 for v in vs_final:
     wrtf("<f", v.x)
     wrtf("<f", v.y)
     wrtf("<f", v.z)
     print(str(v.x) + " " + str(v.y) + " " + str(v.z))
-    
+
+print("nuvs = " + str(len(uvs_final)))
+
 for uv in uvs_final:
     wrtf("<f", uv.x)
     wrtf("<f", uv.y)
     print(str(uv.x) + " " + str(uv.y))
 
 file.close()
+
