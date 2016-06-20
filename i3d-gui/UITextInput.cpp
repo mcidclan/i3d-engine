@@ -46,6 +46,23 @@ void UITextInput::aSet_write(void* const data)
 	this->text->addText(sdata);
 }
 
+void UITextInput::aSet_erase(void* const)
+{
+	uint last;
+
+	string& data = this->text->getData();
+
+	if(data.size() > 0)
+	{
+		last = data.length() - 1;
+
+		if((uchar)data[last - 1] == 0xC3)
+		{
+			data.erase(last - 1, 2);
+		} else data.erase(last, 1);
+	}
+}
+
 void UITextInput::aDo_write(void* const data)
 {
 	this->aSet_write(data);

@@ -13,6 +13,8 @@ void ElementActions::aSet_KeyMapId(void* const){}
 
 void ElementActions::aSet_write(void* const){}
 
+void ElementActions::aSet_erase(void* const){}
+
 // Action Get.
 void ElementActions::aGet_data(void* const){}
 

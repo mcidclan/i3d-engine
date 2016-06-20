@@ -68,6 +68,11 @@ void RenderText::translate(float const x, float const y, float const z)
 	this->position.add(x, y, z);
 }
 
+string& RenderText::getData(void)
+{
+	return this->text;
+}
+
 void RenderText::aSet_position(void* const data)
 {
 	EAI::setTransformation(data, this->position);

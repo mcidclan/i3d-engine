@@ -36,9 +36,9 @@ namespace uitest
 		//keymap 0
 		{
 			EASMap keymap;
-			keymap['a']((E_SET | A_SCALE),
+			keymap['a' | KE_DOWN]((E_SET | A_SCALE),
 			eas(P_X | P_Y)(256.0f)(256.0f)());
-			keymap['b']((E_SET | A_KEYMAPID), eas(1)());
+			keymap['b' | KE_DOWN]((E_SET | A_KEYMAPID), eas(1)());
 
 			sheet->getKeyBoard()->addKeyMap(keymap);
 		}
@@ -49,9 +49,10 @@ namespace uitest
 		//keymap 1
 		{
 			EASMap keymap;
-			keymap['a']((E_SET | A_SCALE),
+			keymap['a' | KE_DOWN]((E_SET | A_SCALE),
 			eas(P_X | P_Y)(128.0f)(128.0f)());
-			keymap[KE_ALL_DOWN]((E_SET | A_WRITE), param);
+			keymap[KE_ALL | KE_DOWN]((E_SET | A_WRITE), param);
+			keymap[K_DEL | KE_DOWN]((E_SET | A_ERASE), NULL);
 
 			sheet->getKeyBoard()->addKeyMap(keymap);
 		}
@@ -59,7 +60,7 @@ namespace uitest
 		//keymap 2
 		{
 			EASMap keymap;
-			keymap[KE_ALL_DOWN]((E_GET | A_DATA), param);
+			keymap[KE_ALL | KE_DOWN]((E_GET | A_DATA), param);
 
 			sheet->getKeyBoard()->addKeyMap(keymap);
 		}

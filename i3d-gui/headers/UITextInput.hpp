@@ -19,6 +19,8 @@
 			/// Actions.
 			void aSet_write(void* const);
 
+			void aSet_erase(void* const);
+
 			void aDo_write(void* const);
 			///@}
 

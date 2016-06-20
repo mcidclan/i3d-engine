@@ -23,6 +23,9 @@
 			///
 			virtual void aSet_write(void* const);
 
+			///
+			virtual void aSet_erase(void* const);
+
 
 			/// Allows to read the state of the current runnable.
 			virtual void aGet_runnableState(void* const);

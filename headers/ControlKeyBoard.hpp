@@ -18,8 +18,8 @@
 		SK_DOWN = 0x0,*/
 
 		KE_UP = 0x100,
-		KE_ALL_DOWN = 0x200,
-		KE_ALL_UP = 0x300
+		KE_DOWN = 0x200,
+		KE_ALL = 0x400
 	};
 	
 	typedef map<uint, EAS> EASMap;

@@ -30,6 +30,7 @@
 		A_MOVE,
 		A_SCALE,
 		A_WRITE,
+		A_ERASE,
 		A_TARGET,
 		A_POSITION,
 		A_KEYMAPID,

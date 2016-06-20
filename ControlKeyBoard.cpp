@@ -37,6 +37,7 @@ void ControlKeyBoard::asTarget(void)
 void ControlKeyBoard::dispatchEvents(void)
 {
 	uint i;
+	//uint e;
 	uint kmid;
 	EASMap* cmap;
 	Element* target;
@@ -57,8 +58,8 @@ void ControlKeyBoard::dispatchEvents(void)
 
 			while(a != b)
 			{
-				if((a->first == (this->currentkey & 0xFF)) ||
-				(a->first == (this->currentkey & 0xF00)))
+				if((a->first == (this->currentkey & 0x3FF)) ||
+				(a->first == (this->currentkey & 0x700)))
 				{
 					this->sheet->setEventSource(this);
 					this->sheet->setEventTarget(target);
@@ -86,15 +87,15 @@ void ControlKeyBoard::keyDown(uchar key, int x, int y)
 {
 	ControlKeyBoard::current->pushToData(key);
 	ControlKeyBoard::current->currentkey = key;
-	ControlKeyBoard::current->currentkey |= KE_ALL_DOWN;	
+	ControlKeyBoard::current->currentkey |= KE_DOWN;	
+	ControlKeyBoard::current->currentkey |= KE_ALL;	
 }
 
 void ControlKeyBoard::keyUp(uchar key, int x, int y)
 {
-	cout << ": " << (uint)key << "\n";
 	ControlKeyBoard::current->currentkey = key;
 	ControlKeyBoard::current->currentkey |= KE_UP;
-	ControlKeyBoard::current->currentkey |= KE_ALL_UP;
+	ControlKeyBoard::current->currentkey |= KE_ALL;
 }
 
 void ControlKeyBoard::aSet_target(void* const)

@@ -23,6 +23,9 @@ ElementAction EAI::getAction(uint const action)
 		case (E_SET | A_WRITE):
 			return &ElementActions::aSet_write;
 
+		case (E_SET | A_ERASE):
+			return &ElementActions::aSet_erase;
+
 		// Action Get.
 		case (E_GET | A_RUNNABLE_STATE):
 			return &ElementActions::aGet_runnableState;

@@ -39,6 +39,9 @@
 			/// Allows to translate the text.
 			void translate(float const, float const, float const);
 
+			///
+			string& getData(void);
+
 			///@{
 			/// Actions.
 			void aSet_position(void* const);
