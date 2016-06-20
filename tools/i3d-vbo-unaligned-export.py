@@ -95,11 +95,10 @@ while i < len(vis):
     data = OpenglData()
     
     vid = vis[i]
-    uvid = i
-    #uvs[i].id
+    uvid = uvs[i].id
     
     data.v = vs[vid]
-    data.uv = uvs[uvid]
+    data.uv = uvs_unique_values[uvid]
     
     print(":" + str(data.v.x) + "," + str(data.v.y) + "," + str(data.v.z) + " " + str(data.uv.x) + "," + str(data.uv.y))
     
