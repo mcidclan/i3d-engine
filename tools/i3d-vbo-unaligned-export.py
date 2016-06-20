@@ -9,9 +9,9 @@ import struct
 class IVec:
     id = 0
     x = 0.0
-    y = 0.0
+    y = 0.0 
     z = 0.0
-
+    
 class OpenglData:
     id = -1
     uv = IVec()
@@ -76,7 +76,10 @@ for face in mesh.polygons:
     vis.append(face.vertices[0])
     vis.append(face.vertices[1])
     vis.append(face.vertices[2])
-    
+
+print("\nid")
+for vi in vis:
+    print(vi)    
 
 i = 0
 next_id = 0
@@ -92,10 +95,14 @@ while i < len(vis):
     data = OpenglData()
     
     vid = vis[i]
-    uvid = uvs[i].id
+    uvid = i
+    #uvs[i].id
     
     data.v = vs[vid]
     data.uv = uvs[uvid]
+    
+    print(":" + str(data.v.x) + "," + str(data.v.y) + "," + str(data.v.z) + " " + str(data.uv.x) + "," + str(data.uv.y))
+    
     key = (uvid, vid)
     
     if key in datas:

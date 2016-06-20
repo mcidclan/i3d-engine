@@ -12,7 +12,7 @@ namespace uitest
 		sheet->addNewFont("./font.ttf");
 
 		sheet->addNewShaderProgram(shader);
-		sheet->addNewTexturedMesh("model.i3d", "test.bmp");	
+		sheet->addNewTexturedMesh("model.i3d", "suzanne.png");	
 
 		//sheet->addNewShape(RM_SHAPE_RECTANGLE);
 		//sheet->addNewGui(GUI_MESSAGEBOX, "m1");
