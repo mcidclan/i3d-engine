@@ -9,6 +9,11 @@ ControlKeyBoard::ControlKeyBoard(ScriptSheet* const sheet)
 
 	glutKeyboardFunc(ControlKeyBoard::keyDown);
 	glutKeyboardUpFunc(ControlKeyBoard::keyUp);
+
+	this->currenttargetid = 0;
+	this->targets.push_back(NULL);
+
+	cout << "New ControlKeyBoard.\n";
 }
 
 ControlKeyBoard::~ControlKeyBoard()
@@ -26,21 +31,29 @@ void ControlKeyBoard::dispatchEvents(void)
 	uint kmid;
 	EAS* aset;
 	EASMap* cmap;
+	Element* target;
 
 	i = 0;
 	while(i < this->targets.size())
 	{
-		kmid = this->targets[i]->getKeyMapId();
-		cmap = &this->keymaps[kmid];
+		target = this->targets[i];
 
-		if(cmap->find(this->currentkey) != cmap->end())
+		if(target != NULL)
 		{
-			aset = &cmap->at(this->currentkey);
-			this->sheet->addNewEvent(aset->getAction(), aset->getParam());
-			cmap->erase(this->currentkey);
+			kmid = target->getKeyMapId();
+			cmap = &this->keymaps[kmid];
+
+			if(cmap->find(this->currentkey) != cmap->end())
+			{
+				aset = &cmap->at(this->currentkey);
+				this->sheet->setEventTarget(target);
+				this->sheet->addNewEvent(aset->getAction(), aset->getParam());
+			}
 		}
 		i++;
 	}
+
+	this->currentkey = '\0';
 }
 
 void ControlKeyBoard::keyDown(uchar key, int x, int y)
@@ -51,4 +64,17 @@ void ControlKeyBoard::keyDown(uchar key, int x, int y)
 void ControlKeyBoard::keyUp(uchar key, int x, int y)
 {
 	ControlKeyBoard::current->currentkey = key + '\1';
+}
+
+void ControlKeyBoard::aSet_target(void* const)
+{
+	vector<RenderShape*>* shapes;
+
+	shapes = this->sheet->getShapes();
+
+	if(shapes->size() > 0)
+	{
+		this->targets[0] = shapes->at(this->currenttargetid);
+		this->currenttargetid = (this->currenttargetid + 1) % shapes->size();
+	}
 }

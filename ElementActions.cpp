@@ -1,9 +1,13 @@
 #include "ElementActions.hpp"
 
-void ElementActions::setLog(void* const){}
+void ElementActions::aSet_log(void* const){}
 
-void ElementActions::getRunnableState(void* const){}
+void ElementActions::aSet_target(void* const){}
 
-void ElementActions::doMove(void* const){}
+void ElementActions::aSet_scale(void* const){}
 
-void ElementActions::doScale(void* const){}
+void ElementActions::aSet_KeyMapId(void* const data){}
+
+void ElementActions::aGet_runnableState(void* const){}
+
+void ElementActions::aDo_move(void* const){}

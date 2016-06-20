@@ -1,5 +1,5 @@
 #include "SSDataBridge.hpp"
 
-Element* SSDataBridge::lastnewsource = NULL;
+Element* SSDataBridge::source = NULL;
 
-Element* SSDataBridge::lastnewtarget = NULL;
+Element* SSDataBridge::target = NULL;

@@ -8,8 +8,13 @@
 
 	class ControlKeyBoard;
 	class ControlMouse;
-
 	class ScriptSheet;
+
+	enum EventTarget
+	{
+		CTRL_KEYBOARD = 0,
+		CTRL_MOUSE
+	};
 
 	typedef void(* Script)(ScriptSheet* const);
 
@@ -45,6 +50,13 @@
 
 			/// Set the persistence state.
 			void setLastingState(bool);
+
+			///@{
+			/// Allows to set the current event target.
+			void setEventTarget(Element* const);
+
+			void setEventTarget(EventTarget const);
+			///@}
 
 			/// Return the parent ScriptSheet.
 			ScriptSheet* getParent(void) const;

@@ -9,7 +9,7 @@
 	typedef map<uchar, EAS> EASMap;
 
 	/// Allows to use the keyboard events in the current ScriptSheet.
-	class ControlKeyBoard
+	class ControlKeyBoard : public Element
 	{
 		public:
 			/// Constructor.
@@ -30,12 +30,20 @@
 			/// Allows to get the current key up.
 			static void keyUp(uchar, int, int);
 
+			///@{
+			/// Actions
+			void aSet_target(void* const);
+			///@}
+
 		private:
 			/// Current ControlKeyBoard used by the current ScriptSheet.
 			static ControlKeyBoard* current;
 
 			/// The sheet to which the keyboard is linked.
 			ScriptSheet* sheet;
+
+			/// Cursor to the current target id;
+			uint currenttargetid;
 
 			/// Current used key.
 			uchar currentkey;

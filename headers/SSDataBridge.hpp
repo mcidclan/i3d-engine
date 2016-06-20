@@ -8,10 +8,10 @@
 	{
 		public:
 			/// Last added source Element.
-			static Element* lastnewsource;
+			static Element* source;
 
 			/// Current added target Element.
-			static Element* lastnewtarget;
+			static Element* target;
 	};
 
 #endif

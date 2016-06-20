@@ -6,17 +6,24 @@
 	{
 		public:
 			/// Allows to trace debug message.
-			virtual void setLog(void* const);
+			virtual void aSet_log(void* const);
+
+			/// Allows to set a specific target.
+			virtual void aSet_target(void* const);
+
+			/// Allows to scale the current Element.
+			virtual void aSet_scale(void* const);
+
+			///
+			virtual void aSet_KeyMapId(void* const);
 
 			/// Allows to read the state of the
 			/// runnable associated to the current Element.
-			virtual void getRunnableState(void* const);
+			virtual void aGet_runnableState(void* const);
 
 			/// Allows to move the Element or through it.
-			virtual void doMove(void* const);
+			virtual void aDo_move(void* const);
 
-			/// Allows to scale the current Element.
-			virtual void doScale(void* const);
 	};
 
 	/// Define the ElementAction type.

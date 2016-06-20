@@ -31,6 +31,11 @@ void ScriptTree::addNewScriptSheet(Script const init)
 	else cout << "Can't use current tie.\n";
 }
 
+void ScriptTree::setCurrentScriptSheet(void)
+{
+	this->setCurrentScriptSheet(this->tie[this->tiedepth - 1]);
+}
+
 void ScriptTree::setCurrentScriptSheet(uint const id)
 {
 	if(this->tie != NULL)
@@ -62,7 +67,7 @@ void ScriptTree::switchSheet(ScriptSheet* const sheet)
 	this->currentsheet = sheet;
 }
 
-void ScriptTree::doMove(void* data)
+void ScriptTree::aDo_move(void* const data)
 {
 	if(this->currentsheet != NULL)
 	{

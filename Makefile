@@ -4,8 +4,8 @@ EXEC = i3d-engine.exe
 
 
 LIB_PATH = .
-LIB_PATH_UI = ./i3d-ui
-LIB_PATH_UTIL = ./i3d-util
+LIB_PATH_UI = ./i3d-gui
+LIB_PATH_UTIL = ./i3d-utility
 DEMO_PATH = ./i3d-demo
 
 

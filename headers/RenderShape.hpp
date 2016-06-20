@@ -42,9 +42,9 @@
 
 			///@{
 			/// Actions.
-			void setLog(void* const);
+			void aSet_log(void* const);
 
-			void doScale(void* const);
+			void aSet_scale(void* const);
 			///@}
 
 		protected:

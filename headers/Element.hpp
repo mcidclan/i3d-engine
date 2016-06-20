@@ -17,7 +17,9 @@
 
 			///@{
 			/// Availables ElementActions.
-			void getRunnableState(void* const);
+			void aSet_KeyMapId(void* const);
+
+			void aGet_runnableState(void* const);
 			///@}
 
 		private:

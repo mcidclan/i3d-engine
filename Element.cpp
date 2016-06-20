@@ -15,7 +15,12 @@ uint Element::getKeyMapId(void) const
 	return this->keymapid;
 }
 
-void Element::getRunnableState(void* const data)
+void Element::aGet_runnableState(void* const data)
 {
 	this->runnablestate = *((bool*)data);
+}
+
+void Element::aSet_KeyMapId(void* const data)
+{
+	cout << "Not implemented yet!\n";
 }

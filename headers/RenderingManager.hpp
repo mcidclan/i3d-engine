@@ -68,6 +68,9 @@
 			/// Call the draw process.
 			void draw(void);
 
+			///
+			vector<RenderShape*>* getShapes(void);
+
 		private:
 			///@{
 			/// GL_STATIC_DRAW buffers.

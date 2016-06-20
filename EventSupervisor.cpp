@@ -19,8 +19,8 @@ void EventSupervisor::addNewEvent(uint const action, void* const param)
 
 	event = new Event();
 
-	event->setSource(SSDataBridge::lastnewsource);
-	event->setTarget(SSDataBridge::lastnewtarget);
+	event->setSource(SSDataBridge::source);
+	event->setTarget(SSDataBridge::target);
 
 	event->addAction(action);
 	event->addParam(param);

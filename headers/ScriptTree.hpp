@@ -18,16 +18,21 @@
 			///
 			void addNewScriptSheet(Script const);
 
-			/// Set the current ScriptSheet by passing
-			/// a vector which describe the path.
+			///@{
+			/// Allow to set the current ScriptSheet.
 			void setCurrentScriptSheet(uint const);
+
+			void setCurrentScriptSheet(void);
+			///@}
 
 			///
 			template <uint D>
 			void setCurrentTie(uint (&)[D]);
 
-			/// Action.
-			void doMove(void*);
+			///@{
+			/// Actions.
+			void aDo_move(void* const);
+			///@}
 
 		private:
 			///	Allows access to the current instance,

@@ -12,7 +12,7 @@
 			/// Destructor.
 			~MeshLoader();
 
-			/// Allows to load a mesh from a binary i3d file.
+			/// Allows to load a mesh from a i3d binary file.
 			void load(char const* const);
 
 			/// Return the indices buffer pointer.

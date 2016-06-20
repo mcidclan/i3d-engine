@@ -23,9 +23,15 @@ void initTies(void)
 		scripttree.addNewScriptSheet(area::script);
 	}
 
-	uint tie[] = {0};
+	{
+		uint tie[] = {0, 1};
+		scripttree.setCurrentTie(tie);
+		scripttree.addNewScriptSheet(uitest::script);
+	}
+
+	uint tie[] = {0, 1};
 	scripttree.setCurrentTie(tie);
-	scripttree.setCurrentScriptSheet(0);
+	scripttree.setCurrentScriptSheet();
 }
 
 int main(int argc, char** argv)

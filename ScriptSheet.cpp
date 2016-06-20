@@ -33,11 +33,13 @@ void ScriptSheet::initAttributes(void)
 void ScriptSheet::buildMouse(void)
 {
 	this->mouse = new ControlMouse(this);
+	this->setEventTarget(CTRL_MOUSE);
 }
 
 void ScriptSheet::buildKeyBoard(void)
 {
 	this->keyboard = new ControlKeyBoard(this);
+	this->setEventTarget(CTRL_KEYBOARD);
 }
 
 void ScriptSheet::leave(void)
@@ -61,6 +63,10 @@ void ScriptSheet::draw(void)
 
 		if(this->initialized)
 		{
+			if(this->keyboard != NULL)
+			{
+				this->keyboard->dispatchEvents();
+			}
 			this->processingEvents();
 			RenderingManager::draw();
 		}
@@ -93,6 +99,31 @@ void ScriptSheet::setParent(ScriptSheet* const parent)
 void ScriptSheet::setLastingState(bool lasting)
 {
 	this->lasting = lasting;
+}
+
+void ScriptSheet::setEventTarget(EventTarget const target)
+{
+	switch(target)
+	{
+		case CTRL_KEYBOARD:
+			if(this->keyboard != NULL)
+			{
+				SSDataBridge::target = this->keyboard;
+			}
+			break;
+
+		case CTRL_MOUSE:
+			if(this->mouse != NULL)
+			{
+				SSDataBridge::target = this->mouse;
+			}
+			break;
+	}
+}
+
+void ScriptSheet::setEventTarget(Element* const target)
+{
+	SSDataBridge::target = target;
 }
 
 ScriptSheet* ScriptSheet::getParent(void) const

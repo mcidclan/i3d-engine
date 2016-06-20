@@ -154,7 +154,7 @@ void RenderingManager::addNewShape(ShapeType const type)
 	if(type != RM_SHAPE_NUMBER)
 	{
 		this->addNewBufferedShape(type);
-		SSDataBridge::lastnewtarget = this->shapes.back();
+		SSDataBridge::target = this->shapes.back();
 	}
 	else cout << "This shape does not exist.\n";
 }
@@ -255,4 +255,9 @@ RenderShape* RenderingManager::getNewShape(ShapeType const type)
 
 	}
 	return NULL;
+}
+
+vector<RenderShape*>* RenderingManager::getShapes(void)
+{
+	return &this->shapes;
 }

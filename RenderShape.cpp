@@ -115,7 +115,7 @@ void RenderShape::draw(void)
 }
 
 /*
-void RenderShape::doTranslate(void* data)
+void RenderShape::aDo_translate(void* data)
 {
 	this->tmatrix[12]
 	this->tmatrix[13]
@@ -123,7 +123,7 @@ void RenderShape::doTranslate(void* data)
 }
 */
 
-void RenderShape::doScale(void* const data)
+void RenderShape::aSet_scale(void* const data)
 {
 	uchar* const idata = (uchar*)data;
 	float* const vdata = (float*)data;
@@ -133,7 +133,7 @@ void RenderShape::doScale(void* const data)
 	if(idata[0] & P_Z) this->tmatrix[10] = vdata[3];
 }
 
-void RenderShape::setLog(void* const data)
+void RenderShape::aSet_log(void* const data)
 {
 	cout << "setLog not available yet.\n";
 }

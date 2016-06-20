@@ -4,7 +4,7 @@
 	class ScriptSheet;
 	#include "ScriptSheet.hpp"
 
-	class ControlMouse
+	class ControlMouse : public Element
 	{
 		public:
 			///

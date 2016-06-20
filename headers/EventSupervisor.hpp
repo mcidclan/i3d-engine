@@ -5,7 +5,7 @@
 	#include "EventStack.hpp"
 	#include "SSDataBridge.hpp"
 
-	class EventSupervisor : private Element
+	class EventSupervisor : public Element
 	{
 		public:
 			/// Stack used as the Event queue.
