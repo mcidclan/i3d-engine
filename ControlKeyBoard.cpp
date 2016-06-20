@@ -4,6 +4,8 @@ ControlKeyBoard* ControlKeyBoard::current;
 
 ControlKeyBoard::ControlKeyBoard(ScriptSheet* const sheet)
 {
+	this->group = EG_CONTROL;
+
 	this->sheet = sheet;
 	ControlKeyBoard::current = this;
 
@@ -47,6 +49,7 @@ void ControlKeyBoard::dispatchEvents(void)
 			if(cmap->find(this->currentkey) != cmap->end())
 			{
 				aset = &cmap->at(this->currentkey);
+				this->sheet->setEventSource(this);
 				this->sheet->setEventTarget(target);
 				this->sheet->addNewEvent(aset->getAction(), aset->getParam());
 			}

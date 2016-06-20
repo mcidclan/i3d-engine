@@ -10,12 +10,6 @@
 	class ControlMouse;
 	class ScriptSheet;
 
-	enum EventTarget
-	{
-		CTRL_KEYBOARD = 0,
-		CTRL_MOUSE
-	};
-
 	typedef void(* Script)(ScriptSheet* const);
 
 	class ScriptSheet : public RenderingManager, public EventSupervisor
@@ -55,7 +49,14 @@
 			/// Allows to set the current event target.
 			void setEventTarget(Element* const);
 
-			void setEventTarget(EventTarget const);
+			void setEventTarget(ElementType const);
+			///@}
+
+			///@{
+			/// Allows to set the current event target.
+			void setEventSource(Element* const);
+
+			void setEventSource(ElementType const);
 			///@}
 
 			/// Return the parent ScriptSheet.
@@ -100,6 +101,10 @@
 
 			/// Init the attributes common to the both contructors.
 			void initAttributes(void);
+
+			/// Allows to set a specific data bridge
+			/// depending on the given ElementType.
+			void setDataBridge(Element*&, ElementType const);
 
 	};
 

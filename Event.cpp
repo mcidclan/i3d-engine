@@ -6,13 +6,16 @@ Event::Event()
 
 Event::~Event()
 {
-	uint i;
-
-	i = 0;
-	while(i < this->paramlist.size())
+	if(this->source->getGroup() != EG_CONTROL)
 	{
-		delete [] reinterpret_cast<uint*>(this->paramlist[i]);
-		i++;
+		uint i;
+
+		i = 0;
+		while(i < this->paramlist.size())
+		{
+			delete [] reinterpret_cast<uint*>(this->paramlist[i]);
+			i++;
+		}
 	}
 }
 

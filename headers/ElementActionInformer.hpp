@@ -34,6 +34,20 @@
 		A_RUNNABLE_STATE
 	};
 
+	///
+	enum ElementGroup
+	{
+		EG_UNDEFINED = 0,
+		EG_CONTROL
+	};
+
+	///
+	enum ElementType
+	{
+		CTRL_KEYBOARD = 0,
+		CTRL_MOUSE
+	};
+
 	namespace ElementActionInformer
 	{
 		ElementAction getAction(uint const);

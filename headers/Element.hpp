@@ -15,12 +15,19 @@
 			///
 			uint getKeyMapId(void) const;
 
+			/// Return the group of the current element. 
+			uint getGroup(void) const;
+
 			///@{
 			/// Availables ElementActions.
 			void aSet_KeyMapId(void* const);
 
 			void aGet_runnableState(void* const);
 			///@}
+
+		protected:
+			/// Element group.
+			uint group;
 
 		private:
 			/// Give the runnable state,
@@ -29,6 +36,7 @@
 
 			///
 			uint keymapid;
+
 	};
 
 #endif

@@ -101,29 +101,44 @@ void ScriptSheet::setLastingState(bool lasting)
 	this->lasting = lasting;
 }
 
-void ScriptSheet::setEventTarget(EventTarget const target)
+void ScriptSheet::setEventSource(Element* const source)
 {
-	switch(target)
+	SSDataBridge::source = source;
+}
+
+void ScriptSheet::setEventSource(ElementType const source)
+{
+	setDataBridge(SSDataBridge::source, source);
+}
+
+void ScriptSheet::setEventTarget(Element* const target)
+{
+	SSDataBridge::target = target;
+}
+
+void ScriptSheet::setEventTarget(ElementType const target)
+{
+	setDataBridge(SSDataBridge::target, target);
+}
+
+void ScriptSheet::setDataBridge(Element*& element, ElementType const type)
+{
+	switch(type)
 	{
 		case CTRL_KEYBOARD:
 			if(this->keyboard != NULL)
 			{
-				SSDataBridge::target = this->keyboard;
+				element = this->keyboard;
 			}
 			break;
 
 		case CTRL_MOUSE:
 			if(this->mouse != NULL)
 			{
-				SSDataBridge::target = this->mouse;
+				element = this->mouse;
 			}
 			break;
 	}
-}
-
-void ScriptSheet::setEventTarget(Element* const target)
-{
-	SSDataBridge::target = target;
 }
 
 ScriptSheet* ScriptSheet::getParent(void) const
