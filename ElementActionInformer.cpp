@@ -14,6 +14,9 @@ ElementAction EAI::getAction(uint const action)
 		case (E_SET | A_TARGET):
 			return &ElementActions::aSet_target;
 
+		case (E_SET | A_MOVE):
+			return &ElementActions::aSet_move;
+
 		case (E_SET | A_SCALE):
 			return &ElementActions::aSet_scale;
 
@@ -33,7 +36,7 @@ ElementAction EAI::getAction(uint const action)
 		case (E_GET | A_DATA):
 			return &ElementActions::aGet_data;
 
-		// Action Move.
+		// Action Do.
 		case (E_DO | A_MOVE):
 			return &ElementActions::aDo_move;
 

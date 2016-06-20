@@ -110,22 +110,23 @@ void UITextInput::aDo_write(void* const data)
 	this->aSet_write(data);
 }
 
-/*void UITextInput::aSet_move(void* const data)
+void UITextInput::aSet_move(void* const data)
 {
-	uint step;
+	int step;
 
-	step = ((uint*)data)[0];
+	step = (int)((uint*)data)[0];
 
-	if((this->cursor > 0) &&
-	(this->cursor < this->data.length()))
+	if(((this->cursor > 0) && (step < 0)) ||
+	((this->cursor < this->data.length()) && (step > 0)))
 	{
-		this->cursor += a;
+		this->cursor += step;
 	}
 
 	if((this->cursor < this->origin) ||
-	(this->cursor > this->origin + this->maxchar))
+	(this->cursor > (this->origin + this->maxchar)))
 	{
 		this->origin += step;
+		this->updateText();
 	}
-}*/
+}
 

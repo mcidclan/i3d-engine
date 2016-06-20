@@ -11,6 +11,9 @@
 			/// Allows to set a specific target.
 			virtual void aSet_target(void* const);
 
+			/// Allows to move the Element or through it.
+			virtual void aSet_move(void* const);
+
 			/// Allows to scale the current Element.
 			virtual void aSet_scale(void* const);
 

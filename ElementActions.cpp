@@ -5,6 +5,8 @@ void ElementActions::aSet_log(void* const){}
 
 void ElementActions::aSet_target(void* const){}
 
+void ElementActions::aSet_move(void* const){}
+
 void ElementActions::aSet_scale(void* const){}
 
 void ElementActions::aSet_position(void* const){}

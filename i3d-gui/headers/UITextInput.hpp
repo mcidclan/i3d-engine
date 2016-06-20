@@ -25,6 +25,8 @@
 
 			///@{
 			/// Actions.
+			void aSet_move(void* const);
+
 			void aSet_write(void* const);
 
 			void aSet_erase(void* const);

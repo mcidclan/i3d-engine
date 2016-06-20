@@ -60,9 +60,12 @@ void ControlKeyBoard::dispatchEvents(void)
 
 			while(a != b)
 			{
-				if((a->first == (this->currentkey & 0x3FF)) ||
+				/*if((a->first == (this->currentkey & 0x3FF)) ||
 				(a->first == (this->currentkey & 0x700)) ||
-				(a->first == (this->currentkey & 0x18FF)))
+				(a->first == (this->currentkey & 0x18FF)))*/
+
+				if((a->first == (this->currentkey & ~K_ALL)) ||
+				(a->first & this->currentkey & K_ALL))
 				{
 					this->sheet->setEventSource(this);
 					this->sheet->setEventTarget(target);
@@ -90,7 +93,6 @@ void ControlKeyBoard::specialKeyDown(int key, int x, int y)
 {
 	ControlKeyBoard::current->currentkey = (uint)key;
 	ControlKeyBoard::current->currentkey |= SKE_DOWN;
-	cout << current->currentkey << "\n";
 }
 
 void ControlKeyBoard::specialKeyUp(int key, int x, int y)
@@ -105,14 +107,14 @@ void ControlKeyBoard::keyDown(uchar key, int x, int y)
 	ControlKeyBoard::current->pushToData(key);
 	ControlKeyBoard::current->currentkey = key;
 	ControlKeyBoard::current->currentkey |= KE_DOWN;	
-	ControlKeyBoard::current->currentkey |= KE_ALL;	
+	ControlKeyBoard::current->currentkey |= K_ALL;	
 }
 
 void ControlKeyBoard::keyUp(uchar key, int x, int y)
 {
 	ControlKeyBoard::current->currentkey = key;
 	ControlKeyBoard::current->currentkey |= KE_UP;
-	ControlKeyBoard::current->currentkey |= KE_ALL;
+	ControlKeyBoard::current->currentkey |= K_ALL;
 }
 
 void ControlKeyBoard::aSet_target(void* const)

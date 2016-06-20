@@ -22,7 +22,7 @@
 
 		KE_UP = 0x100,
 		KE_DOWN = 0x200,
-		KE_ALL = 0x400,
+		K_ALL = 0x400,
 
 		SKE_UP = 0x800,
 		SKE_DOWN = 0x1000
