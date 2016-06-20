@@ -7,26 +7,45 @@
 	class EventSupervisor : private Element
 	{
 		public:
+			/// Stack used as the Event queue.
+			EventStack* eventstack[2];
+
 			/// Constructor.
 			EventSupervisor();
 
 			/// Destructor.
 			~EventSupervisor();
 
-			/// Core process of the supevisor.
-			/// This is where all Events are processed.
-			static void* run(void* data);
+			///
+			void addNewEvent(uint const, void* const);
+
+			///
+			void processingEvents(void);
 
 		private:
-			/// Stack used as the Event queue.
-			EventStack eventstack;
-
 			/// Pointer to the runnable Thread.
 			Thread* runnable;
 
-			/// Pointer on the current supervisor,
-			/// to be used from the core process.
-			static EventSupervisor* current;
+			/// Current source Element.
+			Element* currentsource;
+	
+			/// Current target Element.
+			Element* currenttarget;
+
+			///
+			void addTransientEvent(Event* const);
+
+			///
+			void addPersistentEvent(Event* const);
+
+			///@{
+			/// Core process of the supevisor.
+			/// This is where all Events are processed.
+			void processingTransientEvents(void);
+
+			void processingPersistentEvents(void);
+			///@}
+
 	};
 
 #endif

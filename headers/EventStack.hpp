@@ -6,7 +6,13 @@
 
 	using namespace std;
 
-	class EventStack : vector<Event*>
+	enum EventStackType
+	{
+		ES_TRANSIENT = 0,
+		ES_PERSISTENT
+	};
+
+	class EventStack : public vector<Event*>
 	{
 		public:
 			/// Constructor.

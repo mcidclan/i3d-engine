@@ -1,13 +1,14 @@
 #ifndef SCRIPTSHEET_HPP
 #define SCRIPTSHEET_HPP
 
+	#include "EventSupervisor.hpp"
 	#include "RenderingManager.hpp"
 
 	class ScriptSheet;
 
 	typedef void(* Script)(ScriptSheet* const);
 
-	class ScriptSheet : public RenderingManager
+	class ScriptSheet : public RenderingManager, public EventSupervisor
 	{
 		public:
 			/// Constructor.

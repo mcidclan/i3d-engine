@@ -52,7 +52,7 @@
 			void addNewShaderProgram(ShaderSources&);
 
 			/// Add a new RenderShape according to the given ShapeType.
-			void addNewBufferedShape(ShapeType const);
+			void addNewShape(ShapeType const);
 
 			/// Call the draw process.
 			void draw(void);
@@ -84,6 +84,9 @@
 
 			/// Draw all RenderShape that was added.
 			void drawShapes(void);
+
+			/// Add a new Buffered RenderShape according to the given ShapeType.
+			void addNewBufferedShape(ShapeType const);
 
 			/// Create and return a new buffered RenderShape. 
 			RenderShape* getNewBufferedShape(ShapeType const);

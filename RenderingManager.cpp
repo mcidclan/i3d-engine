@@ -139,6 +139,11 @@ void RenderingManager::addNewShaderProgram(ShaderSources& shadersource)
 	cout << "A new ShaderProgram was added.\n";
 }
 
+void RenderingManager::addNewShape(ShapeType const type)
+{
+	this->addNewBufferedShape(type);
+}
+
 void RenderingManager::addNewBufferedShape(ShapeType const type)
 {
 	if(this->currentshader != NULL)

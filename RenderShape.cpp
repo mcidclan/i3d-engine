@@ -62,7 +62,7 @@ void RenderShape::setBufferId(GLuint bufferid)
 	this->bufferid = bufferid;
 }
 
-static float test[] = {0.0f, 1024.0f, 256.0f, 1.0f};
+//static float test[] = {0.0f, 1024.0f, 256.0f, 1.0f};
 
 void RenderShape::draw(void)
 {
@@ -79,8 +79,8 @@ void RenderShape::draw(void)
 
 	glDisableVertexAttribArray(0);
 
-	((uchar*)test)[0] = 7;
-	this->doScale(test);
+	/*((uchar*)test)[0] = 7;
+	this->doScale(test);*/
 }
 
 /*void RenderShape::doTranslate(void* data)
@@ -89,6 +89,11 @@ void RenderShape::draw(void)
 	this->tmatrix[13]
 	this->tmatrix[14]
 }*/
+
+void RenderShape::setLog(void* const data)
+{
+	cout << "test log\n";
+}
 
 void RenderShape::doScale(void* const data)
 {

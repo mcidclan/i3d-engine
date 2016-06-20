@@ -14,17 +14,17 @@ Renderer::Renderer(int argc, char** argv)
 	glutCreateWindow(" ");
 	//glutFullScreen();
 
-	if (glewInit() != GLEW_OK)
-	{
-		cout << "Failed to initialize GLEW\n";
-	}
-	else
+	if (glewInit() == GLEW_OK && GLEW_VERSION_2_1)
 	{
 		this->init();
 
 		glutDisplayFunc(Renderer::display);
 		glutReshapeFunc(Renderer::reshape);
 		glutIdleFunc(Renderer::idle);
+	}
+	else
+	{
+		cout << "Failed to initialize GLEW\n";
 	}
 }
 

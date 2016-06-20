@@ -32,6 +32,8 @@
 
 			///@{
 			/// Actions.
+			void setLog(void* const);
+
 			void doScale(void* const);
 			///@}
 

@@ -45,6 +45,7 @@ void ScriptSheet::draw(void)
 
 		if(this->initialized)
 		{
+			this->processingEvents();
 			RenderingManager::draw();
 		}
 	}
