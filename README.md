@@ -2,23 +2,15 @@ i3d-engine
 ==========
 
 id3-engine is a c++ project using opengl.
-
-This engine aims to allow the user to create applications through declarative instructions.
-
+The purpose of this engine is to allow the creation of application through declarative instructions.
 <br/>
-
 Makefiles are available for linux and mingw32.
-
 <br/>
-
-You can use the i3d-export.py in tools, to export your own 3d model through blender 2.65+
-
+You can use the tools/i3d-export.py script, to export your own 3d model via blender 2.65+
 <br/>
-
 i3d-demo contains the first demontrations of the projet.
-
-ui-demo named uitest, model-demo named home, font-demo named area.
-
+the ui demonstration is named uitest,
+the model demontration is named home,
+and the font demonstration is named area.
 <br />
-
 Enjoy!
