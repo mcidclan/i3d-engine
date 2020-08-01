@@ -1,7 +1,7 @@
 i3d-engine
 ==========
 
-This is a small data-oriented programming project using Opengl.
+This is a small data driven programming project using Opengl.
 <br/>
 It allows the creation of sheets which basically are 3d scenes.
 <br/>
