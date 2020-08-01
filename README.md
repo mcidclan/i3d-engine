@@ -12,7 +12,9 @@ Every entities could be linked to multiple events!
 <br/>
 First declare your sheets and ties (nodes) within the i3d-demo/main file.
 <br/>
-Then declare your entities to be loaded or initialized (components, 3d objects, texts, hardware interfaces)
+Then declare your entities (components, 3d objects, texts, hardware interfaces)
+<br/>
+to be loaded or initialized inside each sheet
 <br/>
 Once this is done, links the events to the declared entities.
 <br/>
