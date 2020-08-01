@@ -10,6 +10,12 @@ Over those sheets we can put entities like UI components, 3d object, or texts.
 <br/>
 Every entities could be linked to multiple events!
 <br/>
+First declare your sheets and ties (nodes) within the i3d-demo/main file.
+<br/>
+Then declare your entities to be loaded or initialized (components, 3d objects, texts, hardware interfaces)
+<br/>
+Once this is done, links the events to the declared entities.
+<br/>
 <br/>
 Makefiles are available for linux and mingw32.
 <br/>
