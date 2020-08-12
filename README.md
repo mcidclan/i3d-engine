@@ -14,9 +14,9 @@ First declare your sheets and ties (nodes) within the i3d-demo/main file.
 <br/>
 Then declare your entities (components, 3d objects, texts, hardware interfaces)
 <br/>
-to be loaded or initialized inside each sheet. Once this is done,
+to be loaded or initialized for each sheet. Once this is done,
 <br/>
-links the events to the declared entities.
+link the events to the declared entities.
 <br/>
 <br/>
 Makefiles are available for linux and mingw32.
